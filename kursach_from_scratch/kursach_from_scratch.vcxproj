@@ -154,6 +154,7 @@
     <ClCompile Include="Output.cpp" />
     <ClCompile Include="Search.cpp" />
     <ClCompile Include="Sort.cpp" />
+    <ClCompile Include="workWithTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="File.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Output.h" />
     <ClInclude Include="Search.h" />
     <ClInclude Include="Sort.h" />
+    <ClInclude Include="workWithTable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

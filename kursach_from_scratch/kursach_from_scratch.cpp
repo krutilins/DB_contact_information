@@ -5,19 +5,72 @@
 #include "Input.h"
 #include "Output.h"
 #include "File.h"
+#include "workWithTable.h"
 #include "Search.h"
 #include "Sort.h"
 
+void showMenu(int pos) {
+	int i = 1;
+	cout << "МЕНЮ:" << endl;
+	
+	if (pos == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ЗАГРУЗИТЬ ДАННЫЕ ИЗ ФАЙЛА" << endl;
+	
+	if (pos == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ВЫВОД ТАБЛИЦЫ" << endl;
+	
+	if (pos == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ДОБАВИТЬ ВРУЧНУЮ" << endl;
+	
+	if (pos == 4) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ВЫГРУЗИТЬ ДАННЫЕ В ФАЙЛ" << endl;
+	
+	if (pos == 5) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ОЧИСТКА СПИСКА" << endl;
+	
+	if (pos == 6) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "РАБОТА С ТАБЛИЦЕЙ" << endl;
+	
+	if (pos == 7) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ВЫХОД" << endl;
+}
 
-void showMenu() {
-	cout << "Меню:" << endl;
-	cout << "1. Загрузить данные из файла." << endl;
-	cout << "2. Вывод таблицы" << endl;
-	cout << "3. Добавить вручную." << endl;
-	cout << "5. вывод списка" << endl;
-	cout << "6. Выгрузить данные в файл." << endl;
-	cout << "7. Очистка списка." << endl;
-	cout << "0. Выход" << endl;
+int menuItem() {
+	int functionKey;
+	int pos = 1;
+	do {
+		showMenu(pos);
+		functionKey = _getch();
+		if (functionKey == 224) {
+			functionKey = _getch();
+			if (functionKey == 72) { // вверх
+				if (pos != 1) {
+					showMenu(pos--);
+				}
+			}
+			else if (functionKey == 80) { // Вниз
+				if (pos != 7) {
+					showMenu(pos++);
+				}
+			}
+		}
+		if (functionKey == 13) { //enter
+			system("cls");
+			return pos;
+		}
+		if (functionKey == 27) { //esc
+			system("cls");
+			return 7;
+		}
+		system("cls");
+	} while (true);
 }
 
 int main()
@@ -27,7 +80,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	// установка размеров консоли
-	system("mode con cols=131 lines=70");
+	system("mode con cols=133 lines=35");
 	
 	// создание и инициализация списка
 	doubly_linked_list* database = (doubly_linked_list*)malloc(0);
@@ -35,23 +88,20 @@ int main()
 	
 	// главное меню
 	char choice;
-	char* file = (char*)malloc(sizeof(char) * 50);
+	char* file = (char*)malloc(sizeof(char) * 51);
 	while (true) {
-		showMenu();
-		choice = _getch();
-		system("cls");
-
-		if (choice == '1') { // загрузить из файла
+		switch (menuItem())
+		{
+		case 1: // загрузить из файла
 			cout << "Введите название файла(с указанием формата): ";
-			cin.getline(file,50);
+			cin.getline(file, 50);
 			system("cls");
 			load_DB(database, file);
 			cout << "Данные успешно загруженны." << endl;
 			_getch();
 			system("cls");
-		}
-		
-		if (choice == '2') { // вывести таблицу
+			break;
+		case 2: // вывести таблицу
 			if (!isEmptyList(database)) {
 				display_table(database);
 			}
@@ -60,24 +110,11 @@ int main()
 			}
 			_getch();
 			system("cls");
-		}
-		
-		if (choice == '3') { // добавить вручную
+			break;
+		case 3: // добавить вручную
 			add_information(database);
-		}
-		
-		if (choice == '5') { // вывести список
-			if (!isEmptyList(database)) {
-				display_list(database);
-			}
-			else {
-				cout << "Список пуст.";
-			}
-			_getch();
-			system("cls");
-		}
-		
-		if (choice == '6') { // выгрузить в файл
+			break;
+		case 4: // выгрузить в файл
 			cout << "Введите название файла(с указанием формата): ";
 			cin.getline(file, 50);
 			system("cls");
@@ -85,21 +122,26 @@ int main()
 			cout << "Файл был выгружен." << endl;
 			_getch();
 			system("cls");
-		}
-		
-		if (choice == '7') { // очистить список
+			break;
+		case 5: // очистить список
 			clearList(database);
 			initialize(database);
 			cout << "Список был очищен." << endl;
 			_getch();
 			system("cls");
-		}
-		
-		if (choice == '0') { // выход c освобождением памяти
+			break;
+		case 6: // эксперимент с таблицей
+			table(database);
+			system("cls");
+			break;
+		case 7: // выход c освобождением памяти
 			clearList(database);
 			free(file);
 			cout << "Вы вышли из программы" << endl;
 			exit(0);
+			break;
+		default:
+			break;
 		}
 	}
 }

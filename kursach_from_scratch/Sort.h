@@ -4,5 +4,7 @@
 #include "Header.h"
 
 void sort();
+void Sort_Ascending(int field, struct Clients* array, int size);
+void Sort_Descending(int field, struct Clients* array, int size);
 
 #endif // !_SORT_H_
