@@ -1,182 +1,375 @@
 #include "Sort.h"
 
-void Sort_Ascending(int field, struct Clients* array, int size) {
-	Clients* temp = new Clients[1];
-	int step, i, j;
-	for (step = size / 2; step > 0; step /= 2) {
-		for (i = step; i < size; i++) {
-			for (j = 0; j < i; j++) {
-				if (field == 1) {
-					if (strcmp(array[j].FIO, array[i].FIO) > 0) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 2) {
-					if (strcmp(array[j].city, array[i].city) > 0) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 3) {
-					if (strcmp(array[j].street, array[i].street) > 0) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 4) {
-					if (array[j].house > array[i].house) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 5) {
-					if (array[j].flat > array[i].flat) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 6) {
-					if (array[j].index > array[i].index) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
+void fillArray(Contact** tempArray, doubly_linked_list* L)
+{
+	// дополнительный элемент для прохода от начала до конца списка
+	Contact* tmp;
+	tmp = L->start->next_link; // ссылка на первый элемент
+
+	// пока не конец списка
+	for (int i = 0; tmp != L->end; i++) {
+		resize_z(tempArray, i + 1);
+		strcpy((*tempArray)[i].FIO, tmp->FIO);
+		strcpy((*tempArray)[i].phone, tmp->phone);
+		strcpy((*tempArray)[i].city, tmp->city);
+		strcpy((*tempArray)[i].street, tmp->street);
+		(*tempArray)[i].house = tmp->house;
+		(*tempArray)[i].flat = tmp->flat;
+		tmp = tmp->next_link;
+	}
+}
+void fillList(doubly_linked_list* L, Contact* tempArray, int sizeArray)
+{
+	// временный элемент
+	Contact tempElement;
+	// пока не конец списка
+	for (int i = 0; i < sizeArray; i++) {
+		strcpy(tempElement.FIO, tempArray[i].FIO);
+		strcpy(tempElement.phone, tempArray[i].phone);
+		strcpy(tempElement.city, tempArray[i].city);
+		strcpy(tempElement.street, tempArray[i].street);
+		tempElement.house = tempArray[i].house;
+		tempElement.flat = tempArray[i].flat;
+
+		// перемещение указателя на фиктивный конец
+		endPtr(L);
+		// вставка в конец списка
+		prevPut(L, &tempElement);
+	}
+}
+void resize_z(Contact** pointer, int newsize) {
+	Contact* buff = (Contact*)realloc(*pointer, sizeof(Contact) * newsize);
+	if (buff == NULL) {
+		cout << "Не удалось выделить память!" << endl;
+		exit(-1);
+	}
+
+	*pointer = buff;
+}
+void clear_z(Contact** pointer) {
+	Contact* buff = (Contact*)realloc(*pointer, 0);
+	if (buff != NULL) {
+		cout << "Не получилось очистить массив." << endl;
+		exit(-1);
+	}
+	*pointer = buff;
+
+}
+
+void fioAscending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (strcmp(tempArray[j].FIO, tempArray[i].FIO) > 0) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
 				}
 			}
 		}
 	}
-}
 
-void Sort_Descending(int field, struct Clients* array, int size) {
-	Clients* temp = new Clients[1];
-	int step, i, j;
-	for (step = size / 2; step > 0; step /= 2) {
-		for (i = step; i < size; i++) {
-			for (j = 0; j < i; j++) {
-				if (field == 1) {
-					if (strcmp(array[j].FIO, array[i].FIO) < 0) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 2) {
-					if (strcmp(array[j].city, array[i].city) < 0) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 3) {
-					if (strcmp(array[j].street, array[i].street) < 0) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 4) {
-					if (array[j].house < array[i].house) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 5) {
-					if (array[j].flat < array[i].flat) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
-				}
-				if (field == 6) {
-					if (array[j].index < array[i].index) {
-						temp[0] = array[j];
-						array[j] = array[i];
-						array[i] = temp[0];
-					}
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}
+void fioDescending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (strcmp(tempArray[j].FIO, tempArray[i].FIO) < 0) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
 				}
 			}
 		}
 	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
 }
 
-void menu_sort() {
-	system("cls");
-	cout << "1-Сортировка по ФИО клиента" << endl;
-	cout << "2-Сортировка по городу проживания клиента" << endl;
-	cout << "3-Сортировка по улице проживания клиента" << endl;
-	cout << "4-Сортировка по номер дома проживания клиента" << endl;
-	cout << "5-Сортировка по номер квартиры проживания клиента" << endl;
-	cout << "6-Сортировка по индексу" << endl;
-	cout << "7-Выход в меню" << endl;
-}
+void phoneAscending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
 
-void celect_sort(int field) {
-	system("cls");
-	cout << "1-Сортировка по возрастанию" << endl;
-	cout << "2-Сортировка по убыванию" << endl;
-	cout << "3-Выход в меню" << endl;
-	Clients* array = new Clients[kol];
-	Loading(array);
-	char ch;
-	while (1) {
-		ch = _getch();
-		if (ch == 49) {
-			Sort_Ascending(field, array, kol);
-			Loading_Queue(array);
-			system("cls");
-			Tablitsa();
-			system("pause");
-			menu();
-		}
-		if (ch == 50) {
-			Sort_Descending(field, array, kol);
-			Loading_Queue(array);
-			system("cls");
-			Tablitsa();
-			system("pause");
-			menu();
-		}
-		if (ch == 51) {
-			menu();
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (strcmp(tempArray[j].phone, tempArray[i].phone) > 0) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
 		}
 	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
 }
+void phoneDescending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
 
-void sort() {
-	menu_sort();
-	char ch;
-	while (1) {
-		ch = _getch();
-		if (ch == 49) {
-			celect_sort(1);
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (strcmp(tempArray[j].phone, tempArray[i].phone) < 0) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
 		}
-		if (ch == 50) {
-			celect_sort(2);
-		}
-		if (ch == 51) {
-			celect_sort(3);
-		}
-		if (ch == 52) {
-			celect_sort(4);
-		}
-		if (ch == 53) {
-			celect_sort(5);
-		}
-		if (ch == 54) {
-			celect_sort(6);
-		}
-		if (ch == 55) {
-			menu();
-		}
-
 	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
 }
 
+void cityAscending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
 
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (strcmp(tempArray[j].city, tempArray[i].city) > 0) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
+		}
+	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}
+void cityDescending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (strcmp(tempArray[j].city, tempArray[i].city) < 0) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
+		}
+	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}
+
+void streetAscending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (strcmp(tempArray[j].street, tempArray[i].street) > 0) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
+		}
+	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}
+void streetDescending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (strcmp(tempArray[j].street, tempArray[i].street) < 0) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
+		}
+	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}
+
+void houseAscending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (tempArray[j].house > tempArray[i].house) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
+		}
+	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}
+void houseDescending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (tempArray[j].house < tempArray[i].house) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
+		}
+	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}
+
+void flatAscending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (tempArray[j].flat > tempArray[i].flat) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
+		}
+	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}
+void flatDescending(doubly_linked_list* L)
+{
+	Contact* tempArray = NULL;
+	fillArray(&tempArray, L);
+
+	Contact* tempElement = NULL;
+	resize_z(&tempElement, 1);
+	int arraySize = numElements(L);
+	for (int step = arraySize / 2; step > 0; step /= 2) {
+		for (int i = step; i < arraySize; i++) {
+			for (int j = 0; j < i; j++) {
+				if (tempArray[j].flat < tempArray[i].flat) {
+					tempElement[0] = tempArray[j];
+					tempArray[j] = tempArray[i];
+					tempArray[i] = tempElement[0];
+				}
+			}
+		}
+	}
+
+	clearList(L);
+	initialize(L);
+	fillList(L, tempArray, arraySize);
+	clear_z(&tempArray);
+	clear_z(&tempElement);
+}

@@ -233,3 +233,17 @@ void printList(doubly_linked_list* L) {
 		tmp = tmp->next_link;
 	}
 }
+
+/* —четчик длинны списка */
+int numElements(doubly_linked_list* L) {
+	// дополнительный элемент дл€ прохода от начала до конца списка
+	Contact* tmp;
+	tmp = L->start->next_link; // ссылка на первый элемент
+	int itr = 0;
+	// пока не конец списка
+	while (tmp != L->end) {
+		itr++;
+		tmp = tmp->next_link;
+	}
+	return itr;
+}

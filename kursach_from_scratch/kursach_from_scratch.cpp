@@ -45,7 +45,6 @@ void showMainMenu(int pos) {
 	else { cout << " "; i++; }
 	cout << "ÂÛÕÎÄ" << endl;
 }
-
 int mainMenu() {
 	int functionKey;
 	int pos = 1;
@@ -56,12 +55,12 @@ int mainMenu() {
 			functionKey = _getch();
 			if (functionKey == 72) { // ââåðõ
 				if (pos != 1) {
-					showMainMenu(pos--);
+					pos--;
 				}
 			}
 			else if (functionKey == 80) { // Âíèç
 				if (pos != 8) {
-					showMainMenu(pos++);
+					pos++;
 				}
 			}
 		}
@@ -77,7 +76,7 @@ int mainMenu() {
 	} while (true);
 }
 
-void showMainMenu(int pos) {
+void showSortMenu(int pos) {
 	int i = 1;
 	cout << "ÑÎÐÒÈÐÎÂÎ×ÍÎÅ ÌÅÍÞ:" << endl;
 
@@ -109,23 +108,22 @@ void showMainMenu(int pos) {
 	else { cout << " "; i++; }
 	cout << "ÂÅÐÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍÞ" << endl;
 }
-
-int mainMenu() {
+int sortMenu() {
 	int functionKey;
 	int pos = 1;
 	do {
-		showMainMenu(pos);
+		showSortMenu(pos);
 		functionKey = _getch();
 		if (functionKey == 224) {
 			functionKey = _getch();
 			if (functionKey == 72) { // ââåðõ
 				if (pos != 1) {
-					showMainMenu(pos--);
+					pos--;
 				}
 			}
 			else if (functionKey == 80) { // Âíèç
 				if (pos != 7) {
-					showMainMenu(pos++);
+					pos++;
 				}
 			}
 		}
@@ -141,24 +139,38 @@ int mainMenu() {
 	} while (true);
 }
 
+void showOderMenu(int pos) {
+	int i = 1;
+	cout << "ÑÎÐÒÈÐÎÂÎ×ÍÎÅ ÌÅÍÞ:" << endl;
 
+	if (pos == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÏÎ ÂÎÇÐÀÑÒÀÍÈÞ" << endl;
 
-int sortMenu() {
+	if (pos == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÏÎ ÓÁÛÂÀÍÈÞ" << endl;
+
+	if (pos == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÅÐÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍÞ" << endl;
+}
+int oderMenu() {
 	int functionKey;
 	int pos = 1;
 	do {
-		showMainMenu(pos);
+		showOderMenu(pos);
 		functionKey = _getch();
 		if (functionKey == 224) {
 			functionKey = _getch();
 			if (functionKey == 72) { // ââåðõ
 				if (pos != 1) {
-					showMainMenu(pos--);
+					pos--;
 				}
 			}
 			else if (functionKey == 80) { // Âíèç
-				if (pos != 7) {
-					showMainMenu(pos++);
+				if (pos != 3) {
+					pos++;
 				}
 			}
 		}
@@ -189,7 +201,7 @@ int main()
 	
 	// ãëàâíîå ìåíþ
 	char choice;
-	char* file = (char*)malloc(sizeof(char) * 51);
+	char file[51];
 	while (true) {
 		switch (mainMenu())
 		{
@@ -238,20 +250,85 @@ int main()
 		case 7: // ñîðòèðîâêà
 			switch (sortMenu())
 			{
-			case 1:
-
+			case 1: // ÔÈÎ
+				switch (oderMenu())
+				{
+				case 1: // âîçðàñòàíèå
+					fioAscending(database);
+					break;
+				case 2: // óáûâàíèå
+					fioDescending(database);
+					break;
+				case 3:
+					break;
+				}
 				break;
-			case 2:
+			case 2: // íîìåð òåëåôîíà
+				switch (oderMenu())
+				{
+				case 1: // âîçðàñòàíèå
+					phoneAscending(database);
+					break;
+				case 2: // óáûâàíèå
+					phoneDescending(database);
+					break;
+				case 3:
+					break;
+				}
 				break;
-			case 3:
+			case 3: // ãîðîä
+				switch (oderMenu())
+				{
+				case 1: // âîçðàñòàíèå
+					cityAscending(database);
+					break;
+				case 2: // óáûâàíèå
+					cityDescending(database);
+					break;
+				case 3:
+					break;
+				}
 				break;
-			case 4:
+			case 4: // óëèöà
+				switch (oderMenu())
+				{
+				case 1: // âîçðàñòàíèå
+					streetAscending(database);
+					break;
+				case 2: // óáûâàíèå
+					streetDescending(database);
+					break;
+				case 3:
+					break;
+				}
 				break;
-			case 5:
+			case 5: // äîì
+				switch (oderMenu())
+				{
+				case 1: // âîçðàñòàíèå
+					houseAscending(database);
+					break;
+				case 2: // óáûâàíèå
+					houseDescending(database);
+					break;
+				case 3:
+					break;
+				}
 				break;
-			case 6:
+			case 6: // êâàðòèðà
+				switch (oderMenu())
+				{
+				case 1: // âîçðàñòàíèå
+					flatAscending(database);
+					break;
+				case 2: // óáûâàíèå
+					flatDescending(database);
+					break;
+				case 3:
+					break;
+				}
 				break;
-			case 7:
+			case 7: // ãëàâíîå ìåíþ
 				break;
 			default:
 				break;

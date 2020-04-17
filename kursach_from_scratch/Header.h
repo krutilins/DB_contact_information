@@ -57,5 +57,7 @@ void clearList(doubly_linked_list* L);
 int isEmptyList(doubly_linked_list* L);
 /* Печать все элементов списка с начала до конца */
 void printList(doubly_linked_list* L);
+/* Счетчик длинны списка */
+int numElements(doubly_linked_list* L);
 
 #endif // _HEADER_H_
