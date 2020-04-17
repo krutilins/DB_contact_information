@@ -9,7 +9,7 @@
 #include "Search.h"
 #include "Sort.h"
 
-void showMenu(int pos) {
+void showMainMenu(int pos) {
 	int i = 1;
 	cout << "ÌÅÍÞ:" << endl;
 	
@@ -39,25 +39,126 @@ void showMenu(int pos) {
 	
 	if (pos == 7) { cout << ">"; }
 	else { cout << " "; i++; }
+	cout << "ÑÎÐÒÈÐÎÂÊÀ" << endl;
+
+	if (pos == 8) { cout << ">"; }
+	else { cout << " "; i++; }
 	cout << "ÂÛÕÎÄ" << endl;
 }
 
-int menuItem() {
+int mainMenu() {
 	int functionKey;
 	int pos = 1;
 	do {
-		showMenu(pos);
+		showMainMenu(pos);
 		functionKey = _getch();
 		if (functionKey == 224) {
 			functionKey = _getch();
 			if (functionKey == 72) { // ââåðõ
 				if (pos != 1) {
-					showMenu(pos--);
+					showMainMenu(pos--);
+				}
+			}
+			else if (functionKey == 80) { // Âíèç
+				if (pos != 8) {
+					showMainMenu(pos++);
+				}
+			}
+		}
+		if (functionKey == 13) { //enter
+			system("cls");
+			return pos;
+		}
+		if (functionKey == 27) { //esc
+			system("cls");
+			return 7;
+		}
+		system("cls");
+	} while (true);
+}
+
+void showMainMenu(int pos) {
+	int i = 1;
+	cout << "ÑÎÐÒÈÐÎÂÎ×ÍÎÅ ÌÅÍÞ:" << endl;
+
+	if (pos == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÔÈÎ" << endl;
+
+	if (pos == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÍÎÌÅÐ ÒÅËÅÔÎÍÀ" << endl;
+
+	if (pos == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÃÎÐÎÄ" << endl;
+
+	if (pos == 4) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÓËÈÖÀ" << endl;
+
+	if (pos == 5) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÄÎÌ" << endl;
+
+	if (pos == 6) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÊÂÀÐÒÈÐÀ" << endl;
+
+	if (pos == 7) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÅÐÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍÞ" << endl;
+}
+
+int mainMenu() {
+	int functionKey;
+	int pos = 1;
+	do {
+		showMainMenu(pos);
+		functionKey = _getch();
+		if (functionKey == 224) {
+			functionKey = _getch();
+			if (functionKey == 72) { // ââåðõ
+				if (pos != 1) {
+					showMainMenu(pos--);
 				}
 			}
 			else if (functionKey == 80) { // Âíèç
 				if (pos != 7) {
-					showMenu(pos++);
+					showMainMenu(pos++);
+				}
+			}
+		}
+		if (functionKey == 13) { //enter
+			system("cls");
+			return pos;
+		}
+		if (functionKey == 27) { //esc
+			system("cls");
+			return 7;
+		}
+		system("cls");
+	} while (true);
+}
+
+
+
+int sortMenu() {
+	int functionKey;
+	int pos = 1;
+	do {
+		showMainMenu(pos);
+		functionKey = _getch();
+		if (functionKey == 224) {
+			functionKey = _getch();
+			if (functionKey == 72) { // ââåðõ
+				if (pos != 1) {
+					showMainMenu(pos--);
+				}
+			}
+			else if (functionKey == 80) { // Âíèç
+				if (pos != 7) {
+					showMainMenu(pos++);
 				}
 			}
 		}
@@ -90,7 +191,7 @@ int main()
 	char choice;
 	char* file = (char*)malloc(sizeof(char) * 51);
 	while (true) {
-		switch (menuItem())
+		switch (mainMenu())
 		{
 		case 1: // çàãðóçèòü èç ôàéëà
 			cout << "Ââåäèòå íàçâàíèå ôàéëà(ñ óêàçàíèåì ôîðìàòà): ";
@@ -134,7 +235,29 @@ int main()
 			table(database);
 			system("cls");
 			break;
-		case 7: // âûõîä c îñâîáîæäåíèåì ïàìÿòè
+		case 7: // ñîðòèðîâêà
+			switch (sortMenu())
+			{
+			case 1:
+
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			default:
+				break;
+			}
+			break;
+		case 8: // âûõîä c îñâîáîæäåíèåì ïàìÿòè
 			clearList(database);
 			free(file);
 			cout << "Âû âûøëè èç ïðîãðàììû" << endl;
