@@ -29,7 +29,7 @@ int load_DB(doubly_linked_list* L)
 {
 	char file[50];
 	cout << "¬ведите название файла(с указанием формата): ";
-	cin.getline(file, 50);
+	cin.getline(file, 49);
 	system("cls");
 	// открытие файла
 	ifstream fin(file);

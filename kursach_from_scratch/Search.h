@@ -2,6 +2,7 @@
 #ifndef _SEARCH_H_
 #define _SEARCH_H_
 #include "Header.h"
+#include "workWithTable.h"
 
 void searchFIO(doubly_linked_list* L); // фио
 

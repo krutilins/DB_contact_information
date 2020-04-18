@@ -403,6 +403,7 @@ int main()
 			switch (searchMenu())
 			{
 			case 1:
+				searchFIO(database);
 				break;
 			case 2:
 				break;
