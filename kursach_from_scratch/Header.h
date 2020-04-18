@@ -4,8 +4,6 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
-// встроенные
-
 #include <iostream>
 #include <cstdlib>
 #include <clocale>
@@ -59,5 +57,14 @@ int isEmptyList(doubly_linked_list* L);
 void printList(doubly_linked_list* L);
 /* —четчик длинны списка */
 int numElements(doubly_linked_list* L);
+
+/* заполнение массива */
+void fillArray(Contact** tempArray, doubly_linked_list* L);
+/* заполнение списка */
+void fillList(doubly_linked_list* L, Contact* tempArray, int sizeArray);
+/* выделение пам€ти под массив */
+void resize_z(Contact** pointer, int newsize);
+/* очищение пам€ти выделенного массива*/
+void clear_z(Contact** pointer);
 
 #endif // _HEADER_H_

@@ -247,3 +247,64 @@ int numElements(doubly_linked_list* L) {
 	}
 	return itr;
 }
+
+/* заполнение массива */
+void fillArray(Contact** tempArray, doubly_linked_list* L)
+{
+	// дополнительный элемент дл€ прохода от начала до конца списка
+	Contact* tmp;
+	tmp = L->start->next_link; // ссылка на первый элемент
+
+	// пока не конец списка
+	for (int i = 0; tmp != L->end; i++) {
+		resize_z(tempArray, i + 1);
+		strcpy((*tempArray)[i].FIO, tmp->FIO);
+		strcpy((*tempArray)[i].phone, tmp->phone);
+		strcpy((*tempArray)[i].city, tmp->city);
+		strcpy((*tempArray)[i].street, tmp->street);
+		(*tempArray)[i].house = tmp->house;
+		(*tempArray)[i].flat = tmp->flat;
+		tmp = tmp->next_link;
+	}
+}
+
+/* заполнение списка */
+void fillList(doubly_linked_list* L, Contact* tempArray, int sizeArray)
+{
+	// временный элемент
+	Contact tempElement;
+	// пока не конец списка
+	for (int i = 0; i < sizeArray; i++) {
+		strcpy(tempElement.FIO, tempArray[i].FIO);
+		strcpy(tempElement.phone, tempArray[i].phone);
+		strcpy(tempElement.city, tempArray[i].city);
+		strcpy(tempElement.street, tempArray[i].street);
+		tempElement.house = tempArray[i].house;
+		tempElement.flat = tempArray[i].flat;
+
+		// перемещение указател€ на фиктивный конец
+		endPtr(L);
+		// вставка в конец списка
+		prevPut(L, &tempElement);
+	}
+}
+
+/* выделение пам€ти под массив */
+void resize_z(Contact** pointer, int newsize) {
+	Contact* buff = (Contact*)realloc(*pointer, sizeof(Contact) * newsize);
+	if (buff == NULL) {
+		cout << "Ќе удалось выделить пам€ть!" << endl;
+		exit(-1);
+	}
+	*pointer = buff;
+}
+
+/* очищение пам€ти выделенного массива*/
+void clear_z(Contact** pointer) {
+	Contact* buff = (Contact*)realloc(*pointer, 0);
+	if (buff != NULL) {
+		cout << "Ќе получилось очистить массив." << endl;
+		exit(-1);
+	}
+	*pointer = buff;
+}
