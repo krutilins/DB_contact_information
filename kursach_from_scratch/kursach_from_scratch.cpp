@@ -271,8 +271,6 @@ int main()
 	initialize(database);
 	
 	// главное меню
-	char choice;
-	char file[51];
 	while (true) {
 		switch (mainMenu())
 		{
