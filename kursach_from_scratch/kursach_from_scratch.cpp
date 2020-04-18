@@ -43,6 +43,10 @@ void showMainMenu(int pos) {
 
 	if (pos == 8) { cout << ">"; }
 	else { cout << " "; i++; }
+	cout << "ÏÎÈÑÊ" << endl;
+
+	if (pos == 9) { cout << ">"; }
+	else { cout << " "; i++; }
 	cout << "ÂÛÕÎÄ" << endl;
 }
 int mainMenu() {
@@ -59,7 +63,7 @@ int mainMenu() {
 				}
 			}
 			else if (functionKey == 80) { // Âíèç
-				if (pos != 8) {
+				if (pos != 9) {
 					pos++;
 				}
 			}
@@ -70,7 +74,7 @@ int mainMenu() {
 		}
 		if (functionKey == 27) { //esc
 			system("cls");
-			return 7;
+			return 9;
 		}
 		system("cls");
 	} while (true);
@@ -180,7 +184,74 @@ int oderMenu() {
 		}
 		if (functionKey == 27) { //esc
 			system("cls");
-			return 7;
+			return 3;
+		}
+		system("cls");
+	} while (true);
+}
+
+void showSearchtMenu(int pos) {
+	int i = 1;
+	cout << "ÌÅÍÞ ÏÎÈÑÊÀ:" << endl;
+
+	if (pos == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÔÈÎ" << endl;
+
+	if (pos == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÏÎ ×ÀÑÒÈ ÔÈÎ" << endl;
+
+	if (pos == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÍÎÌÅÐ ÒÅËÅÔÎÍÀ" << endl;
+
+	if (pos == 4) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÃÎÐÎÄ" << endl;
+
+	if (pos == 5) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÓËÈÖÀ" << endl;
+
+	if (pos == 6) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÄÎÌ" << endl;
+
+	if (pos == 7) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÊÂÀÐÒÈÐÀ" << endl;
+
+	if (pos == 8) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÅÐÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍÞ" << endl;
+}
+int searchMenu() {
+	int functionKey;
+	int pos = 1;
+	do {
+		showSortMenu(pos);
+		functionKey = _getch();
+		if (functionKey == 224) {
+			functionKey = _getch();
+			if (functionKey == 72) { // ââåðõ
+				if (pos != 1) {
+					pos--;
+				}
+			}
+			else if (functionKey == 80) { // Âíèç
+				if (pos != 8) {
+					pos++;
+				}
+			}
+		}
+		if (functionKey == 13) { //enter
+			system("cls");
+			return pos;
+		}
+		if (functionKey == 27) { //esc
+			system("cls");
+			return 8;
 		}
 		system("cls");
 	} while (true);
@@ -206,10 +277,7 @@ int main()
 		switch (mainMenu())
 		{
 		case 1: // çàãðóçèòü èç ôàéëà
-			cout << "Ââåäèòå íàçâàíèå ôàéëà(ñ óêàçàíèåì ôîðìàòà): ";
-			cin.getline(file, 50);
-			system("cls");
-			load_DB(database, file);
+			load_DB(database);
 			cout << "Äàííûå óñïåøíî çàãðóæåííû." << endl;
 			_getch();
 			system("cls");
@@ -228,10 +296,7 @@ int main()
 			add_information(database);
 			break;
 		case 4: // âûãðóçèòü â ôàéë
-			cout << "Ââåäèòå íàçâàíèå ôàéëà(ñ óêàçàíèåì ôîðìàòà): ";
-			cin.getline(file, 50);
-			system("cls");
-			upload_file(database, file);
+			upload_file(database);
 			cout << "Ôàéë áûë âûãðóæåí." << endl;
 			_getch();
 			system("cls");
@@ -334,9 +399,31 @@ int main()
 				break;
 			}
 			break;
-		case 8: // âûõîä c îñâîáîæäåíèåì ïàìÿòè
+		case 8: // ïîèñê
+			switch (searchMenu())
+			{
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				break;
+			case 8:
+				break;
+			default:
+				break;
+			}
+			break;
+		case 9: // âûõîä c îñâîáîæäåíèåì ïàìÿòè
 			clearList(database);
-			free(file);
 			cout << "Âû âûøëè èç ïðîãðàììû" << endl;
 			exit(0);
 			break;

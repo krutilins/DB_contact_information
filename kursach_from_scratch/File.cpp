@@ -2,8 +2,12 @@
 
 using namespace std;
 
-void upload_file(doubly_linked_list* L, char* file)
+void upload_file(doubly_linked_list* L)
 {
+	char file[50];
+	cout << "¬ведите название файла(с указанием формата): ";
+	cin.getline(file, 50);
+	system("cls");
 	ofstream fout(file, ios_base::trunc);
 	// дополнительный элемент дл€ рпохода от начала до конца списка
 	Contact* tmp;
@@ -21,8 +25,12 @@ void upload_file(doubly_linked_list* L, char* file)
 	fout.close();
 }
 
-int load_DB(doubly_linked_list* L, char* file)
+int load_DB(doubly_linked_list* L)
 {
+	char file[50];
+	cout << "¬ведите название файла(с указанием формата): ";
+	cin.getline(file, 50);
+	system("cls");
 	// открытие файла
 	ifstream fin(file);
 	if (!fin.is_open()) {
