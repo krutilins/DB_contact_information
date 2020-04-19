@@ -55,10 +55,10 @@ void prevPut(doubly_linked_list* L, Contact* elem) {
 		return;
 	}
 	// Запись информации в новый элемент
-	strcpy(pntr->FIO, elem->FIO);
-	strcpy(pntr->phone, elem->phone);
-	strcpy(pntr->city, elem->city);
-	strcpy(pntr->street, elem->street);
+	strcpy_s(pntr->FIO, elem->FIO);
+	strcpy_s(pntr->phone, elem->phone);
+	strcpy_s(pntr->city, elem->city);
+	strcpy_s(pntr->street, elem->street);
 	pntr->house = elem->house;
 	pntr->flat = elem->flat;
 	// новый элемент указывает слева на предыдущий
@@ -91,10 +91,10 @@ void postPut(doubly_linked_list* L, Contact* elem) {
 		return;
 	}
 	// Запись информации в новый элемент
-	strcpy(pntr->FIO, elem->FIO);
-	strcpy(pntr->phone, elem->phone);
-	strcpy(pntr->city, elem->city);
-	strcpy(pntr->street, elem->street);
+	strcpy_s(pntr->FIO, elem->FIO);
+	strcpy_s(pntr->phone, elem->phone);
+	strcpy_s(pntr->city, elem->city);
+	strcpy_s(pntr->street, elem->street);
 	pntr->house = elem->house;
 	pntr->flat = elem->flat;
 	// новый элемент указывает справа на следующий
@@ -120,10 +120,10 @@ void prevGet(doubly_linked_list* L, Contact* elem) {
 		return;
 	}
 	// запись информации в переменную 
-	strcpy(elem->FIO, L->ptr->prev_link->FIO);
-	strcpy(elem->phone, L->ptr->prev_link->phone);
-	strcpy(elem->city, L->ptr->prev_link->city);
-	strcpy(elem->street, L->ptr->prev_link->street);
+	strcpy_s(elem->FIO, L->ptr->prev_link->FIO);
+	strcpy_s(elem->phone, L->ptr->prev_link->phone);
+	strcpy_s(elem->city, L->ptr->prev_link->city);
+	strcpy_s(elem->street, L->ptr->prev_link->street);
 	elem->house = L->ptr->prev_link->house;
 	elem->flat = L->ptr->prev_link->flat;
 	// временный элемент, указывающий на удаляемый
@@ -149,10 +149,10 @@ void postGet(doubly_linked_list* L, Contact* elem) {
 		return;
 	}
 	// запись информации в переменную 
-	strcpy(elem->FIO, L->ptr->next_link->FIO);
-	strcpy(elem->phone, L->ptr->next_link->phone);
-	strcpy(elem->city, L->ptr->next_link->city);
-	strcpy(elem->street, L->ptr->next_link->street);
+	strcpy_s(elem->FIO, L->ptr->next_link->FIO);
+	strcpy_s(elem->phone, L->ptr->next_link->phone);
+	strcpy_s(elem->city, L->ptr->next_link->city);
+	strcpy_s(elem->street, L->ptr->next_link->street);
 	elem->house = L->ptr->next_link->house;
 	elem->flat = L->ptr->next_link->flat;
 	// временный элемент, указывающий на удаляемый
@@ -204,6 +204,8 @@ void clearList(doubly_linked_list* L) {
 	// L->ptr ссылается на L->start, поэтому присваиваем ему значение NULL
 	L->ptr = NULL;
 	free((void*)L->start);
+	L->end = NULL;
+	L->start = NULL;
 }
 
 /* Предикат: является ли список пустым */
@@ -258,10 +260,10 @@ void fillArray(Contact** tempArray, doubly_linked_list* L)
 	// пока не конец списка
 	for (int i = 0; tmp != L->end; i++) {
 		resize_z(tempArray, i + 1);
-		strcpy((*tempArray)[i].FIO, tmp->FIO);
-		strcpy((*tempArray)[i].phone, tmp->phone);
-		strcpy((*tempArray)[i].city, tmp->city);
-		strcpy((*tempArray)[i].street, tmp->street);
+		strcpy_s((*tempArray)[i].FIO, tmp->FIO);
+		strcpy_s((*tempArray)[i].phone, tmp->phone);
+		strcpy_s((*tempArray)[i].city, tmp->city);
+		strcpy_s((*tempArray)[i].street, tmp->street);
 		(*tempArray)[i].house = tmp->house;
 		(*tempArray)[i].flat = tmp->flat;
 		tmp = tmp->next_link;
@@ -275,10 +277,10 @@ void fillList(doubly_linked_list* L, Contact* tempArray, int sizeArray)
 	Contact tempElement;
 	// пока не конец списка
 	for (int i = 0; i < sizeArray; i++) {
-		strcpy(tempElement.FIO, tempArray[i].FIO);
-		strcpy(tempElement.phone, tempArray[i].phone);
-		strcpy(tempElement.city, tempArray[i].city);
-		strcpy(tempElement.street, tempArray[i].street);
+		strcpy_s(tempElement.FIO, tempArray[i].FIO);
+		strcpy_s(tempElement.phone, tempArray[i].phone);
+		strcpy_s(tempElement.city, tempArray[i].city);
+		strcpy_s(tempElement.street, tempArray[i].street);
 		tempElement.house = tempArray[i].house;
 		tempElement.flat = tempArray[i].flat;
 

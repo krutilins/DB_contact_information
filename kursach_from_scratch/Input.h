@@ -5,22 +5,16 @@
 
 void add_information(doubly_linked_list* database);
 
-char* get_FIO();
-bool check_FIO(char str[]);
+bool check_FIO(char(&str)[100]);
 
-char* get_phone();
-bool check_phone(char str[]);
+bool check_phone(char(&str)[100]);
 
-char* get_city();
-bool check_city(char str[]);
+bool check_city(char(&str)[100]);
 
-char* get_street();
-bool check_street(char str[]);
+bool check_street(char(&str)[100]);
 
-int get_house();
-bool check_house(char str[]);
+bool check_house(char(&str)[100]);
 
-int get_flat();
-bool check_flat(char str[]);
+bool check_flat(char(&str)[100]);
 
 #endif // !_INPUT_H_

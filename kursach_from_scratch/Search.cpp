@@ -52,10 +52,10 @@ void searchFIO(doubly_linked_list* L)
 	// пока не конец списка
 	while (tmp != L->end) {
 		if (strcmp(request, tmp->FIO) == 0) {
-			strcpy(tempElement.FIO, tmp->FIO);
-			strcpy(tempElement.phone, tmp->phone);
-			strcpy(tempElement.city, tmp->city);
-			strcpy(tempElement.street, tmp->street);
+			strcpy_s(tempElement.FIO, tmp->FIO);
+			strcpy_s(tempElement.phone, tmp->phone);
+			strcpy_s(tempElement.city, tmp->city);
+			strcpy_s(tempElement.street, tmp->street);
 			tempElement.house = tmp->house;
 			tempElement.flat = tmp->flat;
 			tempElement.next_link = NULL;

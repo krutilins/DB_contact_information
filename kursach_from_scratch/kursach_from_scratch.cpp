@@ -260,8 +260,12 @@ int searchMenu() {
 int main()
 {
 	// подключение русской раскладки
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	//SetConsoleCP(1251);
+	//SetConsoleOutputCP(1251);
+
+	setlocale(LC_ALL, "ru"); // подключение русскоязычной библиотеки
+	system("chcp 1251> null"); //подключение кириллицы
+
 
 	// установка размеров консоли
 	system("mode con cols=133 lines=35");
@@ -275,8 +279,9 @@ int main()
 		switch (mainMenu())
 		{
 		case 1: // загрузить из файла
-			load_DB(database);
-			cout << "Данные успешно загруженны." << endl;
+			if (load_DB(database)) {
+				cout << "Данные успешно загруженны." << endl;
+			}
 			_getch();
 			system("cls");
 			break;
@@ -424,7 +429,7 @@ int main()
 		case 9: // выход c освобождением памяти
 			clearList(database);
 			cout << "Вы вышли из программы" << endl;
-			exit(0);
+			return 0;
 			break;
 		default:
 			break;

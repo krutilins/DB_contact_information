@@ -3,34 +3,60 @@
 void add_information(doubly_linked_list* L)
 {
 	Contact new_info;
+	char str[100];
 	// ввод информации
-	strcpy(new_info.FIO, get_FIO());
-	strcpy(new_info.phone, get_phone());
-	strcpy(new_info.city, get_city());
-	strcpy(new_info.street, get_street());
-	new_info.house = get_house();
-	new_info.flat = get_flat();
+	do {
+		cout << "¬ведите ‘»ќ" << endl;
+		cin.getline(new_info.FIO, 100);
+		system("cls");
+	} while (check_FIO(str) == false);
+	strcpy_s(new_info.FIO, str);
+
+	do {
+		cout << "¬ведите номер телефона" << endl;
+		cin.getline(new_info.phone, 100);
+		system("cls");
+	} while (check_phone(str) == false);
+	strcpy_s(new_info.phone, str);
+
+	do {
+		cout << "¬ведите название города" << endl;
+		cin.getline(new_info.city, 100);
+		system("cls");
+	} while (check_city(str) == false);
+	strcpy_s(new_info.city, str);
+
+	do {
+		cout << "¬ведите название улицы" << endl;
+		gets_s(new_info.street);
+		system("cls");
+	} while (check_street(str) == false);
+	strcpy_s(new_info.street, str);
+
+	do {
+		cout << "¬ведите номер дома" << endl;
+		cin.getline(str, 100);
+		system("cls");
+	} while (check_house(str) == false);
+	new_info.house = atoi(str);
+
+	do {
+		cout << "¬ведите номер квартиры" << endl;
+		cin.getline(str, 100);
+		system("cls");
+	} while (check_flat(str) == false);
+	new_info.flat = atoi(str);
+
 	// перемещение указател€ на фиктивный конец
 	endPtr(L);
 	// вставка в конец списка
 	prevPut(L, &new_info);
 }
 
-char* get_FIO()
-{
-	char str[40];
-	do {
-		cout << "¬ведите ‘»ќ" << endl;
-		gets_s(str);
-		system("cls");
-	} while (check_FIO(str) == false);
-	return str;
-}
-
-bool check_FIO(char str[]) {
-	int length_str = strlen(str);
+bool check_FIO(char(&str)[100]) {
+	size_t length_str = strlen(str);
 	int num_of_spaces = 0;
-	for (int i = 0; i < length_str; i++) {
+	for (unsigned i = 0; i < length_str; i++) {
 		if (str[i] == ' ') num_of_spaces++;
 	}
 	if (num_of_spaces == length_str) {
@@ -42,24 +68,13 @@ bool check_FIO(char str[]) {
 	else return true;
 }
 
-char* get_phone()
+bool check_phone(char(&str)[100])
 {
-	char str[40];
-	do {
-		cout << "¬ведите номер телефона" << endl;
-		gets_s(str);
-		system("cls");
-	} while (check_phone(str) == false);
-	return str;
-}
-
-bool check_phone(char str[])
-{
-	int length_str = strlen(str);
+	size_t length_str = strlen(str);
 	if (length_str != 12) {
 		return false;
 	}
-	for (int i = 0; i < length_str; i++) {
+	for (unsigned i = 0; i < length_str; i++) {
 		if (str[i] < '0' || str[i] > '9') {
 			return false;
 		}
@@ -67,22 +82,11 @@ bool check_phone(char str[])
 	return true;
 }
 
-char* get_city()
+bool check_city(char(&str)[100])
 {
-	char str[40];
-	do {
-		cout << "¬ведите название города" << endl;
-		gets_s(str);
-		system("cls");
-	} while (check_city(str) == false);
-	return str;
-}
-
-bool check_city(char str[])
-{
-	int length_str = strlen(str);
+	size_t length_str = strlen(str);
 	int num_of_spaces = 0;
-	for (int i = 0; i < length_str; i++) {
+	for (unsigned i = 0; i < length_str; i++) {
 		if (str[i] == ' ') num_of_spaces++;
 	}
 	if (num_of_spaces == length_str) {
@@ -94,22 +98,11 @@ bool check_city(char str[])
 	else return true;
 }
 
-char* get_street()
+bool check_street(char(&str)[100])
 {
-	char str[40];
-	do {
-		cout << "¬ведите название улицы" << endl;
-		gets_s(str);
-		system("cls");
-	} while (check_street(str) == false);
-	return str;
-}
-
-bool check_street(char str[])
-{
-	int length_str = strlen(str);
+	size_t length_str = strlen(str);
 	int num_of_spaces = 0;
-	for (int i = 0; i < length_str; i++) {
+	for (unsigned i = 0; i < length_str; i++) {
 		if (str[i] == ' ') num_of_spaces++;
 	}
 	if (num_of_spaces == length_str) {
@@ -121,20 +114,7 @@ bool check_street(char str[])
 	else return true;
 }
 
-int get_house()
-{
-	char str[10];
-	int number;
-	do {
-		cout << "¬ведите номер дома" << endl;
-		gets_s(str);
-		system("cls");
-	} while (check_house(str) == false);
-	number = atoi(str);
-	return number;
-}
-
-bool check_house(char str[])
+bool check_house(char(&str)[100])
 {
 	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
 		return false;
@@ -147,20 +127,7 @@ bool check_house(char str[])
 	return true;
 }
 
-int get_flat()
-{
-	char str[10];
-	int number;
-	do {
-		cout << "¬ведите номер квартиры" << endl;
-		gets_s(str);
-		system("cls");
-	} while (check_flat(str) == false);
-	number = atoi(str);
-	return number;
-}
-
-bool check_flat(char str[])
+bool check_flat(char(&str)[100])
 {
 	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
 		return false;
