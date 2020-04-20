@@ -42,7 +42,7 @@ void searchFIO(doubly_linked_list* L)
 	int sizeList = numElements(L);
 
 	// создание и инициализация списка
-	doubly_linked_list* tempList = (doubly_linked_list*)malloc(0);
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
 	// дополнительный элемент для прохода от начала до конца списка
@@ -100,7 +100,7 @@ void searchPhone(doubly_linked_list* L)
 	int sizeList = numElements(L);
 
 	// создание и инициализация списка
-	doubly_linked_list* tempList = (doubly_linked_list*)malloc(0);
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
 	// дополнительный элемент для прохода от начала до конца списка
@@ -144,7 +144,7 @@ void searchCity(doubly_linked_list* L)
 	int sizeList = numElements(L);
 
 	// создание и инициализация списка
-	doubly_linked_list* tempList = (doubly_linked_list*)malloc(0);
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
 	// дополнительный элемент для прохода от начала до конца списка
@@ -188,7 +188,7 @@ void searchStreet(doubly_linked_list* L)
 	int sizeList = numElements(L);
 
 	// создание и инициализация списка
-	doubly_linked_list* tempList = (doubly_linked_list*)malloc(0);
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
 	// дополнительный элемент для прохода от начала до конца списка
@@ -233,7 +233,7 @@ void searchHouse(doubly_linked_list* L)
 	int sizeList = numElements(L);
 
 	// создание и инициализация списка
-	doubly_linked_list* tempList = (doubly_linked_list*)malloc(0);
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
 	// дополнительный элемент для прохода от начала до конца списка
@@ -278,7 +278,7 @@ void searchFlat(doubly_linked_list* L)
 	int sizeList = numElements(L);
 
 	// создание и инициализация списка
-	doubly_linked_list* tempList = (doubly_linked_list*)malloc(0);
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
 	// дополнительный элемент для прохода от начала до конца списка

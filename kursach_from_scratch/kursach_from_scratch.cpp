@@ -271,7 +271,7 @@ int main()
 	system("mode con cols=133 lines=35");
 	
 	// создание и инициализация списка
-	doubly_linked_list* database = (doubly_linked_list*)malloc(0);
+	doubly_linked_list* database = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(database);
 	
 	// главное меню
