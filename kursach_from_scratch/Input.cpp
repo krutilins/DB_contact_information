@@ -28,7 +28,7 @@ void add_information(doubly_linked_list* L)
 
 	do {
 		cout << "¬ведите название улицы" << endl;
-		gets_s(new_info.street);
+		cin.getline(new_info.street, 100);
 		system("cls");
 	} while (check_street(str) == false);
 	strcpy_s(new_info.street, str);
@@ -119,7 +119,7 @@ bool check_house(char(&str)[100])
 	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
 		return false;
 	}
-	for (int i = 0; i < strlen(str); i++) {
+	for (unsigned i = 0; i < strlen(str); i++) {
 		if (str[i] < '0' || str[i] > '9') {
 			return false;
 		}
@@ -132,7 +132,7 @@ bool check_flat(char(&str)[100])
 	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
 		return false;
 	}
-	for (int i = 0; i < strlen(str); i++) {
+	for (unsigned i = 0; i < strlen(str); i++) {
 		if (str[i] < '0' || str[i] > '9') {
 			return false;
 		}

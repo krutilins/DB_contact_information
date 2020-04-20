@@ -411,14 +411,19 @@ int main()
 			case 2:
 				break;
 			case 3:
+				searchPhone(database);
 				break;
 			case 4:
+				searchCity(database);
 				break;
 			case 5:
+				searchStreet(database);
 				break;
 			case 6:
+				searchHouse(database);
 				break;
 			case 7:
+				searchFlat(database);
 				break;
 			case 8:
 				break;

@@ -149,7 +149,6 @@ bool f_check_FIO(char(&str)[100]) {
 	}
 	else return true;
 }
-
 bool f_check_phone(char(&str)[100])
 {
 	size_t length_str = strlen(str);
@@ -163,7 +162,6 @@ bool f_check_phone(char(&str)[100])
 	}
 	return true;
 }
-
 bool f_check_city(char(&str)[100])
 {
 	size_t length_str = strlen(str);
@@ -179,7 +177,6 @@ bool f_check_city(char(&str)[100])
 	}
 	else return true;
 }
-
 bool f_check_street(char(&str)[100])
 {
 	size_t length_str = strlen(str);
@@ -195,7 +192,6 @@ bool f_check_street(char(&str)[100])
 	}
 	else return true;
 }
-
 bool f_check_house(char(&str)[100])
 {
 	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
@@ -208,7 +204,6 @@ bool f_check_house(char(&str)[100])
 	}
 	return true;
 }
-
 bool f_check_flat(char(&str)[100])
 {
 	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
