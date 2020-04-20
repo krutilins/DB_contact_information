@@ -7,28 +7,28 @@ void add_information(doubly_linked_list* L)
 	// ввод информации
 	do {
 		cout << "Введите ФИО" << endl;
-		cin.getline(new_info.FIO, 100);
+		cin.getline(str, 100);
 		system("cls");
 	} while (check_FIO(str) == false);
 	strcpy_s(new_info.FIO, str);
 
 	do {
 		cout << "Введите номер телефона" << endl;
-		cin.getline(new_info.phone, 100);
+		cin.getline(str, 100);
 		system("cls");
 	} while (check_phone(str) == false);
 	strcpy_s(new_info.phone, str);
 
 	do {
 		cout << "Введите название города" << endl;
-		cin.getline(new_info.city, 100);
+		cin.getline(str, 100);
 		system("cls");
 	} while (check_city(str) == false);
 	strcpy_s(new_info.city, str);
 
 	do {
 		cout << "Введите название улицы" << endl;
-		cin.getline(new_info.street, 100);
+		cin.getline(str, 100);
 		system("cls");
 	} while (check_street(str) == false);
 	strcpy_s(new_info.street, str);

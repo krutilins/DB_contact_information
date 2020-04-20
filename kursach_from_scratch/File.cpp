@@ -7,8 +7,8 @@ void upload_file(doubly_linked_list* L)
 	char file[50];
 	cout << "¬ведите название файла(с указанием формата): ";
 	cin.getline(file, 50);
-	system("cls");
 	ofstream fout(file, ios_base::trunc);
+	ifstream afodsut(file);
 	// дополнительный элемент дл€ рпохода от начала до конца списка
 	Contact* tmp;
 	tmp = L->start->next_link; // ссылка на первый элемент
@@ -23,6 +23,7 @@ void upload_file(doubly_linked_list* L)
 		tmp = tmp->next_link;
 	}
 	fout.close();
+	system("cls");
 }
 
 int load_DB(doubly_linked_list* L)
@@ -30,7 +31,6 @@ int load_DB(doubly_linked_list* L)
 	char file[50] = "";
 	cout << "¬ведите название файла(с указанием формата): " << endl;
 	cin.getline(file, 50);
-	system("cls");
 	// открытие файла
 	ifstream fin(file);
 	if (!fin.is_open()) {
@@ -132,6 +132,7 @@ int load_DB(doubly_linked_list* L)
 		prevPut(L, &new_info);
 	}
 	fin.close();
+	system("cls");
 	return 1;
 }
 
