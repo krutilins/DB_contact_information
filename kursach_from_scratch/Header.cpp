@@ -108,7 +108,8 @@ void postPut(doubly_linked_list* L, Contact* elem) {
 }
 
 /* Исключение элемента до рабочего указателя */
-void prevGet(doubly_linked_list* L, Contact* elem) {
+void prevGet(doubly_linked_list* L, Contact* elem) 
+{
 	// если список пуст
 	if (isEmptyList(L)) return;
 	// если рабочий указатель указывает на начало (левый фиктивный элемент)
@@ -309,4 +310,30 @@ void clear_z(Contact** pointer) {
 		exit(-1);
 	}
 	*pointer = buff;
+}
+
+void deleteItem(doubly_linked_list* L)
+{
+	// если рабочий указатель указывает на начало (левый фиктивный элемент)
+	if (L->ptr == L->start || L->ptr == L->end) {
+		cout << "Удаление фиктивного элемента невозможно." << endl;
+		return;
+	}
+	// временный элемент, указывающий на удаляемый
+	Contact* pntr = L->ptr;
+	if (L->end->prev_link == L->ptr) {
+		// сместить указатель на верх и удалить
+		L->ptr = L->ptr->prev_link;
+	}
+	else {
+		// сместить указатель вниз и удалить
+		L->ptr = L->ptr->next_link;
+	}
+	// элемент перед удаляемым указывает на элемент после удаляемого
+	pntr->prev_link->next_link = pntr->next_link;
+	// элемент после удаляемого указывает на элемент до удаляемого
+	pntr->next_link->prev_link = pntr->prev_link;
+	// удаление временного элемента
+	free((void*)pntr);
+	pntr = NULL;
 }

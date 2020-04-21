@@ -311,12 +311,8 @@ int partFIOMenu() {
 int main()
 {
 	// подключение русской раскладки
-	//SetConsoleCP(1251);
-	//SetConsoleOutputCP(1251);
-
-	setlocale(LC_ALL, "ru"); // подключение русско€зычной библиотеки
-	system("chcp 1251> null"); //подключение кириллицы
-
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 
 	// установка размеров консоли
 	system("mode con cols=133 lines=35");
@@ -456,40 +452,43 @@ int main()
 		case 8: // поиск
 			switch (searchMenu())
 			{
-			case 1:
+			case 1: // фио
 				searchFIO(database);
 				break;
-			case 2:
+			case 2: // часть фио
 				switch (partFIOMenu())
 				{
-				case 1:
+				case 1: // им€
+					searchFirstName(database); 
 					break;
-				case 2:
+				case 2: // фамили€
+					searchSecondName(database); 
 					break;
-				case 3:
+				case 3: // отчество
+					searchMiddleName(database); 
 					break;
-				case 4:
+				case 4: // меню поиска
 					break;
 				default:
 					break;
 				}
 				break;
-			case 3:
+			case 3: // телефон
 				searchPhone(database);
 				break;
-			case 4:
+			case 4: // город
 				searchCity(database);
 				break;
-			case 5:
+			case 5: // улица
 				searchStreet(database);
 				break;
-			case 6:
+			case 6: // дом
 				searchHouse(database);
 				break;
-			case 7:
+			case 7: // квартира
 				searchFlat(database);
 				break;
-			case 8:
+			case 8: // главное меню
 				break;
 			default:
 				break;

@@ -66,5 +66,7 @@ void fillList(doubly_linked_list* L, Contact* tempArray, int sizeArray);
 void resize_z(Contact** pointer, int newsize);
 /* очищение памяти выделенного массива*/
 void clear_z(Contact** pointer);
+/* удалить элемент */
+void deleteItem(doubly_linked_list* item);
 
 #endif // _HEADER_H_

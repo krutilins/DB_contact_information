@@ -2,18 +2,22 @@
 
 void table(doubly_linked_list* L)
 {
-    // указатель на определенный элемент в таблице
-	Contact* pointer = L->start->next_link; // ссылка на первый элемент в таблице
+    // перемещаем рабочий указатель на начало
+    L->ptr = L->start->next_link;
 	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp =L->start->next_link; // ссылка на первый элемент
     int functionKey = 0;
     do {
-
+        if (isEmptyList(L)) {
+            cout << "Список пуст." << endl;
+            _getch();
+            return;
+        }
         cout << "  +----------------------------------------+--------------+--------------------+--------------------+------------+----------------+" << endl;
         cout << "  |         Фамииля Имя Отчество           |Номер телефона|       Город        |       Улица        | Номер дома | Номер квартиры |" << endl;
         cout << "  +----------------------------------------+--------------+--------------------+--------------------+------------+----------------+" << endl;
         while (tmp != L->end) {
-            if (tmp == pointer) {
+            if (tmp == L->ptr) {
                 cout << "=>";
             }
             else {
@@ -30,31 +34,35 @@ void table(doubly_linked_list* L)
             cout << "  +----------------------------------------+--------------+--------------------+--------------------+------------+----------------+" << endl;
             tmp = tmp->next_link;
         }
-
-        functionKey = _getch();
-        if (functionKey == 224) {
+        do {
             functionKey = _getch();
-            if (functionKey == 80) { // Вниз
-                pointer = pointer->next_link;
+            if (functionKey == 224) {
+                functionKey = _getch();
+                if (functionKey == 72 && L->ptr != L->start->next_link) { // вверх
+                    L->ptr = L->ptr->prev_link;
+                    tmp = L->start->next_link;
+                    break;
+                }
+                else if (functionKey == 80 && L->ptr != L->end->prev_link) { // Вниз
+                    L->ptr = L->ptr->next_link;
+                    tmp = L->start->next_link;
+                    break;
+                }
+                else if (functionKey == 75) { // Лево
+                }
+                else if (functionKey == 77) { // вправо
+                }
+            }
+            if (functionKey == 8) { // backspace
+                deleteItem(L);
                 tmp = L->start->next_link;
+                break;
             }
-            else if (functionKey == 75) { // Лево
-                cout << "Лево" << endl;
+            if (functionKey == 27) { //esc
+                system("cls");
+                return;
             }
-            else if (functionKey == 72) { // вверх
-                pointer = pointer->prev_link;
-                tmp = L->start->next_link;
-            }
-            else if (functionKey == 77) { // вправо
-                cout << "Вправо" << endl;
-            }
-        }
-        if (functionKey == 8) {
-            cout << "Backspace" << endl;
-        }
-        if (functionKey == 27) {
-            cout << "Esc" << endl;
-        }
+        } while (true);
         system("cls");
     } while (true);
 }
