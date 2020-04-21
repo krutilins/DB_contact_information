@@ -11,6 +11,7 @@
 #include <conio.h>
 #include <iomanip>
 #include <fstream>
+#include <cmath>
 
 using namespace std;
 

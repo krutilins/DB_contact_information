@@ -5,6 +5,8 @@
 #include "Input.h"
 #include "edit.h"
 
+const int TABLE_ELEMENT = 15;
+
 void table(doubly_linked_list* L);
 
 #endif // !_WORKWITHTABLE_H_
