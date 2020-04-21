@@ -257,6 +257,57 @@ int searchMenu() {
 	} while (true);
 }
 
+void showPartFIOMenu(int pos) {
+	int i = 1;
+	cout << "ÌÅÍÞ ÏÎÈÑÊÀ:" << endl;
+
+	if (pos == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÔÀÌÈËÈß" << endl;
+
+	if (pos == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÈÌß" << endl;
+
+	if (pos == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÎÒ×ÅÑÒÂÎ" << endl;
+
+	if (pos == 4) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÅÐÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍÞ" << endl;
+}
+int partFIOMenu() {
+	int functionKey;
+	int pos = 1;
+	do {
+		showSortMenu(pos);
+		functionKey = _getch();
+		if (functionKey == 224) {
+			functionKey = _getch();
+			if (functionKey == 72) { // ââåðõ
+				if (pos != 1) {
+					pos--;
+				}
+			}
+			else if (functionKey == 80) { // Âíèç
+				if (pos != 4) {
+					pos++;
+				}
+			}
+		}
+		if (functionKey == 13) { //enter
+			system("cls");
+			return pos;
+		}
+		if (functionKey == 27) { //esc
+			system("cls");
+			return 4;
+		}
+		system("cls");
+	} while (true);
+}
+
 int main()
 {
 	// ïîäêëþ÷åíèå ðóññêîé ðàñêëàäêè
@@ -409,6 +460,19 @@ int main()
 				searchFIO(database);
 				break;
 			case 2:
+				switch (partFIOMenu())
+				{
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				default:
+					break;
+				}
 				break;
 			case 3:
 				searchPhone(database);
