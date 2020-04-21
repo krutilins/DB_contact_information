@@ -4,8 +4,10 @@ void table(doubly_linked_list* L)
 {
     // перемещаем рабочий указатель на начало
     L->ptr = L->start->next_link;
+
 	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp =L->start->next_link; // ссылка на первый элемент
+    
     int functionKey = 0;
     do {
         if (isEmptyList(L)) {
@@ -13,9 +15,11 @@ void table(doubly_linked_list* L)
             _getch();
             return;
         }
+
         cout << "  +----------------------------------------+--------------+--------------------+--------------------+------------+----------------+" << endl;
         cout << "  |         Фамииля Имя Отчество           |Номер телефона|       Город        |       Улица        | Номер дома | Номер квартиры |" << endl;
         cout << "  +----------------------------------------+--------------+--------------------+--------------------+------------+----------------+" << endl;
+        
         while (tmp != L->end) {
             if (tmp == L->ptr) {
                 cout << "=>";
@@ -34,6 +38,7 @@ void table(doubly_linked_list* L)
             cout << "  +----------------------------------------+--------------+--------------------+--------------------+------------+----------------+" << endl;
             tmp = tmp->next_link;
         }
+        
         do {
             functionKey = _getch();
             if (functionKey == 224) {
@@ -49,8 +54,10 @@ void table(doubly_linked_list* L)
                     break;
                 }
                 else if (functionKey == 75) { // Лево
+                    // предыдущая страница
                 }
                 else if (functionKey == 77) { // вправо
+                    // следующая страница
                 }
             }
             if (functionKey == 8) { // backspace
@@ -58,11 +65,33 @@ void table(doubly_linked_list* L)
                 tmp = L->start->next_link;
                 break;
             }
+            if (functionKey == 13) { // enter
+                functionKey = _getch();
+                if (functionKey == 224) {
+                    functionKey = _getch();
+                    if (functionKey == 72) { // вверх
+                        
+                        break;
+                    }
+                    else if (functionKey == 80) { // Вниз
+
+                        break;
+                    }
+                    else if (functionKey == 75) { // Лево
+
+                        break;
+                    }
+                    else if (functionKey == 77) { // вправо
+
+                    }
+                }
+            }
             if (functionKey == 27) { //esc
                 system("cls");
                 return;
             }
         } while (true);
+       
         system("cls");
     } while (true);
 }
