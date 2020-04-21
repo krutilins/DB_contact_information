@@ -3,10 +3,6 @@
 #define _SORT_H_
 #include "Header.h"
 
-void fillArray(Contact** array, doubly_linked_list* L);
-void fillList(doubly_linked_list* L, Contact* array, int size);
-void resize_z(Contact** pointer, int newsize);
-
 void fioAscending(doubly_linked_list* L);
 void fioDescending(doubly_linked_list* L);
 

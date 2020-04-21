@@ -62,7 +62,7 @@ int load_DB(doubly_linked_list* L)
 		// ФИО
 		lineNumber++;
 		fin.getline(str, 40);
-		if (f_check_FIO(str) == false) {
+		if (check_FIO(str) == false) {
 			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
 			cout << "\"" << str << "\"." << endl;
 			fin.close();
@@ -73,7 +73,7 @@ int load_DB(doubly_linked_list* L)
 		// номер телефона
 		lineNumber++;
 		fin.getline(str, 13);
-		if (f_check_phone(str) == false) {
+		if (check_phone(str) == false) {
 			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
 			cout << "\"" << str << "\"." << endl;
 			fin.close();
@@ -84,7 +84,7 @@ int load_DB(doubly_linked_list* L)
 		// город
 		lineNumber++;
 		fin.getline(str, 20);
-		if (f_check_city(str) == false) {
+		if (check_city(str) == false) {
 			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
 			cout << "\"" << str << "\"." << endl;
 			fin.close();
@@ -95,7 +95,7 @@ int load_DB(doubly_linked_list* L)
 		// улица
 		lineNumber++;
 		fin.getline(str, 20);
-		if (f_check_street(str) == false) {
+		if (check_street(str) == false) {
 			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
 			cout << "\"" << str << "\"." << endl;
 			fin.close();
@@ -106,7 +106,7 @@ int load_DB(doubly_linked_list* L)
 		// дом
 		lineNumber++;
 		fin.getline(str, 10);
-		if (f_check_house(str) == false) {
+		if (check_house(str) == false) {
 			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
 			cout << "\"" << str << "\"." << endl;
 			fin.close();
@@ -117,7 +117,7 @@ int load_DB(doubly_linked_list* L)
 		// квартира
 		lineNumber++;
 		fin.getline(str, 10);
-		if (f_check_flat(str) == false) {
+		if (check_flat(str) == false) {
 			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
 			cout << "\"" << str << "\"." << endl;
 			fin.close();
@@ -134,86 +134,4 @@ int load_DB(doubly_linked_list* L)
 	fin.close();
 	system("cls");
 	return 1;
-}
-
-bool f_check_FIO(char(&str)[100]) {
-	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
-	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
-	}
-	if (num_of_spaces == length_str) {
-		return false;
-	}
-	if (str[0] == ' ' || length_str > 40) {
-		return false;
-	}
-	else return true;
-}
-bool f_check_phone(char(&str)[100])
-{
-	size_t length_str = strlen(str);
-	if (length_str != 12) {
-		return false;
-	}
-	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] < '0' || str[i] > '9') {
-			return false;
-		}
-	}
-	return true;
-}
-bool f_check_city(char(&str)[100])
-{
-	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
-	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
-	}
-	if (num_of_spaces == length_str) {
-		return false;
-	}
-	if (str[0] == ' ' || length_str > 20) {
-		return false;
-	}
-	else return true;
-}
-bool f_check_street(char(&str)[100])
-{
-	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
-	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
-	}
-	if (num_of_spaces == length_str) {
-		return false;
-	}
-	if (str[0] == ' ' || length_str > 20) {
-		return false;
-	}
-	else return true;
-}
-bool f_check_house(char(&str)[100])
-{
-	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
-		return false;
-	}
-	for (unsigned i = 0; i < strlen(str); i++) {
-		if (str[i] < '0' || str[i] > '9') {
-			return false;
-		}
-	}
-	return true;
-}
-bool f_check_flat(char(&str)[100])
-{
-	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
-		return false;
-	}
-	for (unsigned i = 0; i < strlen(str); i++) {
-		if (str[i] < '0' || str[i] > '9') {
-			return false;
-		}
-	}
-	return true;
 }

@@ -5,7 +5,6 @@
 
 // вывод
 void display_table(doubly_linked_list* L);
-void display_list(doubly_linked_list* L);
 
 #endif // !_OUTPUT_H_
 

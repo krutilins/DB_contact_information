@@ -37,7 +37,7 @@ void searchFIO(doubly_linked_list* L)
 		cout << "¬ведите ‘»ќ: " << endl;
 		cin.getline(request, 100);
 		system("cls");
-	} while (s_check_FIO(request) == false);
+	} while (check_FIO(request) == false);
 
 	int sizeList = numElements(L);
 
@@ -95,7 +95,7 @@ void searchPhone(doubly_linked_list* L)
 		cout << "¬ведите номер телефона: " << endl;
 		cin.getline(request, 100);
 		system("cls");
-	} while (s_check_phone(request) == false);
+	} while (check_phone(request) == false);
 
 	int sizeList = numElements(L);
 
@@ -139,7 +139,7 @@ void searchCity(doubly_linked_list* L)
 		cout << "¬ведите город проживани€: " << endl;
 		cin.getline(request, 100);
 		system("cls");
-	} while (s_check_city(request) == false);
+	} while (check_city(request) == false);
 
 	int sizeList = numElements(L);
 
@@ -183,7 +183,7 @@ void searchStreet(doubly_linked_list* L)
 		cout << "¬ведите улицу проживани€: " << endl;
 		cin.getline(request, 100);
 		system("cls");
-	} while (s_check_street(request) == false);
+	} while (check_street(request) == false);
 
 	int sizeList = numElements(L);
 
@@ -227,7 +227,7 @@ void searchHouse(doubly_linked_list* L)
 		cout << "¬ведите номер дома" << endl;
 		cin.getline(request, 100);
 		system("cls");
-	} while (s_check_house(request) == false);
+	} while (check_house(request) == false);
 	int numRequest = atoi(request);
 
 	int sizeList = numElements(L);
@@ -272,7 +272,7 @@ void searchFlat(doubly_linked_list* L)
 		cout << "¬ведите номер квартиры" << endl;
 		cin.getline(request, 100);
 		system("cls");
-	} while (s_check_flat(request) == false);
+	} while (check_flat(request) == false);
 	int numRequest = atoi(request);
 
 	int sizeList = numElements(L);
@@ -308,86 +308,4 @@ void searchFlat(doubly_linked_list* L)
 	}
 	table(tempList);
 	clearList(tempList);
-}
-
-bool s_check_FIO(char(&str)[100]) {
-	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
-	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
-	}
-	if (num_of_spaces == length_str) {
-		return false;
-	}
-	if (str[0] == ' ' || length_str > 40) {
-		return false;
-	}
-	else return true;
-}
-bool s_check_phone(char(&str)[100])
-{
-	size_t length_str = strlen(str);
-	if (length_str != 12) {
-		return false;
-	}
-	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] < '0' || str[i] > '9') {
-			return false;
-		}
-	}
-	return true;
-}
-bool s_check_city(char(&str)[100])
-{
-	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
-	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
-	}
-	if (num_of_spaces == length_str) {
-		return false;
-	}
-	if (str[0] == ' ' || length_str > 20) {
-		return false;
-	}
-	else return true;
-}
-bool s_check_street(char(&str)[100])
-{
-	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
-	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
-	}
-	if (num_of_spaces == length_str) {
-		return false;
-	}
-	if (str[0] == ' ' || length_str > 20) {
-		return false;
-	}
-	else return true;
-}
-bool s_check_house(char(&str)[100])
-{
-	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
-		return false;
-	}
-	for (unsigned i = 0; i < strlen(str); i++) {
-		if (str[i] < '0' || str[i] > '9') {
-			return false;
-		}
-	}
-	return true;
-}
-bool s_check_flat(char(&str)[100])
-{
-	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
-		return false;
-	}
-	for (unsigned i = 0; i < strlen(str); i++) {
-		if (str[i] < '0' || str[i] > '9') {
-			return false;
-		}
-	}
-	return true;
 }

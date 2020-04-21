@@ -22,21 +22,3 @@ void display_table(doubly_linked_list* L)
 		tmp = tmp->next_link;
 	}
 }
-
-
-void display_list(doubly_linked_list* L)
-{
-	// дополнительный элемент для рпохода от начала до конца списка
-	Contact* tmp;
-	tmp = L->start->next_link; // ссылка на первый элемент
-
-	while (tmp != L->end) {
-		cout << "ФИО: " << tmp->FIO << endl;
-		cout << "Телефон: " << tmp->phone << endl;
-		cout << "Город: " << tmp->city << endl;
-		cout << "Улица: " << tmp->street << endl;
-		cout << "Дом: " << tmp->house << endl;
-		cout << "Квартира: " << tmp->flat << endl;
-		tmp = tmp->next_link;
-	}
-}
