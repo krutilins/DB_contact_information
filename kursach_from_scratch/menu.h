@@ -3,27 +3,27 @@
 #define _MENU_H_
 #include "Header.h"
 #include "Input.h"
-#include "Output.h"
 #include "File.h"
 #include "workWithTable.h"
 #include "Search.h"
 #include "Sort.h"
 
-void menu(doubly_linked_list* database);
-
+void mainMenu(doubly_linked_list* database);
 void showMainMenu(int pos);
-int mainMenu();
+int choiceMainMenu();
 
+void sortMenu(doubly_linked_list* database);
 void showSortMenu(int pos);
-int sortMenu();
+int choiceSortMenu();
 
 void showOderMenu(int pos);
-int oderMenu();
+int choiceOderMenu();
 
+void searchMenu(doubly_linked_list* database);
 void showSearchtMenu(int pos);
-int searchMenu();
+int choiceSearchMenu();
 
 void showPartFIOMenu(int pos);
-int partFIOMenu();
+int choicePartFIOMenu();
 
 #endif // !_MENU_H_

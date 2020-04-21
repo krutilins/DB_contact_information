@@ -1,36 +1,21 @@
 #include "menu.h"
 
-void menu(doubly_linked_list* database)
+void mainMenu(doubly_linked_list* database)
 {
-	// главное меню
 	while (true) {
-		switch (mainMenu())
+		switch (choiceMainMenu())
 		{
 		case 1: // загрузить из файла
-			if (load_DB(database)) {
-				cout << "Данные успешно загруженны." << endl;
-			}
-			_getch();
-			system("cls");
+			load_DB(database);
 			break;
 		case 2: // вывести таблицу
-			if (!isEmptyList(database)) {
-				display_table(database);
-			}
-			else {
-				cout << "Список пуст.";
-			}
-			_getch();
-			system("cls");
+			table(database);
 			break;
 		case 3: // добавить вручную
 			add_information(database);
 			break;
 		case 4: // выгрузить в файл
 			upload_file(database);
-			cout << "Файл был выгружен." << endl;
-			_getch();
-			system("cls");
 			break;
 		case 5: // очистить список
 			clearList(database);
@@ -44,148 +29,19 @@ void menu(doubly_linked_list* database)
 			system("cls");
 			break;
 		case 7: // сортировка
-			switch (sortMenu())
-			{
-			case 1: // ФИО
-				switch (oderMenu())
-				{
-				case 1: // возрастание
-					fioAscending(database);
-					break;
-				case 2: // убывание
-					fioDescending(database);
-					break;
-				case 3:
-					break;
-				}
-				break;
-			case 2: // номер телефона
-				switch (oderMenu())
-				{
-				case 1: // возрастание
-					phoneAscending(database);
-					break;
-				case 2: // убывание
-					phoneDescending(database);
-					break;
-				case 3:
-					break;
-				}
-				break;
-			case 3: // город
-				switch (oderMenu())
-				{
-				case 1: // возрастание
-					cityAscending(database);
-					break;
-				case 2: // убывание
-					cityDescending(database);
-					break;
-				case 3:
-					break;
-				}
-				break;
-			case 4: // улица
-				switch (oderMenu())
-				{
-				case 1: // возрастание
-					streetAscending(database);
-					break;
-				case 2: // убывание
-					streetDescending(database);
-					break;
-				case 3:
-					break;
-				}
-				break;
-			case 5: // дом
-				switch (oderMenu())
-				{
-				case 1: // возрастание
-					houseAscending(database);
-					break;
-				case 2: // убывание
-					houseDescending(database);
-					break;
-				case 3:
-					break;
-				}
-				break;
-			case 6: // квартира
-				switch (oderMenu())
-				{
-				case 1: // возрастание
-					flatAscending(database);
-					break;
-				case 2: // убывание
-					flatDescending(database);
-					break;
-				case 3:
-					break;
-				}
-				break;
-			case 7: // главное меню
-				break;
-			default:
-				break;
-			}
+			sortMenu(database);
 			break;
 		case 8: // поиск
-			switch (searchMenu())
-			{
-			case 1: // фио
-				searchFIO(database);
-				break;
-			case 2: // часть фио
-				switch (partFIOMenu())
-				{
-				case 1: // имя
-					searchFirstName(database);
-					break;
-				case 2: // фамилия
-					searchSecondName(database);
-					break;
-				case 3: // отчество
-					searchMiddleName(database);
-					break;
-				case 4: // меню поиска
-					break;
-				default:
-					break;
-				}
-				break;
-			case 3: // телефон
-				searchPhone(database);
-				break;
-			case 4: // город
-				searchCity(database);
-				break;
-			case 5: // улица
-				searchStreet(database);
-				break;
-			case 6: // дом
-				searchHouse(database);
-				break;
-			case 7: // квартира
-				searchFlat(database);
-				break;
-			case 8: // главное меню
-				break;
-			default:
-				break;
-			}
+			searchMenu(database);
 			break;
-		case 9: // выход c освобождением памяти
-			clearList(database);
-			cout << "Вы вышли из программы" << endl;
-			return 0;
+		case 9: // выход
+			return;
 			break;
 		default:
 			break;
 		}
 	}
 }
-
 void showMainMenu(int pos) {
 	int i = 1;
 	cout << "МЕНЮ:" << endl;
@@ -226,7 +82,7 @@ void showMainMenu(int pos) {
 	else { cout << " "; i++; }
 	cout << "ВЫХОД" << endl;
 }
-int mainMenu() {
+int choiceMainMenu() {
 	int functionKey;
 	int pos = 1;
 	do {
@@ -257,6 +113,93 @@ int mainMenu() {
 	} while (true);
 }
 
+void sortMenu(doubly_linked_list* database) {
+	switch (choiceSortMenu())
+	{
+	case 1: // ФИО
+		switch (choiceOderMenu())
+		{
+		case 1: // возрастание
+			fioAscending(database);
+			break;
+		case 2: // убывание
+			fioDescending(database);
+			break;
+		case 3:
+			break;
+		}
+		break;
+	case 2: // номер телефона
+		switch (choiceOderMenu())
+		{
+		case 1: // возрастание
+			phoneAscending(database);
+			break;
+		case 2: // убывание
+			phoneDescending(database);
+			break;
+		case 3:
+			break;
+		}
+		break;
+	case 3: // город
+		switch (choiceOderMenu())
+		{
+		case 1: // возрастание
+			cityAscending(database);
+			break;
+		case 2: // убывание
+			cityDescending(database);
+			break;
+		case 3:
+			break;
+		}
+		break;
+	case 4: // улица
+		switch (choiceOderMenu())
+		{
+		case 1: // возрастание
+			streetAscending(database);
+			break;
+		case 2: // убывание
+			streetDescending(database);
+			break;
+		case 3:
+			break;
+		}
+		break;
+	case 5: // дом
+		switch (choiceOderMenu())
+		{
+		case 1: // возрастание
+			houseAscending(database);
+			break;
+		case 2: // убывание
+			houseDescending(database);
+			break;
+		case 3:
+			break;
+		}
+		break;
+	case 6: // квартира
+		switch (choiceOderMenu())
+		{
+		case 1: // возрастание
+			flatAscending(database);
+			break;
+		case 2: // убывание
+			flatDescending(database);
+			break;
+		case 3:
+			break;
+		}
+		break;
+	case 7: // главное меню
+		break;
+	default:
+		break;
+	}
+}
 void showSortMenu(int pos) {
 	int i = 1;
 	cout << "СОРТИРОВОЧНОЕ МЕНЮ:" << endl;
@@ -289,7 +232,7 @@ void showSortMenu(int pos) {
 	else { cout << " "; i++; }
 	cout << "ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ" << endl;
 }
-int sortMenu() {
+int choiceSortMenu() {
 	int functionKey;
 	int pos = 1;
 	do {
@@ -336,7 +279,7 @@ void showOderMenu(int pos) {
 	else { cout << " "; i++; }
 	cout << "ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ" << endl;
 }
-int oderMenu() {
+int choiceOderMenu() {
 	int functionKey;
 	int pos = 1;
 	do {
@@ -367,6 +310,51 @@ int oderMenu() {
 	} while (true);
 }
 
+void searchMenu(doubly_linked_list* database) {
+	switch (choiceSearchMenu())
+	{
+	case 1: // фио
+		searchFIO(database);
+		break;
+	case 2: // часть фио
+		switch (choicePartFIOMenu())
+		{
+		case 1: // имя
+			searchFirstName(database);
+			break;
+		case 2: // фамилия
+			searchSecondName(database);
+			break;
+		case 3: // отчество
+			searchMiddleName(database);
+			break;
+		case 4: // меню поиска
+			break;
+		default:
+			break;
+		}
+		break;
+	case 3: // телефон
+		searchPhone(database);
+		break;
+	case 4: // город
+		searchCity(database);
+		break;
+	case 5: // улица
+		searchStreet(database);
+		break;
+	case 6: // дом
+		searchHouse(database);
+		break;
+	case 7: // квартира
+		searchFlat(database);
+		break;
+	case 8: // главное меню
+		break;
+	default:
+		break;
+	}
+}
 void showSearchtMenu(int pos) {
 	int i = 1;
 	cout << "МЕНЮ ПОИСКА:" << endl;
@@ -403,7 +391,7 @@ void showSearchtMenu(int pos) {
 	else { cout << " "; i++; }
 	cout << "ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ" << endl;
 }
-int searchMenu() {
+int choiceSearchMenu() {
 	int functionKey;
 	int pos = 1;
 	do {
@@ -454,7 +442,7 @@ void showPartFIOMenu(int pos) {
 	else { cout << " "; i++; }
 	cout << "ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ" << endl;
 }
-int partFIOMenu() {
+int choicePartFIOMenu() {
 	int functionKey;
 	int pos = 1;
 	do {

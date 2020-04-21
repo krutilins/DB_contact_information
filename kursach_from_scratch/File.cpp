@@ -1,19 +1,19 @@
 #include "File.h"
 
-using namespace std;
-
 void upload_file(doubly_linked_list* L)
 {
 	char file[50];
 	cout << "Введите название файла(с указанием формата): ";
 	cin.getline(file, 50);
+
 	ofstream fout(file, ios_base::trunc);
 	ifstream afodsut(file);
-	// дополнительный элемент для рпохода от начала до конца списка
+	
 	Contact* tmp;
-	tmp = L->start->next_link; // ссылка на первый элемент
-	// пока не конец списка 
-	while (tmp != L->end) {
+	tmp = L->start->next_link;
+	
+	while (tmp != L->end) 
+	{
 		fout << tmp->FIO << endl;
 		fout << tmp->phone << endl;
 		fout << tmp->city << endl;
@@ -31,14 +31,13 @@ int load_DB(doubly_linked_list* L)
 	char file[50] = "";
 	cout << "Введите название файла(с указанием формата): " << endl;
 	cin.getline(file, 50);
-	// открытие файла
+
 	ifstream fin(file);
 	if (!fin.is_open()) {
 		cout << "Ошибка открытия файла!\n";
 		return 0;
 	}
 
-	//подсчет строк и поиск повреждений
 	int lineCount = 0;
 	while (!fin.eof()) {
 		if (fin.get() == '\n') {
@@ -54,12 +53,10 @@ int load_DB(doubly_linked_list* L)
 	fin.clear();
 	fin.seekg(0, ios::beg);
 
-	// считывание данных с проверкой
 	Contact new_info;
 	char str[100] = "";
 	int lineNumber = 0;
 	for (int i = 0; i < lineCount; i++) {
-		// ФИО
 		lineNumber++;
 		fin.getline(str, 40);
 		if (check_FIO(str) == false) {
@@ -70,7 +67,6 @@ int load_DB(doubly_linked_list* L)
 		}
 		strcpy_s(new_info.FIO, str);
 
-		// номер телефона
 		lineNumber++;
 		fin.getline(str, 13);
 		if (check_phone(str) == false) {
@@ -81,7 +77,6 @@ int load_DB(doubly_linked_list* L)
 		}
 		strcpy_s(new_info.phone, str);
 
-		// город
 		lineNumber++;
 		fin.getline(str, 20);
 		if (check_city(str) == false) {
@@ -92,7 +87,6 @@ int load_DB(doubly_linked_list* L)
 		}
 		strcpy_s(new_info.city, str);
 
-		// улица
 		lineNumber++;
 		fin.getline(str, 20);
 		if (check_street(str) == false) {
@@ -103,7 +97,6 @@ int load_DB(doubly_linked_list* L)
 		}
 		strcpy_s(new_info.street, str);
 		
-		// дом
 		lineNumber++;
 		fin.getline(str, 10);
 		if (check_house(str) == false) {
@@ -114,7 +107,6 @@ int load_DB(doubly_linked_list* L)
 		}
 		new_info.house = atoi(str);
 
-		// квартира
 		lineNumber++;
 		fin.getline(str, 10);
 		if (check_flat(str) == false) {
@@ -126,9 +118,7 @@ int load_DB(doubly_linked_list* L)
 		new_info.flat = atoi(str);
 		
 
-		// перемещение указателя на фиктивный конец
 		endPtr(L);
-		// вставка в конец списка
 		prevPut(L, &new_info);
 	}
 	fin.close();
