@@ -20,7 +20,7 @@ void showOderMenu(int pos);
 int choiceOderMenu();
 
 void searchMenu(doubly_linked_list* database);
-void showSearchtMenu(int pos);
+void showSearchMenu(int pos);
 int choiceSearchMenu();
 
 void showPartFIOMenu(int pos);

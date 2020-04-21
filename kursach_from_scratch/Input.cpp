@@ -1,8 +1,34 @@
 #include "Input.h"
 
-void add_information(doubly_linked_list* L)
+void add_start(doubly_linked_list* L)
 {
 	Contact new_info;
+	fillItem(&new_info);
+	beginPtr(L);
+	postPut(L, &new_info);
+}
+
+void add_end(doubly_linked_list* L)
+{
+	Contact new_info;
+	fillItem(&new_info);
+	endPtr(L);
+	prevPut(L, &new_info);
+}
+
+void add_prev(doubly_linked_list* L) {
+	Contact new_info;
+	fillItem(&new_info);
+	prevPut(L, &new_info);
+}
+
+void add_next(doubly_linked_list* L) {
+	Contact new_info;
+	fillItem(&new_info);
+	postPut(L, &new_info);
+}
+
+void fillItem(Contact* Item) {
 	char str[100];
 	// ввод информации
 	do {
@@ -10,45 +36,40 @@ void add_information(doubly_linked_list* L)
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_FIO(str) == false);
-	strcpy_s(new_info.FIO, str);
+	strcpy_s(Item->FIO, str);
 
 	do {
 		cout << "¬ведите номер телефона" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_phone(str) == false);
-	strcpy_s(new_info.phone, str);
+	strcpy_s(Item->phone, str);
 
 	do {
 		cout << "¬ведите название города" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_city(str) == false);
-	strcpy_s(new_info.city, str);
+	strcpy_s(Item->city, str);
 
 	do {
 		cout << "¬ведите название улицы" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_street(str) == false);
-	strcpy_s(new_info.street, str);
+	strcpy_s(Item->street, str);
 
 	do {
 		cout << "¬ведите номер дома" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_house(str) == false);
-	new_info.house = atoi(str);
+	Item->house = atoi(str);
 
 	do {
 		cout << "¬ведите номер квартиры" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_flat(str) == false);
-	new_info.flat = atoi(str);
-
-	// перемещение указател€ на фиктивный конец
-	endPtr(L);
-	// вставка в конец списка
-	prevPut(L, &new_info);
+	Item->flat = atoi(str);
 }

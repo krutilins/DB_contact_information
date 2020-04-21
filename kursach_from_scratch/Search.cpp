@@ -1,35 +1,5 @@
 #include "Search.h"
 
-/*
-	ФУНКЦИЯ ПОИСКА
-		
-		В КАЧЕСТВЕ АРГУМЕНТОВ ФУНКЦИЯ БУДЕТ ПРИНИМАТЬ ТОЛЬКО УКАЗАТЕЛЬ НА СПИСОК
-
-		ДАЛЕЕ СЛЕДУЕТ ВЫБРАТЬ ПОЛЕ ПО КОТОРОМУ БУДЕТ ОСУЩЕСТВЛЯТЬСЯ ПОИСК
-			(КАСТОМИЗАЦИЕЙ МОЖНО ЗАНЯТЬСЯ ПОЗЖЕ, НО ВЫГЛЯДИТЬ МЕНЮ ПОИСКА ДОЛЖНО БАЛДЕЗНО)
-
-		ДОПУСТИМ Я ВЫБРАЛ ПОЛЕ. ЧТО ДАЛЬШЕ?
-
-		ДАЛЬШЕ НУЖНО ВЫЗВАТЬ СООТВЕТСТВУЮЩУЮ ФУНКЦИЮ
-
-		ПРИНЦИПЫ РАБОТЫ ПОИСКА И ФУНКЦИИ, КОТОРЫЕ Я ХОЧУ РЕАЛИЗОВАТЬ: 
-		1) ВВЕСТИ ИСКОМОЕ ЗНАЧЕНИЕ
-		2) С ПОМОЩЬЮ ЦИКЛА ПЕРЕБРАТЬ КАЖДЫЙ ЭЛЕМЕНТ НАШЕГО СПИСКА И ЕСЛИ НАШЕЛСЯ ПОХОЖИЙ, ТО ЗАПИСАТЬ В НОВЫЙ СПИСОК
-		3) ТАК КАК В БУДУЩЕМ ВОЗМОЖНО ПРИДЕТЬСЯ РАБОТАТЬ С БОЛЬШОЙ БАЗОЙ ДАННЫХ, ТО НУЖНО РЕАЛИЗОВАТЬ СИСТЕМУ УДАЛЕНИЯ НАЙДЕННОГО ЭЛЕМЕНТА
-		4) НУЖНО СОЗДАТЬ МАССИВ С УКАЗАТЕЛЯМИ НА ПОЛОЖЕНИЕ В ИСКОМОМ СПИСКЕ
-		5)
-
-
-		меню
-		открыть базу
-		работа с таблицей
-		поиск
-		выгрузить базу
-		выход
-
-
-*/
-
 void searchFIO(doubly_linked_list* L)
 {
 	char request[100];
@@ -41,51 +11,160 @@ void searchFIO(doubly_linked_list* L)
 
 	int sizeList = numElements(L);
 
-	// создание и инициализация списка
 	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
-	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp;
-	tmp = L->start->next_link; // ссылка на первый элемент
+	tmp = L->start->next_link;
 
-	// временный элемент
-	Contact tempElement;
-	// пока не конец списка
 	while (tmp != L->end) {
 		if (strcmp(request, tmp->FIO) == 0) {
-			strcpy_s(tempElement.FIO, tmp->FIO);
-			strcpy_s(tempElement.phone, tmp->phone);
-			strcpy_s(tempElement.city, tmp->city);
-			strcpy_s(tempElement.street, tmp->street);
-			tempElement.house = tmp->house;
-			tempElement.flat = tmp->flat;
-			tempElement.next_link = NULL;
-			tempElement.prev_link = NULL;
-
-			// перемещение указателя на фиктивный конец
 			endPtr(tempList);
-			// вставка в конец списка
-			prevPut(tempList, &tempElement);
+			prevPut(tempList, tmp);
 		}
 		tmp = tmp->next_link;
 	}
-	table(tempList);
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
 	clearList(tempList);
 }
 
 void searchFirstName(doubly_linked_list* L)
 {
+	char request[100];
+	cout << "Введите искомый элемент: ";
+	cin >> request;
+	system("cls");
 
+	int sizeList = numElements(L);
+
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
+	initialize(tempList);
+
+	Contact* tmp;
+	tmp = L->start->next_link;
+
+	while (tmp != L->end) {
+		char name[40] = "";
+		int posName = 0;
+		while (tmp->FIO[posName] != ' ') {
+			posName++;
+		}
+		posName++;
+		for (int i = 0, k = posName; tmp->FIO[k] != ' '; i++, k++)
+		{
+			name[i] = tmp->FIO[k];
+		}
+		if ((strcmp(request, name) == 0)) {
+			endPtr(tempList);
+			prevPut(tempList, tmp);
+		}
+		tmp = tmp->next_link;
+	}
+
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
+	clearList(tempList);
 }
 
 void searchSecondName(doubly_linked_list* L)
 {
+	char request[100];
+	cout << "Введите искомый элемент: ";
+	cin >> request;
+	system("cls");
 
+
+	int sizeList = numElements(L);
+
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
+	initialize(tempList);
+
+	Contact* tmp;
+	tmp = L->start->next_link;
+
+	while (tmp != L->end) {
+		char surname[20] = "";
+		for (int k = 0, l = 0; tmp->FIO[l] != ' '; k++, l++)
+		{
+			surname[k] = tmp->FIO[l];
+		}
+		if ((strcmp(request, surname) == 0)) {
+			endPtr(tempList);
+			prevPut(tempList, tmp);
+		}
+		tmp = tmp->next_link;
+	}
+
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
+	clearList(tempList);
 }
 
 void searchMiddleName(doubly_linked_list* L)
 {
+	char request[100];
+	cout << "Введите искомый элемент: ";
+	cin >> request;
+	system("cls");
+
+	int sizeList = numElements(L);
+
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
+	initialize(tempList);
+
+	Contact* tmp;
+	tmp = L->start->next_link;
+
+	while (tmp != L->end) {
+		char middleName[40] = "";
+		int posName = 0;
+		while (tmp->FIO[posName] != ' ') {
+			posName++;
+		}
+		posName++;
+		while (tmp->FIO[posName] != ' ') {
+			posName++;
+		}
+		posName++;
+		for (int i = 0, k = posName; tmp->FIO[k] != ' ' && tmp->FIO[k] != '\0'; i++, k++)
+		{
+			middleName[i] = tmp->FIO[k];
+		}
+		if ((strcmp(request, middleName) == 0)) {
+			endPtr(tempList);
+			prevPut(tempList, tmp);
+		}
+		tmp = tmp->next_link;
+	}
+
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
+	clearList(tempList);
 }
 
 void searchPhone(doubly_linked_list* L)
@@ -99,36 +178,27 @@ void searchPhone(doubly_linked_list* L)
 
 	int sizeList = numElements(L);
 
-	// создание и инициализация списка
 	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
-	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp;
-	tmp = L->start->next_link; // ссылка на первый элемент
+	tmp = L->start->next_link;
 
-	// временный элемент
-	Contact tempElement;
-	// пока не конец списка
 	while (tmp != L->end) {
 		if (strcmp(request, tmp->phone) == 0) {
-			strcpy_s(tempElement.FIO, tmp->FIO);
-			strcpy_s(tempElement.phone, tmp->phone);
-			strcpy_s(tempElement.city, tmp->city);
-			strcpy_s(tempElement.street, tmp->street);
-			tempElement.house = tmp->house;
-			tempElement.flat = tmp->flat;
-			tempElement.next_link = NULL;
-			tempElement.prev_link = NULL;
-
-			// перемещение указателя на фиктивный конец
 			endPtr(tempList);
-			// вставка в конец списка
-			prevPut(tempList, &tempElement);
+			prevPut(tempList, tmp);
 		}
 		tmp = tmp->next_link;
 	}
-	table(tempList);
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
 	clearList(tempList);
 }
 
@@ -143,36 +213,27 @@ void searchCity(doubly_linked_list* L)
 
 	int sizeList = numElements(L);
 
-	// создание и инициализация списка
 	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
-	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp;
-	tmp = L->start->next_link; // ссылка на первый элемент
+	tmp = L->start->next_link;
 
-	// временный элемент
-	Contact tempElement;
-	// пока не конец списка
 	while (tmp != L->end) {
 		if (strcmp(request, tmp->city) == 0) {
-			strcpy_s(tempElement.FIO, tmp->FIO);
-			strcpy_s(tempElement.phone, tmp->phone);
-			strcpy_s(tempElement.city, tmp->city);
-			strcpy_s(tempElement.street, tmp->street);
-			tempElement.house = tmp->house;
-			tempElement.flat = tmp->flat;
-			tempElement.next_link = NULL;
-			tempElement.prev_link = NULL;
-
-			// перемещение указателя на фиктивный конец
 			endPtr(tempList);
-			// вставка в конец списка
-			prevPut(tempList, &tempElement);
+			prevPut(tempList, tmp);
 		}
 		tmp = tmp->next_link;
 	}
-	table(tempList);
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
 	clearList(tempList);
 }
 
@@ -187,36 +248,27 @@ void searchStreet(doubly_linked_list* L)
 
 	int sizeList = numElements(L);
 
-	// создание и инициализация списка
 	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
-	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp;
-	tmp = L->start->next_link; // ссылка на первый элемент
+	tmp = L->start->next_link;
 
-	// временный элемент
-	Contact tempElement;
-	// пока не конец списка
 	while (tmp != L->end) {
 		if (strcmp(request, tmp->street) == 0) {
-			strcpy_s(tempElement.FIO, tmp->FIO);
-			strcpy_s(tempElement.phone, tmp->phone);
-			strcpy_s(tempElement.city, tmp->city);
-			strcpy_s(tempElement.street, tmp->street);
-			tempElement.house = tmp->house;
-			tempElement.flat = tmp->flat;
-			tempElement.next_link = NULL;
-			tempElement.prev_link = NULL;
-
-			// перемещение указателя на фиктивный конец
 			endPtr(tempList);
-			// вставка в конец списка
-			prevPut(tempList, &tempElement);
+			prevPut(tempList, tmp);
 		}
 		tmp = tmp->next_link;
 	}
-	table(tempList);
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
 	clearList(tempList);
 }
 
@@ -232,36 +284,28 @@ void searchHouse(doubly_linked_list* L)
 
 	int sizeList = numElements(L);
 
-	// создание и инициализация списка
 	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
-	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp;
-	tmp = L->start->next_link; // ссылка на первый элемент
+	tmp = L->start->next_link;
 
-	// временный элемент
-	Contact tempElement;
-	// пока не конец списка
 	while (tmp != L->end) {
 		if (numRequest == tmp->house) {
-			strcpy_s(tempElement.FIO, tmp->FIO);
-			strcpy_s(tempElement.phone, tmp->phone);
-			strcpy_s(tempElement.city, tmp->city);
-			strcpy_s(tempElement.street, tmp->street);
-			tempElement.house = tmp->house;
-			tempElement.flat = tmp->flat;
-			tempElement.next_link = NULL;
-			tempElement.prev_link = NULL;
-
-			// перемещение указателя на фиктивный конец
 			endPtr(tempList);
 			// вставка в конец списка
-			prevPut(tempList, &tempElement);
+			prevPut(tempList, tmp);
 		}
 		tmp = tmp->next_link;
 	}
-	table(tempList);
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
 	clearList(tempList);
 }
 
@@ -277,35 +321,26 @@ void searchFlat(doubly_linked_list* L)
 
 	int sizeList = numElements(L);
 
-	// создание и инициализация списка
 	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
-	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp;
-	tmp = L->start->next_link; // ссылка на первый элемент
+	tmp = L->start->next_link;
 
-	// временный элемент
-	Contact tempElement;
-	// пока не конец списка
 	while (tmp != L->end) {
 		if (numRequest == tmp->flat) {
-			strcpy_s(tempElement.FIO, tmp->FIO);
-			strcpy_s(tempElement.phone, tmp->phone);
-			strcpy_s(tempElement.city, tmp->city);
-			strcpy_s(tempElement.street, tmp->street);
-			tempElement.house = tmp->house;
-			tempElement.flat = tmp->flat;
-			tempElement.next_link = NULL;
-			tempElement.prev_link = NULL;
-
-			// перемещение указателя на фиктивный конец
 			endPtr(tempList);
-			// вставка в конец списка
-			prevPut(tempList, &tempElement);
+			prevPut(tempList, tmp);
 		}
 		tmp = tmp->next_link;
 	}
-	table(tempList);
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
 	clearList(tempList);
 }
