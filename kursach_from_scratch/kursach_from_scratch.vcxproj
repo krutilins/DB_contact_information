@@ -150,6 +150,7 @@
     <ClCompile Include="checkInput.cpp" />
     <ClCompile Include="edit.cpp" />
     <ClCompile Include="File.cpp" />
+    <ClCompile Include="Filtration.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="checkInput.h" />
     <ClInclude Include="edit.h" />
     <ClInclude Include="File.h" />
+    <ClInclude Include="Filtration.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="menu.h" />

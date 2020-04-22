@@ -58,7 +58,6 @@ int isEmptyList(doubly_linked_list* L);
 void printList(doubly_linked_list* L);
 /* —четчик длинны списка */
 int numElements(doubly_linked_list* L);
-
 /* заполнение массива */
 void fillArray(Contact** tempArray, doubly_linked_list* L);
 /* заполнение списка */
