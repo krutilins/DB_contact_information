@@ -34,6 +34,50 @@ void filtrFIO(doubly_linked_list* L)
 	clearList(tempList);
 }
 
+void filtrFirstName(doubly_linked_list* L)
+{
+	char start;
+	char end;
+	system("cls");
+	cout << "Введите начало диапазона: " << endl;
+	cin >> start;
+	cout << "Введите конец диапазона: " << endl;
+	cin >> end;
+
+	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
+	initialize(tempList);
+
+	Contact* tmp;
+	tmp = L->start->next_link;
+
+	while (tmp != L->end) {
+		char name[40] = "";
+		int posName = 0;
+		while (tmp->FIO[posName] != ' ') {
+			posName++;
+		}
+		posName++;
+		for (int i = 0, k = posName; tmp->FIO[k] != ' '; i++, k++)
+		{
+			name[i] = tmp->FIO[k];
+		}
+		if (name[0] >= start && name[0] <= end) {
+			endPtr(tempList);
+			prevPut(tempList, tmp);
+		}
+		tmp = tmp->next_link;
+	}
+	if (isEmptyList(tempList)) {
+		cout << "Ничего не найдено" << endl;
+		_getch();
+		system("cls");
+	}
+	else {
+		table(tempList);
+	}
+	clearList(tempList);
+}
+
 void filtrPhone(doubly_linked_list* L)
 {
 	char start;
