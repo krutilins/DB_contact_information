@@ -7,6 +7,7 @@
 #include "workWithTable.h"
 #include "Search.h"
 #include "Sort.h"
+#include "Filtration.h"
 
 void mainMenu(doubly_linked_list* database);
 void showMainMenu(int pos);
@@ -25,5 +26,10 @@ int choiceSearchMenu();
 
 void showPartFIOMenu(int pos);
 int choicePartFIOMenu();
+
+void filtrationMenu(doubly_linked_list* database);
+void showFiltrationMenu(int pos);
+int choiceFiltrationMenu();
+
 
 #endif // !_MENU_H_

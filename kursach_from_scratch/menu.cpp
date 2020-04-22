@@ -31,6 +31,9 @@ void mainMenu(doubly_linked_list* database)
 			searchMenu(database);
 			break;
 		case 8:
+			filtrationMenu(database);
+			break;
+		case 9:
 			return;
 		}
 	}
@@ -69,6 +72,10 @@ void showMainMenu(int pos) {
 
 	if (pos == 8) { cout << ">"; }
 	else { cout << " "; i++; }
+	cout << "ÑÎĞÒÈĞÎÂÊÀ" << endl;
+
+	if (pos == 9) { cout << ">"; }
+	else { cout << " "; i++; }
 	cout << "ÂÛÕÎÄ" << endl;
 }
 int choiceMainMenu() {
@@ -85,7 +92,7 @@ int choiceMainMenu() {
 				}
 			}
 			else if (functionKey == 80) { // Âíèç
-				if (pos != 8) {
+				if (pos != 9) {
 					pos++;
 				}
 			}
@@ -96,7 +103,7 @@ int choiceMainMenu() {
 		}
 		if (functionKey == 27) { //esc
 			system("cls");
-			return 8;
+			return 9;
 		}
 		system("cls");
 	} while (true);
@@ -457,6 +464,118 @@ int choicePartFIOMenu() {
 		if (functionKey == 27) { //esc
 			system("cls");
 			return 4;
+		}
+		system("cls");
+	} while (true);
+}
+
+void filtrationMenu(doubly_linked_list* database) {
+	while (true) {
+		switch (choiceSearchMenu())
+		{
+		case 1: // ôèî
+			filtrFIO(database);
+			break;
+		case 2: // ÷àñòü ôèî
+			switch (choicePartFIOMenu())
+			{
+			case 1: // ôàìèëèÿ
+				filtrSecondName(database);
+				break;
+			case 2: // èìÿ
+				filtrFirstName(database);
+				break;
+			case 3: // îò÷åñòâî
+				filtrMiddleName(database);
+				break;
+			case 4: // ìåíş ïîèñêà
+				break;
+			default:
+				break;
+			}
+			break;
+		case 3: // òåëåôîí
+			filtrPhone(database);
+			break;
+		case 4: // ãîğîä
+			filtrCity(database);
+			break;
+		case 5: // óëèöà
+			filtrStreet(database);
+			break;
+		case 6: // äîì
+			filtrHouse(database);
+			break;
+		case 7: // êâàğòèğà
+			filtrFlat(database);
+			break;
+		case 8: // ãëàâíîå ìåíş
+			return;
+		}
+	}
+}
+void showFiltrationMenu(int pos) {
+	int i = 1;
+	cout << "ÌÅÍŞ ÏÎÈÑÊÀ:" << endl;
+
+	if (pos == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÔÈÎ" << endl;
+
+	if (pos == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÏÎ ×ÀÑÒÈ ÔÈÎ" << endl;
+
+	if (pos == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÍÎÌÅĞ ÒÅËÅÔÎÍÀ" << endl;
+
+	if (pos == 4) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÃÎĞÎÄ" << endl;
+
+	if (pos == 5) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÓËÈÖÀ" << endl;
+
+	if (pos == 6) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÄÎÌ" << endl;
+
+	if (pos == 7) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÊÂÀĞÒÈĞÀ" << endl;
+
+	if (pos == 8) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÅĞÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍŞ" << endl;
+}
+int choiceFiltrationMenu() {
+	int functionKey;
+	int pos = 1;
+	do {
+		showSortMenu(pos);
+		functionKey = _getch();
+		if (functionKey == 224) {
+			functionKey = _getch();
+			if (functionKey == 72) { // ââåğõ
+				if (pos != 1) {
+					pos--;
+				}
+			}
+			else if (functionKey == 80) { // Âíèç
+				if (pos != 8) {
+					pos++;
+				}
+			}
+		}
+		if (functionKey == 13) { //enter
+			system("cls");
+			return pos;
+		}
+		if (functionKey == 27) { //esc
+			system("cls");
+			return 8;
 		}
 		system("cls");
 	} while (true);

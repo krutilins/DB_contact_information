@@ -34,7 +34,9 @@ int load_DB(doubly_linked_list* L)
 
 	ifstream fin(file);
 	if (!fin.is_open()) {
-		cout << "Ошибка открытия файла!\n";
+		cout << "Ошибка открытия файла!" << endl;
+		_getch();
+		system("cls");
 		return 0;
 	}
 
@@ -46,7 +48,9 @@ int load_DB(doubly_linked_list* L)
 	}
 	if (lineCount == 0 || lineCount % 6 > 0) {
 		fin.close();
-		cout << "Данные повреждены!\n";
+		cout << "Данные повреждены!" << endl;
+		_getch();
+		system("cls");
 		return 0;
 	}
 	lineCount = lineCount / 6;
@@ -60,9 +64,8 @@ int load_DB(doubly_linked_list* L)
 		lineNumber++;
 		fin.getline(str, 40);
 		if (check_FIO(str) == false) {
-			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
-			cout << "\"" << str << "\"." << endl;
 			fin.close();
+			errorMessage(str, lineNumber);
 			return 0;
 		}
 		strcpy_s(new_info.FIO, str);
@@ -70,9 +73,8 @@ int load_DB(doubly_linked_list* L)
 		lineNumber++;
 		fin.getline(str, 13);
 		if (check_phone(str) == false) {
-			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
-			cout << "\"" << str << "\"." << endl;
 			fin.close();
+			errorMessage(str, lineNumber);
 			return 0;
 		}
 		strcpy_s(new_info.phone, str);
@@ -80,9 +82,8 @@ int load_DB(doubly_linked_list* L)
 		lineNumber++;
 		fin.getline(str, 20);
 		if (check_city(str) == false) {
-			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
-			cout << "\"" << str << "\"." << endl;
 			fin.close();
+			errorMessage(str, lineNumber);
 			return 0;
 		}
 		strcpy_s(new_info.city, str);
@@ -90,9 +91,8 @@ int load_DB(doubly_linked_list* L)
 		lineNumber++;
 		fin.getline(str, 20);
 		if (check_street(str) == false) {
-			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
-			cout << "\"" << str << "\"." << endl;
 			fin.close();
+			errorMessage(str, lineNumber);
 			return 0;
 		}
 		strcpy_s(new_info.street, str);
@@ -100,9 +100,8 @@ int load_DB(doubly_linked_list* L)
 		lineNumber++;
 		fin.getline(str, 10);
 		if (check_house(str) == false) {
-			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
-			cout << "\"" << str << "\"." << endl;
 			fin.close();
+			errorMessage(str, lineNumber);
 			return 0;
 		}
 		new_info.house = atoi(str);
@@ -110,9 +109,8 @@ int load_DB(doubly_linked_list* L)
 		lineNumber++;
 		fin.getline(str, 10);
 		if (check_flat(str) == false) {
-			cout << "Данные повреждены в строке №: " << lineNumber << " - ";
-			cout << "\"" << str << "\"." << endl;
 			fin.close();
+			errorMessage(str, lineNumber);
 			return 0;
 		}
 		new_info.flat = atoi(str);
@@ -122,6 +120,15 @@ int load_DB(doubly_linked_list* L)
 		prevPut(L, &new_info);
 	}
 	fin.close();
+	cout << "Данные успешно загружены" << endl;
+	_getch();
 	system("cls");
 	return 1;
+}
+
+void errorMessage(char(&str)[100], int lineNumber) {
+	cout << "Данные повреждены в строке №: " << lineNumber << " - ";
+	cout << "\"" << str << "\"." << endl;
+	_getch();
+	system("cls");
 }

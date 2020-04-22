@@ -104,7 +104,7 @@ void table(doubly_linked_list* L)
 
 					if (L->ptr == head) {
 						if (head->next_link == L->end) {
-							head == L->end;
+							head = L->end;
 							deleteItem(L);
 						}
 						else {
