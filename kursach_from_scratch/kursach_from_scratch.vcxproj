@@ -152,7 +152,7 @@
     <ClCompile Include="File.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="kursach_from_scratch.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="Search.cpp" />
     <ClCompile Include="Sort.cpp" />

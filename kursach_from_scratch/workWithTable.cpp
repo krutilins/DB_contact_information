@@ -13,9 +13,10 @@ void table(doubly_linked_list* L)
 	Contact* head = L->start->next_link;
 
 	int functionKey = 0;
+	const int TABLE_ELEMENT = 15;
 	int cntElement = 0;
 	int currentPage = 1;
-	int maxPage = ceil((double)numElements(L) / TABLE_ELEMENT);
+	int maxPage;
 	do {
 		if (isEmptyList(L)) {
 			cout << "Список пуст." << endl;
@@ -23,6 +24,8 @@ void table(doubly_linked_list* L)
 			system("cls");
 			return;
 		}
+
+		maxPage = ceil((double)numElements(L) / TABLE_ELEMENT);
 
 		cout << "  +----------------------------------------+--------------+--------------------+--------------------+----------+--------------+" << endl;
 		cout << "  |         Фамииля Имя Отчество           |Номер телефона|       Город        |       Улица        |Номер дома|Номер квартиры|" << endl;
@@ -96,8 +99,53 @@ void table(doubly_linked_list* L)
 			}
 
 			if (functionKey == 8) { // backspace
-				deleteItem(L);
-				tmp = L->start->next_link;
+				
+				if (L->start->next_link == head) {
+
+					if (L->ptr == head) {
+						if (head->next_link == L->end) {
+							head == L->end;
+							deleteItem(L);
+						}
+						else {
+							head = head->next_link;
+							deleteItem(L);
+						}
+					} else if (L->ptr->next_link == L->end) {
+						deleteItem(L);
+					}
+					else {
+						deleteItem(L);
+					}
+
+				}
+				else {
+
+					if (L->ptr == head) {
+						if (head->next_link == L->end) {
+							for (int i = 0; i < TABLE_ELEMENT; i++) {
+								head = head->prev_link;
+							}
+							deleteItem(L);
+							L->ptr = head;
+							currentPage--;
+						}
+						else {
+							head = head->next_link;
+							deleteItem(L);
+							L->ptr = head;
+						}
+					}
+					else if (L->ptr->next_link == L->end) {
+						deleteItem(L);
+					}
+					else {
+						deleteItem(L);
+					}
+
+				}
+
+				tmp = head;
 				break;
 			}
 
