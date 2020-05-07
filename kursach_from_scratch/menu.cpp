@@ -72,7 +72,7 @@ void showMainMenu(int pos) {
 
 	if (pos == 8) { cout << ">"; }
 	else { cout << " "; i++; }
-	cout << "ÑÎÐÒÈÐÎÂÊÀ" << endl;
+	cout << "ÔÈËÜÒÐÀÖÈß" << endl;
 
 	if (pos == 9) { cout << ">"; }
 	else { cout << " "; i++; }
