@@ -9,27 +9,23 @@
 #include "Sort.h"
 #include "Filtration.h"
 
+int choiceMenu(int currentMenu);
+
 void mainMenu(doubly_linked_list* database);
 void showMainMenu(int pos);
-int choiceMainMenu();
 
 void sortMenu(doubly_linked_list* database);
 void showSortMenu(int pos);
-int choiceSortMenu();
 
 void showOderMenu(int pos);
-int choiceOderMenu();
 
 void searchMenu(doubly_linked_list* database);
 void showSearchMenu(int pos);
-int choiceSearchMenu();
 
 void showPartFIOMenu(int pos);
-int choicePartFIOMenu();
 
 void filtrationMenu(doubly_linked_list* database);
 void showFiltrationMenu(int pos);
-int choiceFiltrationMenu();
 
 
 #endif // !_MENU_H_
