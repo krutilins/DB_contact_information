@@ -86,3 +86,4 @@ bool check_flat(char(&str)[100])
 	}
 	return true;
 }
+	

@@ -11,15 +11,15 @@ int choiceMenu(int currentMenu) {
 		lastMenuItem = 9;
 	}
 	else if (currentMenu == 2) {
-		fcnPtrShowCurrentMenu = showSortMenu;
-		lastMenuItem = 7;
+		fcnPtrShowCurrentMenu = showFieldMenu;
+		lastMenuItem = 8;
 	}
 	else if (currentMenu == 3) {
 		fcnPtrShowCurrentMenu = showOderMenu;
 		lastMenuItem = 3;
 	}
 	else if (currentMenu == 4) {
-		fcnPtrShowCurrentMenu = showSearchMenu;
+		fcnPtrShowCurrentMenu = showFieldMenu;
 		lastMenuItem = 8;
 	}
 	else if (currentMenu == 5) {
@@ -27,7 +27,7 @@ int choiceMenu(int currentMenu) {
 		lastMenuItem = 4;
 	}
 	else if (currentMenu == 6) {
-		fcnPtrShowCurrentMenu = showFiltrationMenu;
+		fcnPtrShowCurrentMenu = showFieldMenu;
 		lastMenuItem = 8;
 	}
 	else {
@@ -104,50 +104,11 @@ void mainMenu(doubly_linked_list* database) {
 		}
 	}
 }
-void showMainMenu(int position) {
-	int i = 1;
-	cout << "ÌÅÍÞ:" << endl;
-
-	if (position == 1) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÇÀÃÐÓÇÈÒÜ ÄÀÍÍÛÅ ÈÇ ÔÀÉËÀ" << endl;
-
-	if (position == 2) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÐÀÁÎÒÀ Ñ ÒÀÁËÈÖÅÉ" << endl;
-
-	if (position == 3) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÄÎÁÀÂÈÒÜ ÂÐÓ×ÍÓÞ" << endl;
-
-	if (position == 4) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÂÛÃÐÓÇÈÒÜ ÄÀÍÍÛÅ Â ÔÀÉË" << endl;
-
-	if (position == 5) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "Î×ÈÑÒÊÀ ÑÏÈÑÊÀ" << endl;
-
-	if (position == 6) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÑÎÐÒÈÐÎÂÊÀ" << endl;
-
-	if (position == 7) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÏÎÈÑÊ" << endl;
-
-	if (position == 8) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÔÈËÜÒÐÀÖÈß" << endl;
-
-	if (position == 9) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÂÛÕÎÄ" << endl;
-}
 
 void sortMenu(doubly_linked_list* database) {
 	const int sortMenu = 2;
 	const int oderMenu = 3;
+	const int partFIOMenu = 5;
 
 	while (true) {
 		switch (choiceMenu(sortMenu))
@@ -165,7 +126,55 @@ void sortMenu(doubly_linked_list* database) {
 				break;
 			}
 			break;
-		case 2: // íîìåð òåëåôîíà
+		case 2: // ÷àñòü ôèî
+			cout << "Ñîðòèðîâêà ïî ÷àñòè ÔÈÎ íå ðåàëèçîâàíà" << endl;
+			system("pause");
+			//switch (choiceMenu(partFIOMenu))
+			//{
+			//case 1: // èìÿ
+			//	switch (choiceMenu(oderMenu))
+			//	{
+			//	case 1: // âîçðàñòàíèå
+			//		fioAscending(database);
+			//		break;
+			//	case 2: // óáûâàíèå
+			//		fioDescending(database);
+			//		break;
+			//	case 3:
+			//		break;
+			//	}
+			//	break;
+			//case 2: // èìÿ
+			//	switch (choiceMenu(oderMenu))
+			//	{
+			//	case 1: // âîçðàñòàíèå
+			//		fioAscending(database);
+			//		break;
+			//	case 2: // óáûâàíèå
+			//		fioDescending(database);
+			//		break;
+			//	case 3:
+			//		break;
+			//	}
+			//	break;
+			//case 3: // îò÷åñòâî
+			//	switch (choiceMenu(oderMenu))
+			//	{
+			//	case 1: // âîçðàñòàíèå
+			//		fioAscending(database);
+			//		break;
+			//	case 2: // óáûâàíèå
+			//		fioDescending(database);
+			//		break;
+			//	case 3:
+			//		break;
+			//	}
+			//	break;
+			//case 4: // ìåíþ ñîðòèðîâêè
+			//	break;
+			//}
+			break;
+		case 3: // íîìåð òåëåôîíà
 			switch (choiceMenu(oderMenu))
 			{
 			case 1: // âîçðàñòàíèå
@@ -178,7 +187,7 @@ void sortMenu(doubly_linked_list* database) {
 				break;
 			}
 			break;
-		case 3: // ãîðîä
+		case 4: // ãîðîä
 			switch (choiceMenu(oderMenu))
 			{
 			case 1: // âîçðàñòàíèå
@@ -191,7 +200,7 @@ void sortMenu(doubly_linked_list* database) {
 				break;
 			}
 			break;
-		case 4: // óëèöà
+		case 5: // óëèöà
 			switch (choiceMenu(oderMenu))
 			{
 			case 1: // âîçðàñòàíèå
@@ -204,7 +213,7 @@ void sortMenu(doubly_linked_list* database) {
 				break;
 			}
 			break;
-		case 5: // äîì
+		case 6: // äîì
 			switch (choiceMenu(oderMenu))
 			{
 			case 1: // âîçðàñòàíèå
@@ -217,7 +226,7 @@ void sortMenu(doubly_linked_list* database) {
 				break;
 			}
 			break;
-		case 6: // êâàðòèðà
+		case 7: // êâàðòèðà
 			switch (choiceMenu(oderMenu))
 			{
 			case 1: // âîçðàñòàíèå
@@ -230,60 +239,11 @@ void sortMenu(doubly_linked_list* database) {
 				break;
 			}
 			break;
-		case 7: // ãëàâíîå ìåíþ
+		case 8: // ãëàâíîå ìåíþ
 			return;
 		}
 	}
 }
-void showSortMenu(int pos) {
-	int i = 1;
-	cout << "ÑÎÐÒÈÐÎÂÎ×ÍÎÅ ÌÅÍÞ:" << endl;
-
-	if (pos == 1) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÔÈÎ" << endl;
-
-	if (pos == 2) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÍÎÌÅÐ ÒÅËÅÔÎÍÀ" << endl;
-
-	if (pos == 3) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÃÎÐÎÄ" << endl;
-
-	if (pos == 4) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÓËÈÖÀ" << endl;
-
-	if (pos == 5) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÄÎÌ" << endl;
-
-	if (pos == 6) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÊÂÀÐÒÈÐÀ" << endl;
-
-	if (pos == 7) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÂÅÐÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍÞ" << endl;
-}
-void showOderMenu(int pos) {
-	int i = 1;
-	cout << "ÂÛÁÅÐÈÒÅ ÌÎÍÎÒÎÍÍÎÑÒÜ ÑÎÐÒÈÐÎÂÊÈ:" << endl;
-
-	if (pos == 1) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÏÎ ÂÎÇÐÀÑÒÀÍÈÞ" << endl;
-
-	if (pos == 2) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÏÎ ÓÁÛÂÀÍÈÞ" << endl;
-
-	if (pos == 3) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÂÅÐÍÓÒÜÑß Â ÌÅÍÞ ÑÎÐÒÈÐÎÂÊÈ" << endl;
-}
-
 void searchMenu(doubly_linked_list* database) {
 	const int searchMenu = 4;
 	const int partFIOMenu = 5;
@@ -332,64 +292,6 @@ void searchMenu(doubly_linked_list* database) {
 		}
 	}
 }
-void showSearchMenu(int pos) {
-	int i = 1;
-	cout << "ÌÅÍÞ ÏÎÈÑÊÀ:" << endl;
-
-	if (pos == 1) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÔÈÎ" << endl;
-
-	if (pos == 2) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÏÎ ×ÀÑÒÈ ÔÈÎ" << endl;
-
-	if (pos == 3) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÍÎÌÅÐ ÒÅËÅÔÎÍÀ" << endl;
-
-	if (pos == 4) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÃÎÐÎÄ" << endl;
-
-	if (pos == 5) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÓËÈÖÀ" << endl;
-
-	if (pos == 6) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÄÎÌ" << endl;
-
-	if (pos == 7) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÊÂÀÐÒÈÐÀ" << endl;
-
-	if (pos == 8) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÂÅÐÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍÞ" << endl;
-}
-
-void showPartFIOMenu(int pos) {
-	int i = 1;
-	cout << "ÂÛÁÅÐÈÒÅ ×ÀÑÒÜ ÔÈÎ:" << endl;
-
-	if (pos == 1) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÔÀÌÈËÈß" << endl;
-
-	if (pos == 2) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÈÌß" << endl;
-
-	if (pos == 3) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÎÒ×ÅÑÒÂÎ" << endl;
-
-	if (pos == 4) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ÂÅÐÍÓÒÜÑß Â ÌÅÍÞ ÏÎÈÑÊÀ" << endl;
-}
-
 void filtrationMenu(doubly_linked_list* database) {
 	const int filtrationMenu = 6;
 	const int partFIOMenu = 5;
@@ -438,39 +340,116 @@ void filtrationMenu(doubly_linked_list* database) {
 		}
 	}
 }
-void showFiltrationMenu(int pos) {
+
+void showMainMenu(int currentPosition) {
+	int i = 1;
+	cout << "ÌÅÍÞ:" << endl;
+
+	if (currentPosition == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÇÀÃÐÓÇÈÒÜ ÄÀÍÍÛÅ ÈÇ ÔÀÉËÀ" << endl;
+
+	if (currentPosition == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÐÀÁÎÒÀ Ñ ÒÀÁËÈÖÅÉ" << endl;
+
+	if (currentPosition == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÄÎÁÀÂÈÒÜ ÂÐÓ×ÍÓÞ" << endl;
+
+	if (currentPosition == 4) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÛÃÐÓÇÈÒÜ ÄÀÍÍÛÅ Â ÔÀÉË" << endl;
+
+	if (currentPosition == 5) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "Î×ÈÑÒÊÀ ÑÏÈÑÊÀ" << endl;
+
+	if (currentPosition == 6) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÑÎÐÒÈÐÎÂÊÀ" << endl;
+
+	if (currentPosition == 7) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÏÎÈÑÊ" << endl;
+
+	if (currentPosition == 8) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÔÈËÜÒÐÀÖÈß" << endl;
+
+	if (currentPosition == 9) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÛÕÎÄ" << endl;
+}
+void showFieldMenu(int currentPosition) {
 	int i = 1;
 	cout << "ÌÅÍÞ ÔÈËÜÒÐÀÖÈÈ:" << endl;
 
-	if (pos == 1) { cout << ">"; }
+	if (currentPosition == 1) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ÔÈÎ" << endl;
 
-	if (pos == 2) { cout << ">"; }
+	if (currentPosition == 2) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ÏÎ ×ÀÑÒÈ ÔÈÎ" << endl;
 
-	if (pos == 3) { cout << ">"; }
+	if (currentPosition == 3) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ÍÎÌÅÐ ÒÅËÅÔÎÍÀ" << endl;
 
-	if (pos == 4) { cout << ">"; }
+	if (currentPosition == 4) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ÃÎÐÎÄ" << endl;
 
-	if (pos == 5) { cout << ">"; }
+	if (currentPosition == 5) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ÓËÈÖÀ" << endl;
 
-	if (pos == 6) { cout << ">"; }
+	if (currentPosition == 6) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ÄÎÌ" << endl;
 
-	if (pos == 7) { cout << ">"; }
+	if (currentPosition == 7) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ÊÂÀÐÒÈÐÀ" << endl;
 
-	if (pos == 8) { cout << ">"; }
+	if (currentPosition == 8) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ÂÅÐÍÓÒÜÑß Â ÃËÀÂÍÎÅ ÌÅÍÞ" << endl;
+}
+void showPartFIOMenu(int currentPosition) {
+	int i = 1;
+	cout << "ÂÛÁÅÐÈÒÅ ×ÀÑÒÜ ÔÈÎ:" << endl;
+
+	if (currentPosition == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÔÀÌÈËÈß" << endl;
+
+	if (currentPosition == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÈÌß" << endl;
+
+	if (currentPosition == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÎÒ×ÅÑÒÂÎ" << endl;
+
+	if (currentPosition == 4) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÅÐÍÓÒÜÑß Â ÌÅÍÞ ÏÎÈÑÊÀ" << endl;
+}
+void showOderMenu(int currentPosition) {
+	int i = 1;
+	cout << "ÂÛÁÅÐÈÒÅ ÌÎÍÎÒÎÍÍÎÑÒÜ ÑÎÐÒÈÐÎÂÊÈ:" << endl;
+
+	if (currentPosition == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÏÎ ÂÎÇÐÀÑÒÀÍÈÞ" << endl;
+
+	if (currentPosition == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÏÎ ÓÁÛÂÀÍÈÞ" << endl;
+
+	if (currentPosition == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ÂÅÐÍÓÒÜÑß Â ÌÅÍÞ ÑÎÐÒÈÐÎÂÊÈ" << endl;
 }

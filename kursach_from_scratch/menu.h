@@ -12,20 +12,13 @@
 int choiceMenu(int currentMenu);
 
 void mainMenu(doubly_linked_list* database);
-void showMainMenu(int pos);
-
 void sortMenu(doubly_linked_list* database);
-void showSortMenu(int pos);
-
-void showOderMenu(int pos);
-
 void searchMenu(doubly_linked_list* database);
-void showSearchMenu(int pos);
-
-void showPartFIOMenu(int pos);
-
 void filtrationMenu(doubly_linked_list* database);
-void showFiltrationMenu(int pos);
 
+void showMainMenu(int position);
+void showFieldMenu(int position);
+void showPartFIOMenu(int position);
+void showOderMenu(int position);
 
 #endif // !_MENU_H_

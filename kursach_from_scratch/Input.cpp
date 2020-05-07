@@ -31,7 +31,6 @@ void add_next(doubly_linked_list* L) {
 void fillItem(Contact* Item) {
 	char str[100];
 
-	// ввод информации
 	do {
 		cout << "Введите ФИО" << endl;
 		cin.getline(str, 100);
