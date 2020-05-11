@@ -8,7 +8,6 @@ void table(doubly_linked_list* L)
 	// дополнительный элемент для прохода от начала до конца списка
 	Contact* tmp = L->start->next_link; // ссылка на первый элемент
 	
-
 	// дополнительный указатель на верх таблицы
 	Contact* head = L->start->next_link;
 

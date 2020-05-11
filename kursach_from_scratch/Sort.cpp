@@ -1,5 +1,18 @@
 #include "Sort.h"
 
+/*
+
+1 - фио
+2 - фамилия
+3 - имя
+4 - отчество
+5 - телефон
+6 - город
+7 - улица
+8 - дом
+9 - квартира
+
+*/
 void fioAscending(doubly_linked_list* L)
 {
 	Contact* tempArray = NULL;

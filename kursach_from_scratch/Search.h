@@ -5,15 +5,15 @@
 #include "workWithTable.h"
 #include "checkInput.h"
 
-void searchFIO(doubly_linked_list* L); // фио
-void searchFirstName(doubly_linked_list* L); // имя
-void searchSecondName(doubly_linked_list* L); // фамилия
-void searchMiddleName(doubly_linked_list* L); // отчество
-void searchPhone(doubly_linked_list* L); // телефон
-void searchCity(doubly_linked_list* L); // город
-void searchStreet(doubly_linked_list* L); // улица
-void searchHouse(doubly_linked_list* L); // дом
-void searchFlat(doubly_linked_list* L); // квартира
+void searchFIO(doubly_linked_list* L);
+void searchFirstName(doubly_linked_list* L);
+void searchSecondName(doubly_linked_list* L);
+void searchMiddleName(doubly_linked_list* L);
+void searchPhone(doubly_linked_list* L);
+void searchCity(doubly_linked_list* L);
+void searchStreet(doubly_linked_list* L);
+void searchHouse(doubly_linked_list* L);
+void searchFlat(doubly_linked_list* L);
 
 
 #endif // !_SEARCH_H_

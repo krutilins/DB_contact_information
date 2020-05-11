@@ -6,6 +6,18 @@
 void fioAscending(doubly_linked_list* L);
 void fioDescending(doubly_linked_list* L);
 
+/* фильтрация по имени*/
+void firstNameAscending(doubly_linked_list* L);
+void firstNameDescending(doubly_linked_list* L);
+
+/* сортировка по фамилии */
+void secondNameAscending(doubly_linked_list* L);
+void secondNameDescending(doubly_linked_list* L);
+
+/* сортировка по отчеству */
+void middleNameAscending(doubly_linked_list* L);
+void middleNameDescending(doubly_linked_list* L);
+
 void phoneAscending(doubly_linked_list* L);
 void phoneDescending(doubly_linked_list* L);
 

@@ -17,6 +17,7 @@ void searchMenu(doubly_linked_list* database);
 void filtrationMenu(doubly_linked_list* database);
 
 void showMainMenu(int position);
+void showFileMenu(int position);
 void showFieldMenu(int position);
 void showPartFIOMenu(int position);
 void showOderMenu(int position);

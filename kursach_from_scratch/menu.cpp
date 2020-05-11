@@ -30,6 +30,10 @@ int choiceMenu(int currentMenu) {
 		fcnPtrShowCurrentMenu = showFieldMenu;
 		lastMenuItem = 8;
 	}
+	else if (currentMenu == 7) {
+		fcnPtrShowCurrentMenu = showFileMenu;
+		lastMenuItem = 2;
+	}
 	else {
 		exit(0);
 	}
@@ -67,11 +71,20 @@ int choiceMenu(int currentMenu) {
 
 void mainMenu(doubly_linked_list* database) {
 	const int mainMenu = 1;
+	const int fileMenu = 7;
 
 	while (true) {
 		switch (choiceMenu(mainMenu))
 		{
 		case 1: // загрузить из файла
+			if (!isEmptyList(database)) {
+				switch (choiceMenu(fileMenu)) {
+				case 1:
+					clearList(database);
+					initialize(database);
+					break;
+				}
+			}
 			load_DB(database);
 			break;
 		case 2: // вывести таблицу
@@ -81,9 +94,21 @@ void mainMenu(doubly_linked_list* database) {
 			add_end(database);
 			break;
 		case 4: // выгрузить в файл
+			if (isEmptyList(database)) {
+				cout << "Список пуст." << endl;
+				_getch();
+				system("cls");
+				break;
+			}
 			upload_file(database);
 			break;
 		case 5: // очистить список
+			if (isEmptyList(database)) {
+				cout << "Список пуст." << endl;
+				_getch();
+				system("cls");
+				break;
+			}
 			clearList(database);
 			initialize(database);
 			cout << "Список был очищен." << endl;
@@ -91,12 +116,30 @@ void mainMenu(doubly_linked_list* database) {
 			system("cls");
 			break;
 		case 6: // сортировка
+			if (isEmptyList(database)) {
+				cout << "Список пуст." << endl;
+				_getch();
+				system("cls");
+				break;
+			}
 			sortMenu(database);
 			break;
 		case 7: // поиск
+			if (isEmptyList(database)) {
+				cout << "Список пуст." << endl;
+				_getch();
+				system("cls");
+				break;
+			}
 			searchMenu(database);
 			break;
 		case 8: // фильтрация
+			if (isEmptyList(database)) {
+				cout << "Список пуст." << endl;
+				_getch();
+				system("cls");
+				break;
+			}
 			filtrationMenu(database);
 			break;
 		case 9:
@@ -380,6 +423,19 @@ void showMainMenu(int currentPosition) {
 	if (currentPosition == 9) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ВЫХОД" << endl;
+}
+void showFileMenu(int currentPosition) {
+	int i = 1;
+	cout << "На данный момент вы уже работаете с некой базой данных." << endl;
+	cout << "Желанете очистить базу перед загрузкой новых данных? (1 - да / 0 - нет)" << endl;
+
+	if (currentPosition == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ДА" << endl;
+
+	if (currentPosition == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "НЕТ" << endl;
 }
 void showFieldMenu(int currentPosition) {
 	int i = 1;
