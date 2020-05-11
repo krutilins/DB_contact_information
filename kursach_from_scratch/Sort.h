@@ -3,34 +3,34 @@
 #define _SORT_H_
 #include "Header.h"
 
-void fioAscending(doubly_linked_list* L);
-void fioDescending(doubly_linked_list* L);
+/*
+Сортировка по возрастанию
+1 - фио
+2 - фамилия
+3 - имя
+4 - отчество
+5 - телефон
+6 - город
+7 - улица
+8 - дом
+9 - квартира
 
-/* фильтрация по имени*/
-void firstNameAscending(doubly_linked_list* L);
-void firstNameDescending(doubly_linked_list* L);
+*/
+void Ascending(doubly_linked_list* L, int field);
 
-/* сортировка по фамилии */
-void secondNameAscending(doubly_linked_list* L);
-void secondNameDescending(doubly_linked_list* L);
+/*
+Сортировка по убыванию
+1 - фио
+2 - фамилия
+3 - имя
+4 - отчество
+5 - телефон
+6 - город
+7 - улица
+8 - дом
+9 - квартира
 
-/* сортировка по отчеству */
-void middleNameAscending(doubly_linked_list* L);
-void middleNameDescending(doubly_linked_list* L);
-
-void phoneAscending(doubly_linked_list* L);
-void phoneDescending(doubly_linked_list* L);
-
-void cityAscending(doubly_linked_list* L);
-void cityDescending(doubly_linked_list* L);
-
-void streetAscending(doubly_linked_list* L);
-void streetDescending(doubly_linked_list* L);
-
-void houseAscending(doubly_linked_list* L);
-void houseDescending(doubly_linked_list* L);
-
-void flatAscending(doubly_linked_list* L);
-void flatDescending(doubly_linked_list* L);
+*/
+void Descending(doubly_linked_list* L, int field);
 
 #endif // !_SORT_H_

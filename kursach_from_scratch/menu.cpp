@@ -11,28 +11,16 @@ int choiceMenu(int currentMenu) {
 		lastMenuItem = 9;
 	}
 	else if (currentMenu == 2) {
-		fcnPtrShowCurrentMenu = showFieldMenu;
-		lastMenuItem = 8;
-	}
-	else if (currentMenu == 3) {
-		fcnPtrShowCurrentMenu = showOderMenu;
-		lastMenuItem = 3;
-	}
-	else if (currentMenu == 4) {
-		fcnPtrShowCurrentMenu = showFieldMenu;
-		lastMenuItem = 8;
-	}
-	else if (currentMenu == 5) {
-		fcnPtrShowCurrentMenu = showPartFIOMenu;
-		lastMenuItem = 4;
-	}
-	else if (currentMenu == 6) {
-		fcnPtrShowCurrentMenu = showFieldMenu;
-		lastMenuItem = 8;
-	}
-	else if (currentMenu == 7) {
 		fcnPtrShowCurrentMenu = showFileMenu;
 		lastMenuItem = 2;
+	}
+	else if (currentMenu == 3) {
+		fcnPtrShowCurrentMenu = showFieldMenu;
+		lastMenuItem = 10;
+	}
+	else if (currentMenu == 4) {
+		fcnPtrShowCurrentMenu = showOderMenu;
+		lastMenuItem = 3;
 	}
 	else {
 		exit(0);
@@ -71,7 +59,7 @@ int choiceMenu(int currentMenu) {
 
 void mainMenu(doubly_linked_list* database) {
 	const int mainMenu = 1;
-	const int fileMenu = 7;
+	const int fileMenu = 2;
 
 	while (true) {
 		switch (choiceMenu(mainMenu))
@@ -116,8 +104,8 @@ void mainMenu(doubly_linked_list* database) {
 			system("cls");
 			break;
 		case 6: // сортировка
-			if (isEmptyList(database)) {
-				cout << "Список пуст." << endl;
+			if (isEmptyList(database) || numElements(database) == 1) {
+				cout << "Недостаточно элементов для сортировки." << endl;
 				_getch();
 				system("cls");
 				break;
@@ -125,8 +113,8 @@ void mainMenu(doubly_linked_list* database) {
 			sortMenu(database);
 			break;
 		case 7: // поиск
-			if (isEmptyList(database)) {
-				cout << "Список пуст." << endl;
+			if (isEmptyList(database) || numElements(database) == 1) {
+				cout << "Недостаточно элементов для поиска." << endl;
 				_getch();
 				system("cls");
 				break;
@@ -134,8 +122,8 @@ void mainMenu(doubly_linked_list* database) {
 			searchMenu(database);
 			break;
 		case 8: // фильтрация
-			if (isEmptyList(database)) {
-				cout << "Список пуст." << endl;
+			if (isEmptyList(database) || numElements(database) == 1) {
+				cout << "Недостаточно элементов для фильтрации." << endl;
 				_getch();
 				system("cls");
 				break;
@@ -149,236 +137,157 @@ void mainMenu(doubly_linked_list* database) {
 }
 
 void sortMenu(doubly_linked_list* database) {
-	const int sortMenu = 2;
-	const int oderMenu = 3;
-	const int partFIOMenu = 5;
+	const int fieldMenu = 3;
+	const int oderMenu = 4;
 
-	while (true) {
-		switch (choiceMenu(sortMenu))
+	while(true) {
+		switch (choiceMenu(oderMenu))
 		{
-		case 1: // ФИО
-			switch (choiceMenu(oderMenu))
+		case 1:
+			switch (choiceMenu(fieldMenu))
 			{
-			case 1: // возрастание
-				fioAscending(database);
+			case 1:
+				Ascending(database, 1);
 				break;
-			case 2: // убывание
-				fioDescending(database);
+			case 2:
+				Ascending(database, 2);
 				break;
 			case 3:
+				Ascending(database, 3);
+				break;
+			case 4:
+				Ascending(database, 4);
+				break;
+			case 5:
+				Ascending(database, 5);
+				break;
+			case 6:
+				Ascending(database, 6);
+				break;
+			case 7:
+				Ascending(database, 7);
+				break;
+			case 8:
+				Ascending(database, 8);
+				break;
+			case 9:
+				Ascending(database, 9);
+				break;
+			case 10:
 				break;
 			}
 			break;
-		case 2: // часть фио
-			cout << "Сортировка по части ФИО не реализована" << endl;
-			system("pause");
-			//switch (choiceMenu(partFIOMenu))
-			//{
-			//case 1: // имя
-			//	switch (choiceMenu(oderMenu))
-			//	{
-			//	case 1: // возрастание
-			//		fioAscending(database);
-			//		break;
-			//	case 2: // убывание
-			//		fioDescending(database);
-			//		break;
-			//	case 3:
-			//		break;
-			//	}
-			//	break;
-			//case 2: // имя
-			//	switch (choiceMenu(oderMenu))
-			//	{
-			//	case 1: // возрастание
-			//		fioAscending(database);
-			//		break;
-			//	case 2: // убывание
-			//		fioDescending(database);
-			//		break;
-			//	case 3:
-			//		break;
-			//	}
-			//	break;
-			//case 3: // отчество
-			//	switch (choiceMenu(oderMenu))
-			//	{
-			//	case 1: // возрастание
-			//		fioAscending(database);
-			//		break;
-			//	case 2: // убывание
-			//		fioDescending(database);
-			//		break;
-			//	case 3:
-			//		break;
-			//	}
-			//	break;
-			//case 4: // меню сортировки
-			//	break;
-			//}
-			break;
-		case 3: // номер телефона
-			switch (choiceMenu(oderMenu))
+		case 2:
+			switch (choiceMenu(fieldMenu))
 			{
-			case 1: // возрастание
-				phoneAscending(database);
+			case 1:
+				Descending(database, 1);
 				break;
-			case 2: // убывание
-				phoneDescending(database);
+			case 2:
+				Descending(database, 2);
 				break;
 			case 3:
+				Descending(database, 3);
+				break;
+			case 4:
+				Descending(database, 4);
+				break;
+			case 5:
+				Descending(database, 5);
+				break;
+			case 6:
+				Descending(database, 6);
+				break;
+			case 7:
+				Descending(database, 7);
+				break;
+			case 8:
+				Descending(database, 8);
+				break;
+			case 9:
+				Descending(database, 9);
+				break;
+			case 10:
 				break;
 			}
 			break;
-		case 4: // город
-			switch (choiceMenu(oderMenu))
-			{
-			case 1: // возрастание
-				cityAscending(database);
-				break;
-			case 2: // убывание
-				cityDescending(database);
-				break;
-			case 3:
-				break;
-			}
-			break;
-		case 5: // улица
-			switch (choiceMenu(oderMenu))
-			{
-			case 1: // возрастание
-				streetAscending(database);
-				break;
-			case 2: // убывание
-				streetDescending(database);
-				break;
-			case 3:
-				break;
-			}
-			break;
-		case 6: // дом
-			switch (choiceMenu(oderMenu))
-			{
-			case 1: // возрастание
-				houseAscending(database);
-				break;
-			case 2: // убывание
-				houseDescending(database);
-				break;
-			case 3:
-				break;
-			}
-			break;
-		case 7: // квартира
-			switch (choiceMenu(oderMenu))
-			{
-			case 1: // возрастание
-				flatAscending(database);
-				break;
-			case 2: // убывание
-				flatDescending(database);
-				break;
-			case 3:
-				break;
-			}
-			break;
-		case 8: // главное меню
+		case 3:
 			return;
 		}
 	}
 }
 void searchMenu(doubly_linked_list* database) {
-	const int searchMenu = 4;
-	const int partFIOMenu = 5;
+	const int fieldMenu = 3;
 
 	while (true) {
-		switch (choiceMenu(searchMenu))
+		switch (choiceMenu(fieldMenu))
 		{
 		case 1: // фио
 			searchFIO(database);
 			break;
-		case 2: // часть фио
-			switch (choiceMenu(partFIOMenu))
-			{
-			case 1: // фамилия
-				searchSecondName(database);
-				break;
-			case 2: // имя
-				searchFirstName(database);
-				break;
-			case 3: // отчество
-				searchMiddleName(database);
-				break;
-			case 4: // меню поиска
-				break;
-			default:
-				break;
-			}
+		case 2: // фамилия
+			searchSecondName(database);
 			break;
-		case 3: // телефон
+		case 3: // имя
+			searchFirstName(database);
+			break;
+		case 4: // отчество
+			searchMiddleName(database);
+			break;
+		case 5: // телефон
 			searchPhone(database);
 			break;
-		case 4: // город
+		case 6: // город
 			searchCity(database);
 			break;
-		case 5: // улица
+		case 7: // улица
 			searchStreet(database);
 			break;
-		case 6: // дом
+		case 8: // дом
 			searchHouse(database);
 			break;
-		case 7: // квартира
+		case 9: // квартира
 			searchFlat(database);
 			break;
-		case 8: // главное меню
+		case 10: // главное меню
 			return;
 		}
 	}
 }
 void filtrationMenu(doubly_linked_list* database) {
-	const int filtrationMenu = 6;
-	const int partFIOMenu = 5;
+	const int fieldMenu = 3;
 
 	while (true) {
-		switch (choiceMenu(filtrationMenu))
+		switch (choiceMenu(fieldMenu))
 		{
 		case 1: // фио
 			filtrFIO(database);
 			break;
-		case 2: // часть фио
-			switch (choiceMenu(partFIOMenu))
-			{
-			case 1: // фамилия
-				filtrSecondName(database);
-				break;
-			case 2: // имя
-				filtrFirstName(database);
-				break;
-			case 3: // отчество
-				filtrMiddleName(database);
-				break;
-			case 4: // меню поиска
-				break;
-			default:
-				break;
-			}
+		case 2: // фамилия
+			filtrSecondName(database);
 			break;
-		case 3: // телефон
+		case 3: // имя
+			filtrFirstName(database);
+			break;
+		case 4: // отчество
+			filtrMiddleName(database);
+			break;
+		case 5: // телефон
 			filtrPhone(database);
 			break;
-		case 4: // город
+		case 6: // город
 			filtrCity(database);
 			break;
-		case 5: // улица
+		case 7: // улица
 			filtrStreet(database);
 			break;
-		case 6: // дом
+		case 8: // дом
 			filtrHouse(database);
 			break;
-		case 7: // квартира
+		case 9: // квартира
 			filtrFlat(database);
 			break;
-		case 8: // главное меню
+		case 10: // главное меню
 			return;
 		}
 	}
@@ -439,7 +348,7 @@ void showFileMenu(int currentPosition) {
 }
 void showFieldMenu(int currentPosition) {
 	int i = 1;
-	cout << "МЕНЮ ФИЛЬТРАЦИИ:" << endl;
+	cout << "ВЫБЕРИТЕ ПОЛЕ:" << endl;
 
 	if (currentPosition == 1) { cout << ">"; }
 	else { cout << " "; i++; }
@@ -447,51 +356,39 @@ void showFieldMenu(int currentPosition) {
 
 	if (currentPosition == 2) { cout << ">"; }
 	else { cout << " "; i++; }
-	cout << "ПО ЧАСТИ ФИО" << endl;
-
-	if (currentPosition == 3) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "НОМЕР ТЕЛЕФОНА" << endl;
-
-	if (currentPosition == 4) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ГОРОД" << endl;
-
-	if (currentPosition == 5) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "УЛИЦА" << endl;
-
-	if (currentPosition == 6) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ДОМ" << endl;
-
-	if (currentPosition == 7) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "КВАРТИРА" << endl;
-
-	if (currentPosition == 8) { cout << ">"; }
-	else { cout << " "; i++; }
-	cout << "ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ" << endl;
-}
-void showPartFIOMenu(int currentPosition) {
-	int i = 1;
-	cout << "ВЫБЕРИТЕ ЧАСТЬ ФИО:" << endl;
-
-	if (currentPosition == 1) { cout << ">"; }
-	else { cout << " "; i++; }
 	cout << "ФАМИЛИЯ" << endl;
 
-	if (currentPosition == 2) { cout << ">"; }
+	if (currentPosition == 3) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ИМЯ" << endl;
 
-	if (currentPosition == 3) { cout << ">"; }
+	if (currentPosition == 4) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "ОТЧЕСТВО" << endl;
 
-	if (currentPosition == 4) { cout << ">"; }
+	if (currentPosition == 5) { cout << ">"; }
 	else { cout << " "; i++; }
-	cout << "ВЕРНУТЬСЯ В МЕНЮ ПОИСКА" << endl;
+	cout << "НОМЕР ТЕЛЕФОНА" << endl;
+
+	if (currentPosition == 6) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ГОРОД" << endl;
+
+	if (currentPosition == 7) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "УЛИЦА" << endl;
+
+	if (currentPosition == 8) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ДОМ" << endl;
+
+	if (currentPosition == 9) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "КВАРТИРА" << endl;
+
+	if (currentPosition == 10) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "НАЗАД" << endl;
 }
 void showOderMenu(int currentPosition) {
 	int i = 1;
@@ -507,5 +404,5 @@ void showOderMenu(int currentPosition) {
 
 	if (currentPosition == 3) { cout << ">"; }
 	else { cout << " "; i++; }
-	cout << "ВЕРНУТЬСЯ В МЕНЮ СОРТИРОВКИ" << endl;
+	cout << "НАЗАД" << endl;
 }
