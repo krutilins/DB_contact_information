@@ -176,6 +176,7 @@ void sortMenu(doubly_linked_list* database) {
 			case 10:
 				break;
 			}
+			return;
 			break;
 		case 2:
 			switch (choiceMenu(fieldMenu))
@@ -210,8 +211,10 @@ void sortMenu(doubly_linked_list* database) {
 			case 10:
 				break;
 			}
+			return;
 			break;
 		case 3:
+
 			return;
 		}
 	}

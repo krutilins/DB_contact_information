@@ -34,14 +34,17 @@ struct doubly_linked_list {
 
 /* Инициализация списка */
 void initialize(doubly_linked_list* L);
+
 /* включение элемента до рабочего указателя */
 void prevPut(doubly_linked_list* L, Contact* elem);
 /* включение элемента после рабочего указателя */
 void postPut(doubly_linked_list* L, Contact* elem);
+
 /* Исключение элемента до рабочего указателя */
 void prevGet(doubly_linked_list* L, Contact* elem);
 /* Исключение элемента после рабочего указателя */
 void postGet(doubly_linked_list* L, Contact* elem);
+
 /* Установка рабочего указателя в начало списка */
 void beginPtr(doubly_linked_list* L);
 /* Установка рабочего указателя в конец списка */
@@ -50,23 +53,31 @@ void endPtr(doubly_linked_list* L);
 void movePtrLeft(doubly_linked_list* L);
 /* Сдвиг рабочего указателя вперед */
 void movePtrRight(doubly_linked_list* L);
+
 /* Очистка списка */
 void clearList(doubly_linked_list* L);
 /* Предикат: является ли список пустым */
 int isEmptyList(doubly_linked_list* L);
+
 /* Печать все элементов списка с начала до конца */
 void printList(doubly_linked_list* L);
+
 /* Счетчик длинны списка */
 int numElements(doubly_linked_list* L);
+
+/* удалить элемент */
+void deleteItem(doubly_linked_list* item);
+
 /* заполнение массива */
 void fillArray(Contact** tempArray, doubly_linked_list* L);
-/* заполнение списка */
-void fillList(doubly_linked_list* L, Contact* tempArray, int sizeArray);
+/* заполнение списка из массива */
+void fillListFromArray(doubly_linked_list* L, Contact* tempArray, int sizeArray);
 /* выделение памяти под массив */
 void resize_z(Contact** pointer, int newsize);
 /* очищение памяти выделенного массива*/
 void clear_z(Contact** pointer);
-/* удалить элемент */
-void deleteItem(doubly_linked_list* item);
+/* обмен элементов массива */
+void swapArrayElement(Contact& first, Contact& second);
+
 
 #endif // _HEADER_H_

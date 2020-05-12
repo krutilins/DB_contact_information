@@ -272,7 +272,7 @@ void fillArray(Contact** tempArray, doubly_linked_list* L)
 }
 
 /* заполнение списка */
-void fillList(doubly_linked_list* L, Contact* tempArray, int sizeArray)
+void fillListFromArray(doubly_linked_list* L, Contact* tempArray, int sizeArray)
 {
 	// временный элемент
 	Contact tempElement;
@@ -336,4 +336,11 @@ void deleteItem(doubly_linked_list* L)
 	// удаление временного элемента
 	free((void*)pntr);
 	pntr = NULL;
+}
+
+void swapArrayElement(Contact& first, Contact& second)
+{
+	Contact tempElement = first;
+	first = second;
+	second = tempElement;
 }
