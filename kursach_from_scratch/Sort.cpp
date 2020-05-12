@@ -14,7 +14,7 @@ void Ascending(doubly_linked_list* L, int field)
 	fillArray(&tempArray, L);
 
 	Contact* tempElement = NULL;
-	resize_z(&tempElement, 1);
+	resizeArray(&tempElement, 1);
 	int arraySize = numElements(L);
 	for (int step = arraySize / 2; step > 0; step /= 2) {
 		for (int i = step; i < arraySize; i++) {
@@ -49,8 +49,8 @@ void Ascending(doubly_linked_list* L, int field)
 	clearList(L);
 	initialize(L);
 	fillListFromArray(L, tempArray, arraySize);
-	clear_z(&tempArray);
-	clear_z(&tempElement);
+	clearArray(&tempArray);
+	clearArray(&tempElement);
 }
 
 void Descending(doubly_linked_list* L, int field)
@@ -67,7 +67,7 @@ void Descending(doubly_linked_list* L, int field)
 	fillArray(&tempArray, L);
 
 	Contact* tempElement = NULL;
-	resize_z(&tempElement, 1);
+	resizeArray(&tempElement, 1);
 	int arraySize = numElements(L);
 	for (int step = arraySize / 2; step > 0; step /= 2) {
 		for (int i = step; i < arraySize; i++) {
@@ -106,6 +106,6 @@ void Descending(doubly_linked_list* L, int field)
 	clearList(L);
 	initialize(L);
 	fillListFromArray(L, tempArray, arraySize);
-	clear_z(&tempArray);
-	clear_z(&tempElement);
+	clearArray(&tempArray);
+	clearArray(&tempElement);
 }

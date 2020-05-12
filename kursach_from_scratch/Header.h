@@ -54,12 +54,12 @@ void movePtrLeft(doubly_linked_list* L);
 /* Сдвиг рабочего указателя вперед */
 void movePtrRight(doubly_linked_list* L);
 
-/* Очистка списка */
+/* Удаление списка */
 void clearList(doubly_linked_list* L);
 /* Предикат: является ли список пустым */
 int isEmptyList(doubly_linked_list* L);
 
-/* Печать все элементов списка с начала до конца */
+/* Печать всех элементов списка с начала до конца */
 void printList(doubly_linked_list* L);
 
 /* Счетчик длинны списка */
@@ -73,9 +73,9 @@ void fillArray(Contact** tempArray, doubly_linked_list* L);
 /* заполнение списка из массива */
 void fillListFromArray(doubly_linked_list* L, Contact* tempArray, int sizeArray);
 /* выделение памяти под массив */
-void resize_z(Contact** pointer, int newsize);
+void resizeArray(Contact** pointer, int newsize);
 /* очищение памяти выделенного массива*/
-void clear_z(Contact** pointer);
+void clearArray(Contact** pointer);
 /* обмен элементов массива */
 void swapArrayElement(Contact& first, Contact& second);
 
