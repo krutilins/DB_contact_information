@@ -31,45 +31,81 @@ void add_next(doubly_linked_list* L) {
 void fillItem(Contact* Item) {
 	char str[100];
 
+	fillFIO(str);
+	strcpy_s(Item->FIO, str);
+
+	fillPhone(str);
+	strcpy_s(Item->phone, str);
+
+	fillCity(str);
+	strcpy_s(Item->city, str);
+
+	fillStreet(str);
+	strcpy_s(Item->street, str);
+
+	fillHouse(str);
+	Item->house = atoi(str);
+
+	fillFlat(str);
+	Item->flat = atoi(str);
+}
+
+void fillFIO(char(&str)[100]) {
 	do {
 		cout << "¬ведите ‘»ќ" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_FIO(str) == false);
-	strcpy_s(Item->FIO, str);
+}
 
+void fillPartFIO(char(&str)[100])
+{
+	cout << "¬ведите искомый элемент: ";
+	cin >> str;
+	system("cls");
+}
+
+void fillPhone(char(&str)[100])
+{
 	do {
 		cout << "¬ведите номер телефона" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_phone(str) == false);
-	strcpy_s(Item->phone, str);
+}
 
+void fillCity(char(&str)[100])
+{
 	do {
 		cout << "¬ведите название города" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_city(str) == false);
-	strcpy_s(Item->city, str);
+}
 
+void fillStreet(char(&str)[100])
+{
 	do {
 		cout << "¬ведите название улицы" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_street(str) == false);
-	strcpy_s(Item->street, str);
+}
 
+void fillHouse(char(&str)[100])
+{
 	do {
 		cout << "¬ведите номер дома" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_house(str) == false);
-	Item->house = atoi(str);
+}
 
+void fillFlat(char(&str)[100])
+{
 	do {
 		cout << "¬ведите номер квартиры" << endl;
 		cin.getline(str, 100);
 		system("cls");
 	} while (check_flat(str) == false);
-	Item->flat = atoi(str);
 }

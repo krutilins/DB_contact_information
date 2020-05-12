@@ -19,5 +19,6 @@
 */
 void search(doubly_linked_list* L, int field);
 
+void makeRequest(char(&str)[100], int field);
 
 #endif // !_SEARCH_H_

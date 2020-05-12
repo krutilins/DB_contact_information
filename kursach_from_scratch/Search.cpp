@@ -4,59 +4,9 @@ void search(doubly_linked_list* L, int field)
 {
 	char request[100];
 	int numRequest = 0;
-	if (field == 1) {
-		do {
-			cout << "¬ведите ‘»ќ: " << endl;
-			cin.getline(request, 100);
-			system("cls");
-		} while (check_FIO(request) == false);
-	}
 
-	if (field == 2 || field == 3 || field == 4) {
-		cout << "¬ведите искомый элемент: ";
-		cin >> request;
-		system("cls");
-	}
-
-	if (field == 5) {
-		do {
-			cout << "¬ведите номер телефона: " << endl;
-			cin.getline(request, 100);
-			system("cls");
-		} while (check_phone(request) == false);
-	}
-
-	if (field == 6) {
-		do {
-			cout << "¬ведите город проживани€: " << endl;
-			cin.getline(request, 100);
-			system("cls");
-		} while (check_city(request) == false);
-	}
-
-	if (field == 7) {
-		do {
-			cout << "¬ведите улицу проживани€: " << endl;
-			cin.getline(request, 100);
-			system("cls");
-		} while (check_street(request) == false);
-	}
-
-	if (field == 8) {
-		do {
-			cout << "¬ведите номер дома" << endl;
-			cin.getline(request, 100);
-			system("cls");
-		} while (check_house(request) == false);
-		numRequest = atoi(request);
-	}
-
-	if (field == 9) {
-		do {
-			cout << "¬ведите номер квартиры" << endl;
-			cin.getline(request, 100);
-			system("cls");
-		} while (check_flat(request) == false);
+	makeRequest(request, field);
+	if (field == 8 || field == 9) {
 		numRequest = atoi(request);
 	}
 
@@ -161,4 +111,34 @@ void search(doubly_linked_list* L, int field)
 		table(tempList);
 	}
 	clearList(tempList);
+}
+
+void makeRequest(char(&request)[100], int field) {
+	if (field == 1) {
+		fillFIO(request);
+	}
+
+	if (field == 2 || field == 3 || field == 4) {
+		fillPartFIO(request);
+	}
+
+	if (field == 5) {
+		fillPhone(request);
+	}
+
+	if (field == 6) {
+		fillCity(request);
+	}
+
+	if (field == 7) {
+		fillStreet(request);
+	}
+
+	if (field == 8) {
+		fillHouse(request);
+	}
+
+	if (field == 9) {
+		fillFlat(request);
+	}
 }
