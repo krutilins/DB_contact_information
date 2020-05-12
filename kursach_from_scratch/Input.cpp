@@ -60,9 +60,11 @@ void fillFIO(char(&str)[100]) {
 
 void fillPartFIO(char(&str)[100])
 {
-	cout << "Введите искомый элемент: ";
-	cin >> str;
-	system("cls");
+	do {
+		cout << "Введите часть ФИО" << endl;
+		cin.getline(str, 100);
+		system("cls");
+	} while (checkPartFIO(str) == false);
 }
 
 void fillPhone(char(&str)[100])

@@ -15,6 +15,19 @@ bool check_FIO(char(&str)[100]) {
 	else return true;
 }
 
+bool checkPartFIO(char(&str)[100])
+{
+	size_t length_str = strlen(str);
+	int num_of_spaces = 0;
+	for (unsigned i = 0; i < length_str; i++) {
+		if (str[i] == ' ') return false;
+	}
+	if (length_str > 40) {
+		return false;
+	}
+	else return true;
+}
+
 bool check_phone(char(&str)[100])
 {
 	size_t length_str = strlen(str);

@@ -4,6 +4,7 @@
 #include "Header.h"
 
 bool check_FIO(char(&str)[100]);
+bool checkPartFIO(char(&str)[100]);
 bool check_phone(char(&str)[100]);
 bool check_city(char(&str)[100]);
 bool check_street(char(&str)[100]);
