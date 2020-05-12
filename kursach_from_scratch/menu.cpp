@@ -223,31 +223,31 @@ void searchMenu(doubly_linked_list* database) {
 		switch (choiceMenu(fieldMenu))
 		{
 		case 1: // фио
-			searchFIO(database);
+			search(database, 1);
 			break;
 		case 2: // фамилия
-			searchSecondName(database);
+			search(database, 2);
 			break;
 		case 3: // имя
-			searchFirstName(database);
+			search(database, 3);
 			break;
 		case 4: // отчество
-			searchMiddleName(database);
+			search(database, 4);
 			break;
 		case 5: // телефон
-			searchPhone(database);
+			search(database, 5);
 			break;
 		case 6: // город
-			searchCity(database);
+			search(database, 6);
 			break;
 		case 7: // улица
-			searchStreet(database);
+			search(database, 7);
 			break;
 		case 8: // дом
-			searchHouse(database);
+			search(database, 8);
 			break;
 		case 9: // квартира
-			searchFlat(database);
+			search(database, 9);
 			break;
 		case 10: // главное меню
 			return;
