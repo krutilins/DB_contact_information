@@ -18,7 +18,6 @@ bool check_FIO(char(&str)[100]) {
 bool checkPartFIO(char(&str)[100])
 {
 	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
 	for (unsigned i = 0; i < length_str; i++) {
 		if (str[i] == ' ') return false;
 	}

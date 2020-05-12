@@ -10,8 +10,6 @@ void search(doubly_linked_list* L, int field)
 		numRequest = atoi(request);
 	}
 
-	int sizeList = numElements(L);
-
 	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
 	initialize(tempList);
 
@@ -25,6 +23,18 @@ void search(doubly_linked_list* L, int field)
 		}
 
 		if (field == 2) {
+			char surname[20] = "";
+			for (int k = 0, l = 0; tmp->FIO[l] != ' '; k++, l++)
+			{
+				surname[k] = tmp->FIO[l];
+			}
+			if ((strcmp(request, surname) == 0)) {
+				endPtr(tempList);
+				prevPut(tempList, tmp);
+			}
+		}
+
+		if (field == 3) {
 			char name[40] = "";
 			int posName = 0;
 			while (tmp->FIO[posName] != ' ') {
@@ -36,18 +46,6 @@ void search(doubly_linked_list* L, int field)
 				name[i] = tmp->FIO[k];
 			}
 			if ((strcmp(request, name) == 0)) {
-				endPtr(tempList);
-				prevPut(tempList, tmp);
-			}
-		}
-
-		if (field == 3) {
-			char surname[20] = "";
-			for (int k = 0, l = 0; tmp->FIO[l] != ' '; k++, l++)
-			{
-				surname[k] = tmp->FIO[l];
-			}
-			if ((strcmp(request, surname) == 0)) {
 				endPtr(tempList);
 				prevPut(tempList, tmp);
 			}
@@ -91,7 +89,6 @@ void search(doubly_linked_list* L, int field)
 
 		if (field == 8 && numRequest == tmp->house) {
 			endPtr(tempList);
-			// вставка в конец списка
 			prevPut(tempList, tmp);
 		}
 
