@@ -264,31 +264,31 @@ void filtrationMenu(doubly_linked_list* database) {
 		switch (choiceMenu(fieldMenu))
 		{
 		case 1: // фио
-			filtrFIO(database);
+			filtration(database, 1);
 			break;
 		case 2: // фамилия
-			filtrSecondName(database);
+			filtration(database, 2);
 			break;
 		case 3: // имя
-			filtrFirstName(database);
+			filtration(database, 3);
 			break;
 		case 4: // отчество
-			filtrMiddleName(database);
+			filtration(database, 4);
 			break;
 		case 5: // телефон
-			filtrPhone(database);
+			filtration(database, 5);
 			break;
 		case 6: // город
-			filtrCity(database);
+			filtration(database, 6);
 			break;
 		case 7: // улица
-			filtrStreet(database);
+			filtration(database, 7);
 			break;
 		case 8: // дом
-			filtrHouse(database);
+			filtration(database, 8);
 			break;
 		case 9: // квартира
-			filtrFlat(database);
+			filtration(database, 9);
 			break;
 		case 10: // главное меню
 			return;
