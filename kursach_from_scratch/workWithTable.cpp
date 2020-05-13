@@ -2,13 +2,9 @@
 
 void table(doubly_linked_list* L)
 {
-	// перемещаем рабочий указатель на начало
 	L->ptr = L->start->next_link;
 
-	// дополнительный элемент для прохода от начала до конца списка
-	Contact* tmp = L->start->next_link; // ссылка на первый элемент
-	
-	// дополнительный указатель на верх таблицы
+	Contact* tmp = L->start->next_link;
 	Contact* head = L->start->next_link;
 
 	int functionKey = 0;
@@ -25,11 +21,9 @@ void table(doubly_linked_list* L)
 		}
 
 		maxPage = ceil((double)numElements(L) / TABLE_ELEMENT);
-
-		cout << "  +----------------------------------------+--------------+--------------------+--------------------+----------+--------------+" << endl;
-		cout << "  |         Фамииля Имя Отчество           |Номер телефона|       Город        |       Улица        |Номер дома|Номер квартиры|" << endl;
-		cout << "  +----------------------------------------+--------------+--------------------+--------------------+----------+--------------+" << endl;
 		
+		showHeader();
+
 		cntElement = 0;
 		while (tmp != L->end && cntElement != TABLE_ELEMENT) {
 			if (tmp == L->ptr) {
@@ -57,12 +51,7 @@ void table(doubly_linked_list* L)
 			cntElement++;
 		}
 
-		cout << "  |";
-		cout << setw(61) << currentPage;
-		cout << "/";
-		cout << setw(3) << maxPage;
-		cout << setw(59) << "|" << endl;
-		cout << "  +----------------------------------------+--------------+--------------------+--------------------+----------+--------------+" << endl;
+		showFooter(currentPage, maxPage);
 
 		do {
 			functionKey = _getch();
@@ -177,4 +166,30 @@ void table(doubly_linked_list* L)
 	   
 		system("cls");
 	} while (true);
+}
+
+void printTable()
+{
+}
+
+void showHeader()
+{
+	showBorder();
+	cout << "  |         Фамииля Имя Отчество           |Номер телефона|       Город        |       Улица        |Номер дома|Номер квартиры|" << endl;
+	showBorder();
+}
+
+void showBorder()
+{
+	cout << "  +----------------------------------------+--------------+--------------------+--------------------+----------+--------------+" << endl;
+}
+
+void showFooter(int currentPage, int maxPage)
+{
+	cout << "  |";
+	cout << setw(61) << currentPage;
+	cout << "/";
+	cout << setw(3) << maxPage;
+	cout << setw(59) << "|" << endl;
+	showBorder();
 }
