@@ -19,4 +19,7 @@ void fillStreet(char(&str)[100]);
 void fillHouse(char(&str)[100]);
 void fillFlat(char(&str)[100]);
 
+int getInt();
+char getLetter();
+char getNumeral();
 #endif // !_INPUT_H_

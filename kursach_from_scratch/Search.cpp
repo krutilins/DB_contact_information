@@ -105,7 +105,7 @@ void search(doubly_linked_list* L, int field)
 		system("cls");
 	}
 	else {
-		table(tempList);
+		selectionTable(tempList);
 	}
 	clearList(tempList);
 }

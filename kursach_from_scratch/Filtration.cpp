@@ -2,23 +2,44 @@
 
 void filtration(doubly_linked_list* L, int field)
 {
-	char startChar;
-	char endChar;
+	char startChar = NULL;
+	char endChar = NULL;
 
-	int startInt;
-	int endInt;
+	int startInt = NULL;
+	int endInt = NULL;
 	
 	if (field == 8 || field == 9) {
-		cout << "¬ведите начало диапазона." << endl;
-		cin >> startInt;
-		cout << "¬ведите конец диапзаона." << endl;
-		cin >> endInt;
+		do {
+			cout << "¬ведите начало диапазона." << endl << endl;
+			startInt = getInt();
+
+			cout << endl;
+			cout << "¬ведите конец диапзаона." << endl << endl;
+			endInt = getInt();
+			system("cls");
+		} while (startInt >= endInt);
+	}
+	else if (field == 5) {
+		do {
+			cout << "¬ведите начало диапазона." << endl << endl;
+			startChar = getNumeral();
+
+			cout << endl;
+			cout << "¬ведите конец диапзаона." << endl << endl;
+			endChar = getNumeral();
+			system("cls");
+		} while (startChar >= endChar);
 	}
 	else {
-		cout << "¬ведите начало диапазона." << endl;
-		cin >> startChar;
-		cout << "¬ведите конец диапзаона." << endl;
-		cin >> endChar;
+		do {
+			cout << "¬ведите начало диапазона." << endl << endl;
+			startChar = getLetter();
+
+			cout << endl;
+			cout << "¬ведите конец диапзаона." << endl << endl;
+			endChar = getLetter();
+			system("cls");
+		} while (startChar >= endChar);
 	}
 
 	doubly_linked_list* tempList = (doubly_linked_list*)malloc(sizeof(doubly_linked_list));
@@ -98,12 +119,12 @@ void filtration(doubly_linked_list* L, int field)
 			prevPut(tempList, tmp);
 		}
 
-		if (field == 8 && tmp->house >= startChar && tmp->house <= endChar) {
+		if (field == 8 && tmp->house >= startInt && tmp->house <= endInt) {
 			endPtr(tempList);
 			prevPut(tempList, tmp);
 		}
 
-		if (field == 9 && tmp->house >= startChar && tmp->house <= endChar) {
+		if (field == 9 && tmp->flat >= startInt && tmp->flat <= endInt) {
 			endPtr(tempList);
 			prevPut(tempList, tmp);
 		}
@@ -116,7 +137,7 @@ void filtration(doubly_linked_list* L, int field)
 		system("cls");
 	}
 	else {
-		table(tempList);
+		selectionTable(tempList);
 	}
 	clearList(tempList);
 }

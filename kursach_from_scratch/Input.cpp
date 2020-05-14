@@ -111,3 +111,62 @@ void fillFlat(char(&str)[100])
 		system("cls");
 	} while (check_flat(str) == false);
 }
+
+int getInt()
+{
+	while (true)
+	{
+		cout << "Введите целочисленное значение: ";
+		int a;
+		cin >> a;
+
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(32767, '\n');
+			cout << "Похоже вы ввели что-то не то. Попробуйте снова." << endl;
+		}
+		else
+		{
+			cin.ignore(32767, '\n'); // удаляем лишние значения
+
+			return a;
+		}
+	}
+}
+
+char getLetter()
+{
+	while (true)
+	{
+		cout << "Введите символ (а - я, А - Я, a - z, A - Z): ";
+		char symbol;
+		cin >> symbol;
+
+		cin.ignore(32767, '\n');
+
+		if ((symbol >= 'а' && symbol <= 'я') || (symbol >= 'А' && symbol <= 'Я')
+			|| symbol == 'ё' || symbol == 'Ё'
+			|| (symbol >= 'a' && symbol <= 'z') || (symbol >= 'A' && symbol <= 'Z'))
+			return symbol;
+		else
+			cout << "Похоже вы ввели что-то не то. Попробуйте снова." << endl;
+	}
+}
+
+char getNumeral()
+{
+	while (true)
+	{
+		cout << "Введите символ (0 - 9): ";
+		char symbol;
+		cin >> symbol;
+
+		cin.ignore(32767, '\n');
+
+		if (symbol >= '0' && symbol <= '9')
+			return symbol;
+		else
+			cout << "Похоже вы ввели что-то не то. Попробуйте снова." << endl;
+	}
+}

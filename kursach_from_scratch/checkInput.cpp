@@ -2,24 +2,45 @@
 
 bool check_FIO(char(&str)[100]) {
 	size_t length_str = strlen(str);
+	if (str[0] == ' ' && length_str > 40) {
+		return false;
+	}
+	
+	int countWords = 1;
 	int num_of_spaces = 0;
 	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
+		if (!((str[i] >= 'à' && str[i] <= 'ÿ') || (str[i] >= 'À' && str[i] <= 'ß')
+			|| str[i] == '¸' || str[i] == '¨' || str[i] == ' '
+			|| (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+			return false;
+		}
+		if (str[i] == ' ') {
+			if ((str[i + 1] >= 'à' && str[i + 1] <= 'ÿ') || (str[i + 1] >= 'À' && str[i + 1] <= 'ß')
+				|| str[i + 1] == '¸' || str[i + 1] == '¨' || str[i + 1] == ' '
+				|| (str[i + 1] >= 'a' && str[i + 1] <= 'z') || (str[i + 1] >= 'A' && str[i + 1] <= 'Z')) {
+				countWords++;
+			}
+			num_of_spaces++;
+			if (num_of_spaces > 2) {
+				return false;
+			}
+		}
 	}
-	if (num_of_spaces == length_str) {
+	if (countWords != 3) {
 		return false;
 	}
-	if (str[0] == ' ' || length_str > 40) {
-		return false;
-	}
-	else return true;
+	return true;
 }
 
 bool checkPartFIO(char(&str)[100])
 {
 	size_t length_str = strlen(str);
 	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') return false;
+		if (!((str[i] >= 'à' && str[i] <= 'ÿ') || (str[i] >= 'À' && str[i] <= 'ß')
+			|| str[i] == '¸' || str[i] == '¨'
+			|| (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+			return false;
+		}
 	}
 	if (length_str > 40) {
 		return false;
@@ -44,14 +65,14 @@ bool check_phone(char(&str)[100])
 bool check_city(char(&str)[100])
 {
 	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
 	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
+		if (!((str[i] >= 'à' && str[i] <= 'ÿ') || (str[i] >= 'À' && str[i] <= 'ß')
+			|| str[i] == '¸' || str[i] == '¨'
+			|| (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+			return false;
+		}
 	}
-	if (num_of_spaces == length_str) {
-		return false;
-	}
-	if (str[0] == ' ' || length_str > 20) {
+	if (length_str > 20) {
 		return false;
 	}
 	else return true;
@@ -60,14 +81,14 @@ bool check_city(char(&str)[100])
 bool check_street(char(&str)[100])
 {
 	size_t length_str = strlen(str);
-	int num_of_spaces = 0;
 	for (unsigned i = 0; i < length_str; i++) {
-		if (str[i] == ' ') num_of_spaces++;
+		if (!((str[i] >= 'à' && str[i] <= 'ÿ') || (str[i] >= 'À' && str[i] <= 'ß')
+			|| str[i] == '¸' || str[i] == '¨'
+			|| (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+			return false;
+		}
 	}
-	if (num_of_spaces == length_str) {
-		return false;
-	}
-	if (str[0] == ' ' || length_str > 20) {
+	if (length_str > 20) {
 		return false;
 	}
 	else return true;

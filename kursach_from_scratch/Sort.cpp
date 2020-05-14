@@ -2,25 +2,99 @@
 
 void Ascending(doubly_linked_list* L, int field)
 {
-	if (field == 2 || field == 3 || field == 4) {
-		cout << "Данная сортировка на данный момент не поддерживаеться." << endl;
-		cout << "Ожиданийте следующих версий приложения." << endl;
-		_getch();
-		system("cls");
-		return;
-	}
-
 	Contact* tempArray = NULL;
 	fillArray(&tempArray, L);
 
-	Contact* tempElement = NULL;
-	resizeArray(&tempElement, 1);
 	int arraySize = numElements(L);
 	for (int step = arraySize / 2; step > 0; step /= 2) {
 		for (int i = step; i < arraySize; i++) {
 			for (int j = 0; j < i; j++) {
 				if (field == 1 && strcmp(tempArray[j].FIO, tempArray[i].FIO) > 0) {
 					swapArrayElement(tempArray[j], tempArray[i]);
+				}
+
+				if (field == 2) {
+					char surnameFirst[40] = "";
+					for (int k = 0, l = 0; tempArray[j].FIO[l] != ' '; k++, l++)
+					{
+						surnameFirst[k] = tempArray[j].FIO[l];
+					}
+
+					char surnameSecond[40] = "";
+					for (int k = 0, l = 0; tempArray[i].FIO[l] != ' '; k++, l++)
+					{
+						surnameSecond[k] = tempArray[i].FIO[l];
+					}
+
+					if (strcmp(surnameFirst, surnameSecond) > 0) {
+						swapArrayElement(tempArray[j], tempArray[i]);
+					}
+				}
+
+				if (field == 3) {
+					char firstName[40] = "";
+					int posFirstName = 0;
+					while (tempArray[j].FIO[posFirstName] != ' ') {
+						posFirstName++;
+					}
+					posFirstName++;
+					for (int l = 0, k = posFirstName; tempArray[j].FIO[k] != ' '; l++, k++)
+					{
+						firstName[l] = tempArray[j].FIO[k];
+					}
+
+					char secondtName[40] = "";
+					int posSecondName = 0;
+					while (tempArray[i].FIO[posSecondName] != ' ') {
+						posSecondName++;
+					}
+					posSecondName++;
+					for (int l = 0, k = posSecondName; tempArray[i].FIO[k] != ' '; l++, k++)
+					{
+						secondtName[l] = tempArray[i].FIO[k];
+					}
+
+					if (strcmp(firstName, secondtName) > 0) {
+						swapArrayElement(tempArray[j], tempArray[i]);
+					}
+				}
+
+				if (field == 4) {
+					char firstMiddleName[40] = "";
+					int posFirstName = 0;
+					while (tempArray[j].FIO[posFirstName] != ' ') {
+						posFirstName++;
+					}
+					posFirstName++;
+					while (tempArray[j].FIO[posFirstName] != ' ') {
+						posFirstName++;
+					}
+					posFirstName++;
+
+					for (int l = 0, k = posFirstName; tempArray[j].FIO[k] != ' ' && tempArray[j].FIO[k] != '\0'; l++, k++)
+					{
+						firstMiddleName[l] = tempArray[j].FIO[k];
+					}
+
+					char secondMiddleName[40] = "";
+					int posSecondName = 0;
+					while (tempArray[i].FIO[posSecondName] != ' ') {
+						posSecondName++;
+					}
+					posSecondName++;
+					while (tempArray[i].FIO[posSecondName] != ' ') {
+						posSecondName++;
+					}
+					posSecondName++;
+
+					for (int l = 0, k = posSecondName; tempArray[i].FIO[k] != ' ' && tempArray[j].FIO[k] != '\0'; l++, k++)
+					{
+						secondMiddleName[l] = tempArray[i].FIO[k];
+					}
+
+					if (strcmp(firstMiddleName, secondMiddleName) > 0) {
+						swapArrayElement(tempArray[j], tempArray[i]);
+					}
 				}
 
 				if (field == 5 && strcmp(tempArray[j].phone, tempArray[i].phone) > 0) {
@@ -50,30 +124,141 @@ void Ascending(doubly_linked_list* L, int field)
 	initialize(L);
 	fillListFromArray(L, tempArray, arraySize);
 	clearArray(&tempArray);
-	clearArray(&tempElement);
 }
 
 void Descending(doubly_linked_list* L, int field)
 {
-	if (field == 2 || field == 3 || field == 4) {
-		cout << "Данная сортировка на данный момент не поддерживаеться." << endl;
-		cout << "Ожиданийте следующих версий приложения." << endl;
-		_getch();
-		system("cls");
-		return;
-	}
-
 	Contact* tempArray = NULL;
 	fillArray(&tempArray, L);
 
-	Contact* tempElement = NULL;
-	resizeArray(&tempElement, 1);
 	int arraySize = numElements(L);
 	for (int step = arraySize / 2; step > 0; step /= 2) {
 		for (int i = step; i < arraySize; i++) {
 			for (int j = 0; j < i; j++) {
 				if (field == 1 && strcmp(tempArray[j].FIO, tempArray[i].FIO) < 0) {
 					swapArrayElement(tempArray[j], tempArray[i]);
+				}
+
+				if (field == 2) {
+					char surnameFirst[40] = "";
+					for (int k = 0, l = 0; tempArray[j].FIO[l] != ' '; k++, l++)
+					{
+						surnameFirst[k] = tempArray[j].FIO[l];
+					}
+
+					char surnameSecond[40] = "";
+					for (int k = 0, l = 0; tempArray[i].FIO[l] != ' '; k++, l++)
+					{
+						surnameSecond[k] = tempArray[i].FIO[l];
+					}
+
+					if (strcmp(surnameFirst, surnameSecond) < 0) {
+						swapArrayElement(tempArray[j], tempArray[i]);
+					}
+				}
+
+				if (field == 3) {
+					char firstName[40] = "";
+					int posFirstName = 0;
+					while (tempArray[j].FIO[posFirstName] != ' ') {
+						posFirstName++;
+					}
+					posFirstName++;
+					for (int l = 0, k = posFirstName; tempArray[j].FIO[k] != ' '; l++, k++)
+					{
+						firstName[l] = tempArray[j].FIO[k];
+					}
+
+					char secondtName[40] = "";
+					int posSecondName = 0;
+					while (tempArray[i].FIO[posSecondName] != ' ') {
+						posSecondName++;
+					}
+					posSecondName++;
+					for (int l = 0, k = posSecondName; tempArray[i].FIO[k] != ' '; l++, k++)
+					{
+						secondtName[l] = tempArray[i].FIO[k];
+					}
+
+					if (strcmp(firstName, secondtName) < 0) {
+						swapArrayElement(tempArray[j], tempArray[i]);
+					}
+				}
+
+				if (field == 4) {
+					char firstMiddleName[40] = "";
+					int posFirstName = 0;
+					while (tempArray[j].FIO[posFirstName] != ' ') {
+						posFirstName++;
+					}
+					posFirstName++;
+					while (tempArray[j].FIO[posFirstName] != ' ') {
+						posFirstName++;
+					}
+					posFirstName++;
+
+					for (int l = 0, k = posFirstName; tempArray[j].FIO[k] != ' '; l++, k++)
+					{
+						firstMiddleName[l] = tempArray[j].FIO[k];
+					}
+
+					char secondMiddleName[40] = "";
+					int posSecondName = 0;
+					while (tempArray[i].FIO[posSecondName] != ' ') {
+						posSecondName++;
+					}
+					posSecondName++;
+					while (tempArray[i].FIO[posSecondName] != ' ') {
+						posSecondName++;
+					}
+					posSecondName++;
+
+					for (int l = 0, k = posSecondName; tempArray[i].FIO[k] != ' '; l++, k++)
+					{
+						secondMiddleName[l] = tempArray[i].FIO[k];
+					}
+
+					if (strcmp(firstMiddleName, secondMiddleName) > 0) {
+						swapArrayElement(tempArray[j], tempArray[i]);
+					}
+				}
+
+				if (field == 4) {
+					char firstMiddleName[40] = "";
+					int posFirstName = 0;
+					while (tempArray[j].FIO[posFirstName] != ' ') {
+						posFirstName++;
+					}
+					posFirstName++;
+					while (tempArray[j].FIO[posFirstName] != ' ') {
+						posFirstName++;
+					}
+					posFirstName++;
+
+					for (int l = 0, k = posFirstName; tempArray[j].FIO[k] != ' ' && tempArray[j].FIO[k] != '\0'; l++, k++)
+					{
+						firstMiddleName[l] = tempArray[j].FIO[k];
+					}
+
+					char secondMiddleName[40] = "";
+					int posSecondName = 0;
+					while (tempArray[i].FIO[posSecondName] != ' ') {
+						posSecondName++;
+					}
+					posSecondName++;
+					while (tempArray[i].FIO[posSecondName] != ' ') {
+						posSecondName++;
+					}
+					posSecondName++;
+
+					for (int l = 0, k = posSecondName; tempArray[i].FIO[k] != ' ' && tempArray[j].FIO[k] != '\0'; l++, k++)
+					{
+						secondMiddleName[l] = tempArray[i].FIO[k];
+					}
+
+					if (strcmp(firstMiddleName, secondMiddleName) < 0) {
+						swapArrayElement(tempArray[j], tempArray[i]);
+					}
 				}
 
 				if (field == 5 && strcmp(tempArray[j].phone, tempArray[i].phone) < 0) {
@@ -107,5 +292,4 @@ void Descending(doubly_linked_list* L, int field)
 	initialize(L);
 	fillListFromArray(L, tempArray, arraySize);
 	clearArray(&tempArray);
-	clearArray(&tempElement);
 }
