@@ -22,10 +22,13 @@ int choiceMenu(int currentMenu) {
 		fcnPtrShowCurrentMenu = showOderMenu;
 		lastMenuItem = 3;
 	}
+	else if (currentMenu == 5) {
+		fcnPtrShowCurrentMenu = showInserMenu;
+		lastMenuItem = 5;
+	}
 	else {
 		exit(0);
 	}
-
 	
 	do {
 		(*fcnPtrShowCurrentMenu)(position);
@@ -79,7 +82,39 @@ void mainMenu(doubly_linked_list* database) {
 			table(database);
 			break;
 		case 3: // добавить вручную
-			add_end(database);
+			switch (choiceMenu(5))
+			{
+			case 1:
+				add_start(database);
+				break;
+			case 2:
+				add_end(database);
+				break;
+			case 3:
+				if (isEmptyList(database)) {
+					cout << "Вы не можете вставить перед выбранным элементом, так как список пуст" << endl;
+					cout << "Воспользуйтесь другими способами вставки." << endl;
+					_getch();
+					system("cls");
+					break;
+				}
+				selectionTable(database);
+				add_prev(database);
+				break;
+			case 4:
+				if (isEmptyList(database)) {
+					cout << "Вы не можете вставить после выбранного элемента, так как список пуст" << endl;
+					cout << "Воспользуйтесь другими способами вставки." << endl;
+					_getch();
+					system("cls");
+					break;
+				}
+				selectionTable(database);
+				add_next(database);
+				break;
+			case 5:
+				break;
+			}
 			break;
 		case 4: // выгрузить в файл
 			if (isEmptyList(database)) {
@@ -146,34 +181,34 @@ void sortMenu(doubly_linked_list* database) {
 		case 1:
 			switch (choiceMenu(fieldMenu))
 			{
-			case 1:
+			case 1: // фио
 				Ascending(database, 1);
 				break;
-			case 2:
+			case 2: // фамилия
 				Ascending(database, 2);
 				break;
-			case 3:
+			case 3: // имя
 				Ascending(database, 3);
 				break;
-			case 4:
+			case 4: // отчество
 				Ascending(database, 4);
 				break;
-			case 5:
+			case 5: // телефон
 				Ascending(database, 5);
 				break;
-			case 6:
+			case 6: // город
 				Ascending(database, 6);
 				break;
-			case 7:
+			case 7: // улица
 				Ascending(database, 7);
 				break;
-			case 8:
+			case 8: // дом
 				Ascending(database, 8);
 				break;
-			case 9:
+			case 9: // квартира
 				Ascending(database, 9);
 				break;
-			case 10:
+			case 10: // главное меню
 				break;
 			}
 			return;
@@ -181,34 +216,34 @@ void sortMenu(doubly_linked_list* database) {
 		case 2:
 			switch (choiceMenu(fieldMenu))
 			{
-			case 1:
+			case 1: // фио
 				Descending(database, 1);
 				break;
-			case 2:
+			case 2: // фамилия
 				Descending(database, 2);
 				break;
-			case 3:
+			case 3: // имя
 				Descending(database, 3);
 				break;
-			case 4:
+			case 4: // отчество
 				Descending(database, 4);
 				break;
-			case 5:
+			case 5: // телефон
 				Descending(database, 5);
 				break;
-			case 6:
+			case 6: // город
 				Descending(database, 6);
 				break;
-			case 7:
+			case 7: // улица
 				Descending(database, 7);
 				break;
-			case 8:
+			case 8: // дом 
 				Descending(database, 8);
 				break;
-			case 9:
+			case 9: // квартира
 				Descending(database, 9);
 				break;
-			case 10:
+			case 10: // главное меню
 				break;
 			}
 			return;
@@ -339,7 +374,7 @@ void showMainMenu(int currentPosition) {
 void showFileMenu(int currentPosition) {
 	int i = 1;
 	cout << "На данный момент вы уже работаете с некой базой данных." << endl;
-	cout << "Желанете очистить базу перед загрузкой новых данных? (1 - да / 0 - нет)" << endl;
+	cout << "Желанете очистить базу перед загрузкой новых данных?" << endl;
 
 	if (currentPosition == 1) { cout << ">"; }
 	else { cout << " "; i++; }
@@ -399,13 +434,37 @@ void showOderMenu(int currentPosition) {
 
 	if (currentPosition == 1) { cout << ">"; }
 	else { cout << " "; i++; }
-	cout << "ПО ВОЗРАСТАНИЮ" << endl;
+	cout << "СОРТИРОВкА ПО ВОЗРАСТАНИЮ" << endl;
 
 	if (currentPosition == 2) { cout << ">"; }
 	else { cout << " "; i++; }
-	cout << "ПО УБЫВАНИЮ" << endl;
+	cout << "СОРТИРОВКА ПО УБЫВАНИЮ" << endl;
 
 	if (currentPosition == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "НАЗАД" << endl;
+}
+void showInserMenu(int currentPosition) {
+	int i = 1;
+	cout << "ВЫБЕРИЕ СПОСОБ ВСТАВКИ" << endl;
+
+	if (currentPosition == 1) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ВСТАВКА В НАЧАЛО" << endl;
+
+	if (currentPosition == 2) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ВСТАВКА В КОНЕЦ" << endl;
+
+	if (currentPosition == 3) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ВСТАВКА ПЕРЕДЕ ВЫБРАННЫМ ЭЛЕМЕНТОМ" << endl;
+
+	if (currentPosition == 4) { cout << ">"; }
+	else { cout << " "; i++; }
+	cout << "ВСТАВКА ПОСЛЕ ВЫБРАННОГО ЭЛЕМЕНТА" << endl;
+
+	if (currentPosition == 5) { cout << ">"; }
 	else { cout << " "; i++; }
 	cout << "НАЗАД" << endl;
 }

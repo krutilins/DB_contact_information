@@ -3,6 +3,7 @@
 bool check_FIO(char(&str)[100]) {
 	size_t length_str = strlen(str);
 	if (str[0] == ' ' && length_str > 40) {
+		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
 	
@@ -12,6 +13,7 @@ bool check_FIO(char(&str)[100]) {
 		if (!((str[i] >= 'а' && str[i] <= 'я') || (str[i] >= 'А' && str[i] <= 'Я')
 			|| str[i] == 'ё' || str[i] == 'Ё' || str[i] == ' '
 			|| (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+			cout << "Введены неверные данные. Попробуйте снова." << endl;
 			return false;
 		}
 		if (str[i] == ' ') {
@@ -22,11 +24,13 @@ bool check_FIO(char(&str)[100]) {
 			}
 			num_of_spaces++;
 			if (num_of_spaces > 2) {
+				cout << "Введены неверные данные. Попробуйте снова." << endl;
 				return false;
 			}
 		}
 	}
 	if (countWords != 3) {
+		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
 	return true;
@@ -39,10 +43,12 @@ bool checkPartFIO(char(&str)[100])
 		if (!((str[i] >= 'а' && str[i] <= 'я') || (str[i] >= 'А' && str[i] <= 'Я')
 			|| str[i] == 'ё' || str[i] == 'Ё'
 			|| (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+			cout << "Введены неверные данные. Попробуйте снова." << endl;
 			return false;
 		}
 	}
-	if (length_str > 40) {
+	if (length_str > 20) {
+		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
 	else return true;
@@ -52,10 +58,12 @@ bool check_phone(char(&str)[100])
 {
 	size_t length_str = strlen(str);
 	if (length_str != 12) {
+		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
 	for (unsigned i = 0; i < length_str; i++) {
 		if (str[i] < '0' || str[i] > '9') {
+			cout << "Введены неверные данные. Попробуйте снова." << endl;
 			return false;
 		}
 	}
@@ -69,10 +77,12 @@ bool check_city(char(&str)[100])
 		if (!((str[i] >= 'а' && str[i] <= 'я') || (str[i] >= 'А' && str[i] <= 'Я')
 			|| str[i] == 'ё' || str[i] == 'Ё'
 			|| (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+			cout << "Введены неверные данные. Попробуйте снова." << endl;
 			return false;
 		}
 	}
 	if (length_str > 20) {
+		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
 	else return true;
@@ -85,10 +95,12 @@ bool check_street(char(&str)[100])
 		if (!((str[i] >= 'а' && str[i] <= 'я') || (str[i] >= 'А' && str[i] <= 'Я')
 			|| str[i] == 'ё' || str[i] == 'Ё'
 			|| (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z'))) {
+			cout << "Введены неверные данные. Попробуйте снова." << endl;
 			return false;
 		}
 	}
 	if (length_str > 20) {
+		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
 	else return true;
@@ -97,10 +109,12 @@ bool check_street(char(&str)[100])
 bool check_house(char(&str)[100])
 {
 	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
+		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
 	for (unsigned i = 0; i < strlen(str); i++) {
 		if (str[i] < '0' || str[i] > '9') {
+			cout << "Введены неверные данные. Попробуйте снова." << endl;
 			return false;
 		}
 	}
@@ -110,10 +124,12 @@ bool check_house(char(&str)[100])
 bool check_flat(char(&str)[100])
 {
 	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
+		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
 	for (unsigned i = 0; i < strlen(str); i++) {
 		if (str[i] < '0' || str[i] > '9') {
+			cout << "Введены неверные данные. Попробуйте снова." << endl;
 			return false;
 		}
 	}

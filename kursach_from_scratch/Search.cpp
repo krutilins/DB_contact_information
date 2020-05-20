@@ -100,7 +100,7 @@ void search(doubly_linked_list* L, int field)
 		tmp = tmp->next_link;
 	}
 	if (isEmptyList(tempList)) {
-		cout << "Ничего не найдено" << endl;
+		cout << "Ничего не найдено!" << endl;
 		_getch();
 		system("cls");
 	}

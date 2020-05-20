@@ -7,6 +7,7 @@ void table(doubly_linked_list* L)
 	Contact* tmp = L->start->next_link;
 	Contact* head = L->start->next_link;
 
+	int cntElement = 0;
 	const int TABLE_ELEMENT = 14;
 	int currentPage = 1;
 	int maxPage;
@@ -20,12 +21,13 @@ void table(doubly_linked_list* L)
 
 		maxPage = ceil((double)numElements(L) / TABLE_ELEMENT);
 		
+		cntElement = 0;
 		tableTitle();
 		showHeader();
-		showTable(L, &tmp, TABLE_ELEMENT);
+		showTable(L, &tmp, TABLE_ELEMENT, cntElement);
 		showFooter(currentPage, maxPage);
 
-		if (keyRegister(L, &tmp, &head, currentPage, TABLE_ELEMENT) == 0) {
+		if (keyRegister(L, &tmp, &head, currentPage, TABLE_ELEMENT, cntElement) == 0) {
 			return;
 		}
 	   
@@ -43,9 +45,8 @@ void selectionTitle()
 	cout << "  |                                    Используйте стрелки для навигации                                                      |" << endl;
 }
 
-void showTable(doubly_linked_list* L, Contact** tmp, const int TABLE_ELEMENT)
+void showTable(doubly_linked_list* L, Contact** tmp, const int TABLE_ELEMENT, int& cntElement)
 {
-	int cntElement = 0;
 	while ((*tmp) != L->end && cntElement != TABLE_ELEMENT) {
 		if ((*tmp) == L->ptr) {
 			cout << "=>";
@@ -95,7 +96,7 @@ void showFooter(int currentPage, int maxPage)
 	showBorder();
 }
 
-int keyRegister(doubly_linked_list* L, Contact** tmp, Contact** head, int& currentPage, const int TABLE_ELEMENT)
+int keyRegister(doubly_linked_list* L, Contact** tmp, Contact** head, int& currentPage, const int TABLE_ELEMENT, int cntElement)
 {
 	int functionKey = 0;
 
@@ -178,7 +179,6 @@ int keyRegister(doubly_linked_list* L, Contact** tmp, Contact** head, int& curre
 				}
 
 			}
-
 			(*tmp) = (*head);
 			break;
 		}
@@ -196,7 +196,7 @@ int keyRegister(doubly_linked_list* L, Contact** tmp, Contact** head, int& curre
 					if (L->ptr == (*head)) {
 						(*head) = (*head)->prev_link;
 					}
-					if (L->ptr->next_link == (*tmp)) {
+					if (L->ptr->next_link == (*tmp) && cntElement == TABLE_ELEMENT) {
 						(*head) = L->ptr;
 					}
 					(*tmp) = (*head);
@@ -240,6 +240,7 @@ void selectionTable(doubly_linked_list* L)
 	Contact* tmp = L->start->next_link;
 	Contact* head = L->start->next_link;
 
+	int cntElement = 0;
 	const int TABLE_ELEMENT = 14;
 	int currentPage = 1;
 	int maxPage;
@@ -253,14 +254,16 @@ void selectionTable(doubly_linked_list* L)
 
 		maxPage = ceil((double)numElements(L) / TABLE_ELEMENT);
 
+		cntElement = 0;
 		selectionTitle();
 		showHeader();
-		showTable(L, &tmp, TABLE_ELEMENT);
+		showTable(L, &tmp, TABLE_ELEMENT, cntElement);
 		showFooter(currentPage, maxPage);
 
 		if (simplifiedKeyRegister(L, &tmp, &head, currentPage, TABLE_ELEMENT) == 0) {
 			return;
 		}
+		cntElement++;
 
 		system("cls");
 	} while (true);
@@ -303,10 +306,9 @@ int simplifiedKeyRegister(doubly_linked_list* L, Contact** tmp, Contact** head, 
 			}
 		}
 
-		if (functionKey == 27) { //esc
+		if (functionKey == 27 || functionKey == 13) { //esc или enter
 			system("cls");
 			return 0;
 		}
 	} while (true);
-	return 1;
 }

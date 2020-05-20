@@ -51,65 +51,65 @@ void fillItem(Contact* Item) {
 }
 
 void fillFIO(char(&str)[100]) {
+	cout << "¬ведите ‘»ќ" << endl;
 	do {
-		cout << "¬ведите ‘»ќ" << endl;
 		cin.getline(str, 100);
-		system("cls");
 	} while (check_FIO(str) == false);
+	system("cls");
 }
 
 void fillPartFIO(char(&str)[100])
 {
+	cout << "¬ведите часть ‘»ќ" << endl;
 	do {
-		cout << "¬ведите часть ‘»ќ" << endl;
 		cin.getline(str, 100);
-		system("cls");
 	} while (checkPartFIO(str) == false);
+	system("cls");
 }
 
 void fillPhone(char(&str)[100])
 {
+	cout << "¬ведите номер телефона" << endl;
 	do {
-		cout << "¬ведите номер телефона" << endl;
 		cin.getline(str, 100);
-		system("cls");
 	} while (check_phone(str) == false);
+	system("cls");
 }
 
 void fillCity(char(&str)[100])
 {
+	cout << "¬ведите название города" << endl;
 	do {
-		cout << "¬ведите название города" << endl;
 		cin.getline(str, 100);
-		system("cls");
 	} while (check_city(str) == false);
+	system("cls");
 }
 
 void fillStreet(char(&str)[100])
 {
+	cout << "¬ведите название улицы" << endl;
 	do {
-		cout << "¬ведите название улицы" << endl;
 		cin.getline(str, 100);
-		system("cls");
 	} while (check_street(str) == false);
+	system("cls");
 }
 
 void fillHouse(char(&str)[100])
 {
+	cout << "¬ведите номер дома" << endl;
 	do {
-		cout << "¬ведите номер дома" << endl;
 		cin.getline(str, 100);
-		system("cls");
 	} while (check_house(str) == false);
+	system("cls");
 }
 
 void fillFlat(char(&str)[100])
 {
+	cout << "¬ведите номер квартиры" << endl;
 	do {
-		cout << "¬ведите номер квартиры" << endl;
 		cin.getline(str, 100);
-		system("cls");
 	} while (check_flat(str) == false);
+	system("cls");
 }
 
 int getInt()

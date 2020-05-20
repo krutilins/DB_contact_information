@@ -4,6 +4,7 @@
 #include "Header.h"
 #include "Input.h"
 #include "checkInput.h"
+#include "menu.h"
 
 void edit(Contact* item);
 

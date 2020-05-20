@@ -10,11 +10,11 @@ void table(doubly_linked_list* L);
 void tableTitle();
 void selectionTitle();
 
-void showTable(doubly_linked_list* L, Contact** tmp, const int TABLE_ELEMENT);
+void showTable(doubly_linked_list* L, Contact** tmp, const int TABLE_ELEMENT, int& cntElement);
 void showHeader();
 void showBorder();
 void showFooter(int currentPage, int maxPage);
-int keyRegister(doubly_linked_list* L, Contact** tmp, Contact** head, int& currentPage, const int TABLE_ELEMENT);
+int keyRegister(doubly_linked_list* L, Contact** tmp, Contact** head, int& currentPage, const int TABLE_ELEMENT, int cntElement);
 
 void selectionTable(doubly_linked_list* L);
 int simplifiedKeyRegister(doubly_linked_list* L, Contact** tmp, Contact** head, int& currentPage, const int TABLE_ELEMENT);

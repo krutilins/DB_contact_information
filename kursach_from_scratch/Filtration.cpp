@@ -1,6 +1,6 @@
 #include "Filtration.h"
 
-void filtration(doubly_linked_list* L, int field)
+void filtration(doubly_linked_list* L, int structField)
 {
 	char startChar = NULL;
 	char endChar = NULL;
@@ -8,7 +8,7 @@ void filtration(doubly_linked_list* L, int field)
 	int startInt = NULL;
 	int endInt = NULL;
 	
-	if (field == 8 || field == 9) {
+	if (structField == 8 || structField == 9) {
 		do {
 			cout << "¬ведите начало диапазона." << endl << endl;
 			startInt = getInt();
@@ -19,7 +19,7 @@ void filtration(doubly_linked_list* L, int field)
 			system("cls");
 		} while (startInt >= endInt);
 	}
-	else if (field == 5) {
+	else if (structField == 5) {
 		do {
 			cout << "¬ведите начало диапазона." << endl << endl;
 			startChar = getNumeral();
@@ -49,12 +49,12 @@ void filtration(doubly_linked_list* L, int field)
 	tmp = L->start->next_link;
 
 	while (tmp != L->end) {
-		if (field == 1 && tmp->FIO[0] >= startChar && tmp->FIO[0] <= endChar) {
+		if (structField == 1 && tmp->FIO[0] >= startChar && tmp->FIO[0] <= endChar) {
 			endPtr(tempList);
 			prevPut(tempList, tmp);
 		}
 
-		if (field == 2) {
+		if (structField == 2) {
 			char surname[20] = "";
 			for (int k = 0, l = 0; tmp->FIO[l] != ' '; k++, l++)
 			{
@@ -66,7 +66,7 @@ void filtration(doubly_linked_list* L, int field)
 			}
 		}
 
-		if (field == 3) {
+		if (structField == 3) {
 			char name[40] = "";
 			int posName = 0;
 			while (tmp->FIO[posName] != ' ') {
@@ -83,7 +83,7 @@ void filtration(doubly_linked_list* L, int field)
 			}
 		}
 
-		if (field == 4) {
+		if (structField == 4) {
 			char middleName[40] = "";
 			int posName = 0;
 			while (tmp->FIO[posName] != ' ') {
@@ -104,27 +104,27 @@ void filtration(doubly_linked_list* L, int field)
 			}
 		}
 
-		if (field == 5 && tmp->phone[0] >= startChar && tmp->phone[0] <= endChar) {
+		if (structField == 5 && tmp->phone[0] >= startChar && tmp->phone[0] <= endChar) {
 			endPtr(tempList);
 			prevPut(tempList, tmp);
 		}
 
-		if (field == 6 && tmp->city[0] >= startChar && tmp->city[0] <= endChar) {
+		if (structField == 6 && tmp->city[0] >= startChar && tmp->city[0] <= endChar) {
 			endPtr(tempList);
 			prevPut(tempList, tmp);
 		}
 
-		if (field == 7 && tmp->street[0] >= startChar && tmp->street[0] <= endChar) {
+		if (structField == 7 && tmp->street[0] >= startChar && tmp->street[0] <= endChar) {
 			endPtr(tempList);
 			prevPut(tempList, tmp);
 		}
 
-		if (field == 8 && tmp->house >= startInt && tmp->house <= endInt) {
+		if (structField == 8 && tmp->house >= startInt && tmp->house <= endInt) {
 			endPtr(tempList);
 			prevPut(tempList, tmp);
 		}
 
-		if (field == 9 && tmp->flat >= startInt && tmp->flat <= endInt) {
+		if (structField == 9 && tmp->flat >= startInt && tmp->flat <= endInt) {
 			endPtr(tempList);
 			prevPut(tempList, tmp);
 		}
