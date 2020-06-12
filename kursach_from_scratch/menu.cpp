@@ -374,7 +374,7 @@ void showMainMenu(int currentPosition) {
 void showFileMenu(int currentPosition) {
 	int i = 1;
 	cout << "На данный момент вы уже работаете с некой базой данных." << endl;
-	cout << "Желанете очистить базу перед загрузкой новых данных?" << endl;
+	cout << "Желаете очистить базу перед загрузкой новых данных?" << endl;
 
 	if (currentPosition == 1) { cout << ">"; }
 	else { cout << " "; i++; }
@@ -434,7 +434,7 @@ void showOderMenu(int currentPosition) {
 
 	if (currentPosition == 1) { cout << ">"; }
 	else { cout << " "; i++; }
-	cout << "СОРТИРОВкА ПО ВОЗРАСТАНИЮ" << endl;
+	cout << "СОРТИРОВКА ПО ВОЗРАСТАНИЮ" << endl;
 
 	if (currentPosition == 2) { cout << ">"; }
 	else { cout << " "; i++; }

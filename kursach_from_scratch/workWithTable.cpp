@@ -37,7 +37,7 @@ void table(doubly_linked_list* L)
 
 void tableTitle()
 {
-	cout << "  |         Используйте стрельки для навигации и enter для выбора элемента для дальнейшей работы с ним.                       |" << endl;
+	cout << "  | Используйте стрельки для навигации и enter для выбора элемента для дальнейшей работы с ним. Backspace - удалить элемент   |" << endl;
 }
 
 void selectionTitle()

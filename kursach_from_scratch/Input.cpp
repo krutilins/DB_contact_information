@@ -69,7 +69,7 @@ void fillPartFIO(char(&str)[100])
 
 void fillPhone(char(&str)[100])
 {
-	cout << "Введите номер телефона" << endl;
+	cout << "Введите номер телефона (12 цифр)" << endl;
 	do {
 		cin.getline(str, 100);
 	} while (check_phone(str) == false);

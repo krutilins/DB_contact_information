@@ -289,4 +289,3 @@ void swapArrayElement(Contact& first, Contact& second)
 	first = second;
 	second = tempElement;
 }
-

@@ -16,10 +16,10 @@
 using namespace std;
 
 struct Contact {
-	char FIO[40];
+	char FIO[41];
 	char phone[13];
-	char city[20];
-	char street[20];
+	char city[21];
+	char street[21];
 	int house;
 	int flat;
 	struct Contact* next_link;
@@ -78,6 +78,5 @@ void resizeArray(Contact** pointer, int newsize);
 void clearArray(Contact** pointer);
 /* обмен элементов массива */
 void swapArrayElement(Contact& first, Contact& second);
-
 
 #endif // _HEADER_H_

@@ -22,4 +22,5 @@ void fillFlat(char(&str)[100]);
 int getInt();
 char getLetter();
 char getNumeral();
+
 #endif // !_INPUT_H_

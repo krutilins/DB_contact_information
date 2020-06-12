@@ -108,7 +108,7 @@ bool check_street(char(&str)[100])
 
 bool check_house(char(&str)[100])
 {
-	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
+	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0' || str[0] == 0) {
 		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
@@ -123,7 +123,7 @@ bool check_house(char(&str)[100])
 
 bool check_flat(char(&str)[100])
 {
-	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0') {
+	if (strlen(str) > 3 || str[0] == ' ' || str[0] == '0' || str[0] == 0) {
 		cout << "Введены неверные данные. Попробуйте снова." << endl;
 		return false;
 	}
